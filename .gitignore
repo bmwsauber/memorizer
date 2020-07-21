@@ -1,0 +1,11 @@
+volumes
+.idea
+node_modules
+npm-debug.log
+app/public/css/app.css.map
+app/public/media
+app/package-lock.json
+app/_ide_helper.php
+
+# Mac OS specific files
+.DS_Store
