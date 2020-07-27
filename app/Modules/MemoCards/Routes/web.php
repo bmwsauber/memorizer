@@ -11,5 +11,12 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/reports', 'ReportController@index')->name('report.index');
+Route::get('/cards', 'CardsController@index')->name('cards.index');
+Route::prefix('work')->group(function () {
+    Route::get('/', 'WorkController@index')->name('work.index');
+    Route::post('/set_level/{card}', 'WorkController@setCardLevel')->name('work.set_level');
+});
+
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
+use Modules\MemoCards\Entities\Card;
+
 class HomeController extends Controller
 {
     /**
@@ -14,6 +16,26 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('memocards::index');
+        $cards = Card::all();
+        $sortedCards = [];
+        foreach ($cards as $card) {
+            if($card->level == 1){
+                $sortedCards['regular'][] = $card;
+            }elseif ($card->level > 1 && $card->level <= 3){
+                $sortedCards['magic'][] = $card;
+            }elseif ($card->level > 3 && $card->level <= 5){
+                $sortedCards['rare '][] = $card;
+            }elseif ($card->level > 5 && $card->level <= 10) {
+                $sortedCards['unique'][] = $card;
+            }elseif ($card->level > 10){
+                $sortedCards['legendary'][] = $card;
+            }
+        }
+
+        return view('memocards::home', [
+            'sortedCards' => $sortedCards,
+            'cards' => $cards,
+            'asd' => 'asd',
+        ]);
     }
 }

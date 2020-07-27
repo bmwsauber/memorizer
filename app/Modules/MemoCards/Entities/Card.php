@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    protected $fillable = [];
+    protected $fillable = [
+        'level',
+        'right',
+        'wrong',
+        'total',
+    ];
 }

@@ -15,7 +15,12 @@ class CreateCardsTable extends Migration
     {
         Schema::create('cards', function (Blueprint $table) {
             $table->bigIncrements('id');
-
+            $table->string('eng');
+            $table->string('rus');
+            $table->integer('level');
+            $table->integer('right');
+            $table->integer('wrong');
+            $table->integer('total');
             $table->timestamps();
         });
     }
