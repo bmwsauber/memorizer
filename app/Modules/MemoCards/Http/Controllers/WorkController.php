@@ -21,7 +21,7 @@ class WorkController extends Controller
         $cards = Card::where('level', '<=', 1)
             ->orderBy('total', 'ASC')
             ->inRandomOrder()
-            ->get(['id', 'eng', 'rus']);
+            ->get(['id', 'eng', 'rus', 'irreg_verb']);
 
         /**
          * Decrease "level" value to other cards

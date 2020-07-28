@@ -11,5 +11,6 @@ class Card extends Model
         'right',
         'wrong',
         'total',
+        'irreg_verb',
     ];
 }

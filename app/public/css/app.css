@@ -10932,3 +10932,20 @@ a.text-dark:focus {
   height: 2rem;
 }
 
+.progress .progress-bar {
+  color: #dc3545;
+  overflow: initial;
+}
+
+.work-content {
+  top: 50%;
+  position: absolute;
+  margin-top: -100px;
+  width: 100%;
+  text-align: center !important;
+}
+
+.work-content .answer-buttons {
+  margin-left: 25px;
+}
+

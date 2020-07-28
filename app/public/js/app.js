@@ -14054,6 +14054,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['cards'],
@@ -14063,19 +14075,24 @@ __webpack_require__.r(__webpack_exports__);
       cardIndex: 0,
       lastCardsIndex: 0,
       totalCards: 0,
+      currentCard: {},
       currentQuestion: '',
       currentAnswer: '',
-      showAnswer: false,
-      progressWidth: 0
+      openAnswer: false,
+      progressWidth: 0,
+      showAdditionalButtons: false,
+      randMeasureRus: 0,
+      randMeasureEng: 0
     };
   },
   mounted: function mounted() {
     this.totalCards = this.cards.length;
     this.lastCardsIndex = this.cards.length - 1;
-    this.showCard();
+    this.currentCard = this.cards[this.cardIndex];
+    this.showQuestion();
   },
   methods: {
-    showCard: function showCard() {
+    showQuestion: function showQuestion() {
       /**
        * Check if all cards showed just redirect to homepage
        */
@@ -14083,63 +14100,116 @@ __webpack_require__.r(__webpack_exports__);
         location.href = this.route('home');
       }
 
-      this.showAnswer = false;
+      this.openAnswer = false;
       /**
        * Random show Eng or Rus word
        */
 
       if (Math.round(Math.random())) {
-        this.currentQuestion = this.cards[this.cardIndex]['rus'];
-        this.currentAnswer = this.cards[this.cardIndex]['eng'];
+        this.currentQuestion = this.currentCard.rus;
+        this.currentAnswer = this.currentCard.eng;
+        this.randMeasureRus++;
       } else {
-        this.currentQuestion = this.cards[this.cardIndex]['eng'];
-        this.currentAnswer = this.cards[this.cardIndex]['rus'];
+        this.currentQuestion = this.currentCard.eng;
+        this.currentAnswer = this.currentCard.rus;
+        this.randMeasureEng++;
       }
-      /*
-      document.addEventListener('keyup', (event) => {
-          if (event.defaultPrevented) {
-              return;
-          }
-           console.log(event.code);
-           if (event.code === 'Escape') {
-              this.setNewLevel(1, false);
-              event.defaultPrevented;
-          } else if (event.code === 'Space') {
-              this.setNewLevel(1, true);
-              event.defaultPrevented;
-          } else if (event.code === 'Digit1') {
-              this.setNewLevel(3, true);
-              event.defaultPrevented;
-          }
-      });
-         */
 
+      window.addEventListener('keyup', this._respondQuestion);
     },
 
     /**
      * Show hidden div
      */
-    openAnswer: function openAnswer(event) {
-      event.preventDefault();
-      this.showAnswer = true;
+    showAnswer: function showAnswer(event) {
+      this.openAnswer = true;
+      window.addEventListener('keyup', this._respondAnswer);
     },
 
     /**
-     * Mark this card as new level
+     * Mark this card as new level and show new card
      *
      * @param level
+     * @param isCorrect
      */
-    setNewLevel: function setNewLevel(level, isCoreect) {
+    sendAnswerData: function sendAnswerData(level, isCorrect) {
       var data = {
         level: level,
-        isCoreect: isCoreect
+        isCorrect: isCorrect
       };
-      axios.post(this.route('work.set_level', this.cards[this.cardIndex].id), data).then(function (response) {
-        if (!response.data.errors) {} else {}
+      axios.post(this.route('work.set_level', this.currentCard.id), data).then(function (response) {
+        if (!response.data.errors) {// ... we can do here something, if we need
+        } else {// ... if we get "error", we can switch script to offline mode here (without statistic)
+          }
       });
       this.cardIndex++;
+      this.currentCard = this.cards[this.cardIndex];
       this.progressWidth = Math.round(this.cardIndex * 100 / this.lastCardsIndex);
-      this.showCard();
+      this.showQuestion();
+    },
+
+    /**
+     * Keyboard Handling
+     *
+     * @param event
+     * @private
+     */
+    _respondAnswer: function _respondAnswer(event) {
+      switch (event.code) {
+        case 'Escape':
+          this.sendAnswerData(1, false);
+          break;
+
+        case 'Space':
+          this.sendAnswerData(1, true);
+          break;
+
+        case 'Digit1':
+          this.sendAnswerData(3, true);
+          break;
+
+        case 'Digit2':
+          this.sendAnswerData(5, true);
+          break;
+
+        case 'Digit3':
+          this.sendAnswerData(10, true);
+          break;
+
+        case 'Digit4':
+          this.sendAnswerData(11, true);
+          break;
+
+        default:
+          return;
+      }
+
+      window.removeEventListener("keyup", this._respondAnswer);
+    },
+
+    /**
+     * Keyboard Handling
+     *
+     * @param event
+     * @private
+     */
+    _respondQuestion: function _respondQuestion(event) {
+      switch (event.code) {
+        case 'Space':
+          this.showAnswer();
+          break;
+
+        case 'Escape':
+          this.cardIndex--;
+          this.showQuestion();
+          this.showAnswer();
+          break;
+
+        default:
+          return;
+      }
+
+      window.removeEventListener("keyup", this._respondQuestion);
     }
   }
 });
@@ -14644,69 +14714,51 @@ var render = function() {
         },
         [
           _vm._v(
-            _vm._s(this.cardIndex + 1) +
+            " " +
+              _vm._s(_vm.cardIndex + 1) +
               " / " +
-              _vm._s(this.totalCards) +
+              _vm._s(_vm.totalCards) +
               "\n        "
           )
         ]
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "text-center" }, [
+    _c("div", { staticClass: "work-content" }, [
       _c("div", { staticClass: "question w-100" }, [
-        _c("h1", [_vm._v(_vm._s(this.currentQuestion))])
+        _c("h1", [_vm._v(_vm._s(_vm.currentQuestion))])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "answer w-100" }, [
-        this.showAnswer
-          ? _c("h2", [_c("span", [_vm._v(_vm._s(this.currentAnswer))])])
-          : _c("h2", [_vm._v(" ")])
+        _vm.openAnswer
+          ? _c("div", [
+              _c("h2", [_c("span", [_vm._v(_vm._s(_vm.currentAnswer))])])
+            ])
+          : _c("div", [
+              _c("h2", [
+                _vm._v(" "),
+                _vm.currentCard.irreg_verb
+                  ? _c("span", [_vm._v("IV")])
+                  : _vm._e()
+              ])
+            ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "buttons w-100" }, [
-        this.showAnswer
-          ? _c("div", [
+      _c("div", { staticClass: "buttons w-100 mt-3" }, [
+        _vm.openAnswer
+          ? _c("div", { staticClass: "answer-buttons" }, [
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-light",
+                  staticClass: "btn btn-info",
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
-                      return _vm.setNewLevel(1, true)
+                      return _vm.sendAnswerData(1, true)
                     }
                   }
                 },
-                [_vm._v("Ok!")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-primary",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      return _vm.setNewLevel(3, true)
-                    }
-                  }
-                },
-                [_vm._v("Up Magic")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-warning",
-                  attrs: { type: "button" },
-                  on: {
-                    click: function($event) {
-                      return _vm.setNewLevel(5, true)
-                    }
-                  }
-                },
-                [_vm._v("Up Rare")]
+                [_vm._v("Right :))")]
               ),
               _vm._v(" "),
               _c(
@@ -14716,25 +14768,99 @@ var render = function() {
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
-                      return _vm.setNewLevel(10, true)
+                      return _vm.sendAnswerData(1, false)
                     }
                   }
                 },
-                [_vm._v("Up Unique")]
+                [_vm._v("Wrong :(")]
               ),
               _vm._v(" "),
               _c(
                 "button",
                 {
-                  staticClass: "btn btn-dark",
+                  staticClass: "btn btn-light",
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
-                      return _vm.setNewLevel(11, true)
+                      _vm.showAdditionalButtons = !_vm.showAdditionalButtons
                     }
                   }
                 },
-                [_vm._v("Up Legendary")]
+                [_vm._v("\n                    ...\n                ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.showAdditionalButtons,
+                      expression: "showAdditionalButtons"
+                    }
+                  ],
+                  staticClass: "additional-buttons mt-2"
+                },
+                [
+                  _c("h5", [_vm._v("UP 2")]),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.sendAnswerData(3, true)
+                        }
+                      }
+                    },
+                    [_vm._v("Magic")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-warning",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.sendAnswerData(5, true)
+                        }
+                      }
+                    },
+                    [_vm._v("Rare")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.sendAnswerData(10, true)
+                        }
+                      }
+                    },
+                    [_vm._v("Unique\n                    ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-dark",
+                      attrs: { type: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.sendAnswerData(11, true)
+                        }
+                      }
+                    },
+                    [_vm._v("Legendary\n                    ")]
+                  )
+                ]
               )
             ])
           : _c("div", [
@@ -14743,23 +14869,9 @@ var render = function() {
                 {
                   staticClass: "btn btn-info",
                   attrs: { type: "button" },
-                  on: {
-                    keyup: function($event) {
-                      if (
-                        !$event.type.indexOf("key") &&
-                        _vm._k($event.keyCode, "space", 32, $event.key, [
-                          " ",
-                          "Spacebar"
-                        ])
-                      ) {
-                        return null
-                      }
-                      return _vm.openAnswer($event)
-                    },
-                    click: _vm.openAnswer
-                  }
+                  on: { click: _vm.showAnswer }
                 },
-                [_vm._v("Show\n                ")]
+                [_vm._v("Show Answer")]
               )
             ])
       ])

@@ -2,28 +2,40 @@
     <div>
         <div class="progress">
             <div class="progress-bar" role="progressbar" :style="{ width : progressWidth + '%' }" aria-valuemin="0"
-                 aria-valuemax="100">{{ (this.cardIndex + 1) }} / {{ this.totalCards }}
+                 aria-valuemax="100">&nbsp;{{ ( cardIndex + 1 ) }} / {{ totalCards }}
             </div>
         </div>
-        <div class="text-center">
+        <div class="work-content">
             <div class="question w-100">
-                <h1>{{ this.currentQuestion }}</h1>
+                <h1>{{ currentQuestion }}</h1>
             </div>
             <div class="answer w-100">
-                <h2 v-if="this.showAnswer"><span>{{ this.currentAnswer }}</span></h2>
-                <h2 v-else>&nbsp;</h2>
-            </div>
-            <div class="buttons w-100">
-                <div v-if="this.showAnswer">
-                    <button type="button" class="btn btn-light" @click="setNewLevel(1, true)">Ok!</button>
-                    <button type="button" class="btn btn-primary" @click="setNewLevel(3, true)">Up Magic</button>
-                    <button type="button" class="btn btn-warning" @click="setNewLevel(5, true)">Up Rare</button>
-                    <button type="button" class="btn btn-danger" @click="setNewLevel(10, true)">Up Unique</button>
-                    <button type="button" class="btn btn-dark" @click="setNewLevel(11, true)">Up Legendary</button>
+                <div v-if="openAnswer">
+                    <h2><span>{{ currentAnswer }}</span></h2>
                 </div>
                 <div v-else>
-                    <button type="button" class="btn btn-info" @keyup.space="openAnswer" @click="openAnswer">Show
+                    <h2>&nbsp;<span v-if="currentCard.irreg_verb">IV</span></h2>
+                </div>
+            </div>
+            <div class="buttons w-100 mt-3">
+                <div v-if="openAnswer" class="answer-buttons">
+                    <button type="button" class="btn btn-info" @click="sendAnswerData(1, true)">Right :))</button>
+                    <button type="button" class="btn btn-danger" @click="sendAnswerData(1, false)">Wrong :(</button>
+                    <button type="button" class="btn btn-light" @click="showAdditionalButtons = !showAdditionalButtons">
+                        ...
                     </button>
+                    <div v-show="showAdditionalButtons" class="additional-buttons mt-2">
+                        <h5>UP 2</h5>
+                        <button type="button" class="btn btn-primary" @click="sendAnswerData(3, true)">Magic</button>
+                        <button type="button" class="btn btn-warning" @click="sendAnswerData(5, true)">Rare</button>
+                        <button type="button" class="btn btn-danger" @click="sendAnswerData(10, true)">Unique
+                        </button>
+                        <button type="button" class="btn btn-dark" @click="sendAnswerData(11, true)">Legendary
+                        </button>
+                    </div>
+                </div>
+                <div v-else>
+                    <button type="button" class="btn btn-info" @click="showAnswer">Show Answer</button>
                 </div>
             </div>
         </div>
@@ -42,20 +54,24 @@
                 cardIndex: 0,
                 lastCardsIndex: 0,
                 totalCards: 0,
+                currentCard: {},
                 currentQuestion: '',
                 currentAnswer: '',
-                showAnswer: false,
+                openAnswer: false,
                 progressWidth: 0,
+                showAdditionalButtons: false,
+                randMeasureRus: 0,
+                randMeasureEng: 0,
             }
-
         },
         mounted() {
             this.totalCards = (this.cards.length);
             this.lastCardsIndex = (this.cards.length - 1);
-            this.showCard();
+            this.currentCard = this.cards[this.cardIndex];
+            this.showQuestion();
         },
         methods: {
-            showCard() {
+            showQuestion() {
 
                 /**
                  * Check if all cards showed just redirect to homepage
@@ -64,76 +80,116 @@
                     location.href = this.route('home');
                 }
 
-                this.showAnswer = false;
+                this.openAnswer = false;
 
                 /**
                  * Random show Eng or Rus word
                  */
                 if (Math.round(Math.random())) {
-                    this.currentQuestion = this.cards[this.cardIndex]['rus'];
-                    this.currentAnswer = this.cards[this.cardIndex]['eng'];
+                    this.currentQuestion = this.currentCard.rus;
+                    this.currentAnswer = this.currentCard.eng;
+                    this.randMeasureRus++;
 
                 } else {
-                    this.currentQuestion = this.cards[this.cardIndex]['eng'];
-                    this.currentAnswer = this.cards[this.cardIndex]['rus'];
+                    this.currentQuestion = this.currentCard.eng;
+                    this.currentAnswer = this.currentCard.rus;
+                    this.randMeasureEng++;
                 }
 
-                /*
-                document.addEventListener('keyup', (event) => {
-                    if (event.defaultPrevented) {
-                        return;
-                    }
-
-                    console.log(event.code);
-
-                    if (event.code === 'Escape') {
-                        this.setNewLevel(1, false);
-                        event.defaultPrevented;
-                    } else if (event.code === 'Space') {
-                        this.setNewLevel(1, true);
-                        event.defaultPrevented;
-                    } else if (event.code === 'Digit1') {
-                        this.setNewLevel(3, true);
-                        event.defaultPrevented;
-                    }
-                });
-
-
-                 */
+                window.addEventListener('keyup', this._respondQuestion);
             },
 
             /**
              * Show hidden div
              */
-            openAnswer(event) {
-                event.preventDefault();
-                this.showAnswer = true;
+            showAnswer(event) {
+                this.openAnswer = true;
+                window.addEventListener('keyup', this._respondAnswer);
             },
 
             /**
-             * Mark this card as new level
+             * Mark this card as new level and show new card
              *
              * @param level
+             * @param isCorrect
              */
-            setNewLevel(level, isCoreect) {
+            sendAnswerData(level, isCorrect) {
                 let data = {
                     level: level,
-                    isCoreect: isCoreect,
+                    isCorrect: isCorrect,
                 };
 
-                axios.post(this.route('work.set_level', this.cards[this.cardIndex].id), data).then(response => {
+                axios.post(this.route('work.set_level', this.currentCard.id), data).then(response => {
                     if (!response.data.errors) {
+                        // ... we can do here something, if we need
                     } else {
+                        // ... if we get "error", we can switch script to offline mode here (without statistic)
                     }
                 });
 
-
                 this.cardIndex++;
+                this.currentCard = this.cards[this.cardIndex];
                 this.progressWidth = Math.round(this.cardIndex * 100 / this.lastCardsIndex);
-                this.showCard();
-            }
+                this.showQuestion();
+            },
+
+            /**
+             * Keyboard Handling
+             *
+             * @param event
+             * @private
+             */
+            _respondAnswer(event) {
+
+                switch (event.code) {
+                    case 'Escape':
+                        this.sendAnswerData(1, false);
+                        break;
+                    case 'Space':
+                        this.sendAnswerData(1, true);
+                        break;
+                    case 'Digit1':
+                        this.sendAnswerData(3, true);
+                        break;
+                    case 'Digit2':
+                        this.sendAnswerData(5, true);
+                        break;
+                    case 'Digit3':
+                        this.sendAnswerData(10, true);
+                        break;
+                    case 'Digit4':
+                        this.sendAnswerData(11, true);
+                        break;
+                    default :
+                        return;
+                }
+
+                window.removeEventListener("keyup", this._respondAnswer);
+            },
+
+            /**
+             * Keyboard Handling
+             *
+             * @param event
+             * @private
+             */
+            _respondQuestion(event) {
+
+                switch (event.code) {
+                    case 'Space':
+                        this.showAnswer();
+                        break;
+                    case 'Escape':
+                        this.cardIndex--;
+                        this.showQuestion();
+                        this.showAnswer();
+                        break;
+                    default :
+                        return;
+                }
+
+                window.removeEventListener("keyup", this._respondQuestion);
+            },
         }
-
-
     }
 </script>
