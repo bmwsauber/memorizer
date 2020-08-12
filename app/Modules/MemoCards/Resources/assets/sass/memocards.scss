@@ -1,22 +1,66 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.progress {
-    height: 2rem;
-    .progress-bar {
-        color: #dc3545;
-        overflow: initial;
+html, body {
+    height: 100%;
+}
+
+.content {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -60px;
+
+    .work-progress {
+        height: 2rem;
+
+        .progress-bar {
+            color: #dc3545;
+            overflow: initial;
+        }
     }
+
+    .work-content {
+        top: 50%;
+        position: absolute;
+        margin-top: -100px;
+        width: 100%;
+        text-align: center !important;
+
+        .answer-buttons {
+            margin-left: 25px;
+        }
+
+        .answer-hint {
+            font-size: 20px;
+        }
+
+        .statistic {
+            margin: 0 auto;
+            width: 100px;
+        }
+
+        .statistic-progress {
+            height: 10px;
+
+            &:first-child {
+                margin-bottom: 5px;
+            }
+
+            .right {
+                background-color: #17a2b8;
+            }
+
+            .wrong {
+                background-color: #dc3545;
+            }
+        }
+    }
+
 
 }
 
-.work-content {
-    top: 50%;
-    position: absolute;
-    margin-top: -100px;
-    width: 100%;
-    text-align: center !important;
-    .answer-buttons {
-        margin-left: 25px;
-    }
+.footer {
+    height: 60px;
 }
+

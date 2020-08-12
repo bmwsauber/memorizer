@@ -1,11 +1,25 @@
 <template>
     <div>
-        <div class="progress">
+        <div class="progress work-progress">
             <div class="progress-bar" role="progressbar" :style="{ width : progressWidth + '%' }" aria-valuemin="0"
                  aria-valuemax="100">&nbsp;{{ ( cardIndex + 1 ) }} / {{ totalCards }}
             </div>
         </div>
         <div class="work-content">
+            <div class="statistic">
+                <div class="progress statistic-progress">
+                    <div class="progress-bar right" role="progressbar"
+                         :style="{ width : correctAnswersPercentage +'%' }" aria-valuemin="0"
+                         aria-valuemax="100">&nbsp;{{ currentCard.right }}
+                    </div>
+                </div>
+                <div class="progress statistic-progress">
+                    <div class="progress-bar wrong" role="progressbar" :style="{ width : wrongAnswersPercentage + '%' }"
+                         aria-valuemin="0"
+                         aria-valuemax="100">&nbsp;{{ currentCard.wrong }}
+                    </div>
+                </div>
+            </div>
             <div class="question w-100">
                 <h1>{{ currentQuestion }}</h1>
             </div>
@@ -14,7 +28,8 @@
                     <h2><span>{{ currentAnswer }}</span></h2>
                 </div>
                 <div v-else>
-                    <h2>&nbsp;<span v-if="currentCard.irreg_verb">IV</span></h2>
+                    <i v-if="currentCard.irreg_verb" class="answer-hint">[Irregular Verb]</i>
+                    <i v-else class="answer-hint">&nbsp;</i>
                 </div>
             </div>
             <div class="buttons w-100 mt-3">
@@ -115,7 +130,6 @@
              */
             sendAnswerData(level, isCorrect) {
                 let data = {
-                    level: level,
                     isCorrect: isCorrect,
                 };
 
@@ -148,17 +162,11 @@
                     case 'Space':
                         this.sendAnswerData(1, true);
                         break;
-                    case 'Digit1':
-                        this.sendAnswerData(3, true);
-                        break;
-                    case 'Digit2':
-                        this.sendAnswerData(5, true);
-                        break;
-                    case 'Digit3':
-                        this.sendAnswerData(10, true);
-                        break;
-                    case 'Digit4':
-                        this.sendAnswerData(11, true);
+                    case 'Backspace':
+                        this.cardIndex--;
+                        this.currentCard = this.cards[this.cardIndex];
+                        this.showQuestion();
+                        this.showAnswer();
                         break;
                     default :
                         return;
@@ -179,8 +187,9 @@
                     case 'Space':
                         this.showAnswer();
                         break;
-                    case 'Escape':
+                    case 'Backspace':
                         this.cardIndex--;
+                        this.currentCard = this.cards[this.cardIndex];
                         this.showQuestion();
                         this.showAnswer();
                         break;
@@ -190,6 +199,43 @@
 
                 window.removeEventListener("keyup", this._respondQuestion);
             },
+        },
+        computed: {
+
+            /**
+             * Calculate Diagram widths
+             * use math proportions
+             *
+             */
+            correctAnswersPercentage() {
+
+                /**
+                 * "if" solving problem when total eq 0
+                 */
+                if (this.currentCard.total) {
+                    return this.currentCard.right * 100 / this.currentCard.total;
+                } else {
+                    return 0;
+                }
+
+            },
+
+            /**
+             * Calculate Diagram widths
+             * use math proportions
+             *
+             */
+            wrongAnswersPercentage() {
+
+                /**
+                 * "if" solving problem when total eq 0
+                 */
+                if (this.currentCard.total) {
+                    return this.currentCard.wrong * 100 / this.currentCard.total;
+                } else {
+                    return 0;
+                }
+            }
         }
     }
 </script>

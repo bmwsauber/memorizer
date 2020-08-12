@@ -109,7 +109,10 @@ class MemoCardsServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [];
+        return [
+            // Laravel IDE helper
+            'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        ];
     }
 
     private function getPublishableViewPaths(): array

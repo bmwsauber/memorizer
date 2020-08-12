@@ -10928,16 +10928,28 @@ a.text-dark:focus {
   }
 }
 
-.progress {
+html,
+body {
+  height: 100%;
+}
+
+.content {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -60px;
+}
+
+.content .work-progress {
   height: 2rem;
 }
 
-.progress .progress-bar {
+.content .work-progress .progress-bar {
   color: #dc3545;
   overflow: initial;
 }
 
-.work-content {
+.content .work-content {
   top: 50%;
   position: absolute;
   margin-top: -100px;
@@ -10945,7 +10957,36 @@ a.text-dark:focus {
   text-align: center !important;
 }
 
-.work-content .answer-buttons {
+.content .work-content .answer-buttons {
   margin-left: 25px;
+}
+
+.content .work-content .answer-hint {
+  font-size: 20px;
+}
+
+.content .work-content .statistic {
+  margin: 0 auto;
+  width: 100px;
+}
+
+.content .work-content .statistic-progress {
+  height: 10px;
+}
+
+.content .work-content .statistic-progress:first-child {
+  margin-bottom: 5px;
+}
+
+.content .work-content .statistic-progress .right {
+  background-color: #17a2b8;
+}
+
+.content .work-content .statistic-progress .wrong {
+  background-color: #dc3545;
+}
+
+.footer {
+  height: 60px;
 }
 

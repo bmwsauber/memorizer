@@ -2,6 +2,7 @@ volumes
 .idea
 node_modules
 npm-debug.log
+st.bat
 app/public/css/app.css.map
 app/public/media
 app/package-lock.json

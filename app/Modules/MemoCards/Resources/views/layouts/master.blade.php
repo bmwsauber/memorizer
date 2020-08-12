@@ -11,10 +11,11 @@
     {{-- Laravel Mix - CSS File --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
-<body>
+<body class="body-{{ Route::currentRouteName() }}">
     <div class="content" id="app">
         @yield('content')
     </div>
+    <div class="footer">@include('memocards::layouts.footer')</div>
 </body>
 <script>
     window.Laravel = @json([
@@ -25,7 +26,7 @@
             'user' => auth()->user()
         ]);
 
-    window.Laravel.curentRoute = "{{ \Illuminate\Support\Facades\Route::currentRouteName() }}";
+    window.Laravel.curentRoute = "{{ Route::currentRouteName() }}";
 </script>
 {{-- Laravel Mix - JS File --}}
 <script src="{{ mix('js/app.js') }}"></script>
