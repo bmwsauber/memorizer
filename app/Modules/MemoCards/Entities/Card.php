@@ -55,7 +55,7 @@ class Card extends Model
 
             $this->increment('total', 1, [
                 'level' => $level,
-                'right' => ($this->wrong + 1),
+                'wrong' => ($this->wrong + 1),
             ]);
         }
 

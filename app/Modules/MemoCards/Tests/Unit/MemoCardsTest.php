@@ -102,18 +102,32 @@ class MemoCardsTest extends TestCase
         $this->card = Card::find($factoryCard->id);
 
         /**
+         * Checking result
+         */
+        if ($isCorrect) {
+            $this->assertEquals(($factoryCard->right + 1), $this->card->right);
+            $this->assertEquals(($factoryCard->total + 1), $this->card->total);
+            $this->assertEquals($factoryCard->wrong, $this->card->wrong);
+        } else {
+            $this->assertEquals(($factoryCard->right), $this->card->right);
+            $this->assertEquals(($factoryCard->total + 1), $this->card->total);
+            $this->assertEquals(($factoryCard->wrong + 1), $this->card->wrong);
+        }
+
+
+        /**
          * Checking calculations
          *
          * if wrong answers was more, we need to show this card on the next work session.
          * just set level = 1
          */
-        if ($this->card->wrong > $this->card->right) {
+        if ($this->card->wrong > $this->card->right || !$isCorrect) {
             $this->assertEquals($this->card->level, 1);
 
             /**
              * It was very easy, let's go one more time :)
              */
-            $this->_calculateAndSaveNewLevel($isCorrect);
+            $this->_calculateAndSaveNewLevel(true);
         } else {
             $this->assertEquals($this->card->level, $this->card->right - $this->card->wrong);
         }
