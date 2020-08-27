@@ -5,37 +5,67 @@ namespace Modules\MemoCards\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Redirect;
 use Modules\MemoCards\Entities\Card;
 use Modules\MemoCards\Entities\Report;
+use Symfony\Component\Routing\Matcher\RedirectableUrlMatcher;
 
 class WorkController extends Controller
 {
     /**
-     * Show cards with level "1".
-     * Prepare other cards (decrease level)
+     * Create new report
+     * Redirect to show
      *
-     * @return Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function index()
+    public function start()
     {
-        /**
-         * Get collection of cards with "level" 1
-         */
-        $cards = Card::where('level', '<=', 1)
-            ->orderBy('total', 'ASC')
-            ->inRandomOrder()
-            ->get();
+        $report = Report::create();
 
-        /**
-         * Decrease "level" value to all cards
-         */
+        session(['current_report_id' => $report->id]);
+
+        return \redirect(route('work.show', $report->id));
+    }
+
+    /**
+     * Decrease "level" value to all cards
+     * Flush session and redirect to homepage.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function end()
+    {
         Card::where(
             [
                 ['level', '>', 1],
             ]
         )->decrement('level');
 
-        return view('memocards::work', ['cards' => $cards]);
+        Session::forget('current_report_id');
+
+        return \redirect(route('home'));
+    }
+
+    /**
+     * Show cards with level "1".
+     * Prepare other cards (decrease level)
+     *
+     * @param Report $report
+     * @return \Illuminate\View\View
+     */
+    public function show(Report $report)
+    {
+        /**
+         * Get collection of cards with "level" 1
+         */
+        $cards = Card::where('level', '<=', 1)
+            //->orderBy('total', 'ASC')
+            ->inRandomOrder()
+            ->get();
+        return view('memocards::work', [
+            'cards' => $cards,
+            'report_id' => $report->id,
+        ]);
     }
 
     /**
@@ -53,7 +83,7 @@ class WorkController extends Controller
              * Keep controller "thin" ;)
              * business logic should be placed in the model.
              */
-            $card->calculateAndSaveNewLevel((bool)$request->get('isCorrect'));
+            $card->calculateAndSaveNewLevel((bool)$request->get('isCorrect'), $request->get('forcedLevel'));
         } catch (e $exception) {
             return $exception->getMessage();
         }

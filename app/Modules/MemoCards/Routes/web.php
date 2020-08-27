@@ -14,8 +14,11 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/reports', 'ReportController@index')->name('report.index');
 Route::get('/cards', 'CardsController@index')->name('cards.index');
+Route::get('/cards/learn', 'CardsController@learn')->name('cards.learn');
 Route::prefix('work')->group(function () {
-    Route::get('/', 'WorkController@index')->name('work.index');
+    Route::get('/id/{report}', 'WorkController@show')->name('work.show');
+    Route::get('/start', 'WorkController@start')->name('work.start');
+    Route::get('/end', 'WorkController@end')->name('work.end');
     Route::post('/set_level/{card}', 'WorkController@setCardLevel')->name('work.set_level');
 });
 

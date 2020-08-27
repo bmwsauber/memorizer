@@ -22,9 +22,10 @@ class Card extends Model
      * calculate when card will be appeared again
      *
      * @param bool $isCorrect
+     * @param int $forcedLevel
      * @return $this
      */
-    public function calculateAndSaveNewLevel(bool $isCorrect)
+    public function calculateAndSaveNewLevel(bool $isCorrect, int $forcedLevel = 1)
     {
         if ($isCorrect) {
 

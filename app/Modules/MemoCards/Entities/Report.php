@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
 {
-    protected $fillable = [];
+    protected $fillable = [
+        'total',
+        'right',
+        'wrong',
+    ];
 }

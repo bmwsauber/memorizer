@@ -5,6 +5,15 @@ html, body {
     height: 100%;
 }
 
+.google-charts{
+    width: 100%;
+    min-height: 450px;
+}
+
+.row {
+    margin:0 !important;
+}
+
 .content {
     min-height: 100%;
     height: auto !important;
@@ -42,6 +51,7 @@ html, body {
 
         .statistic-progress {
             height: 10px;
+            background-color: #fff;
 
             &:first-child {
                 margin-bottom: 5px;
@@ -56,8 +66,17 @@ html, body {
             }
         }
     }
+}
 
-
+.learn-table{
+    table{
+        font-size: 16px;
+        margin: 30px auto 0;
+        td {
+            padding: 10px;
+            border-bottom: 1px solid;
+        }
+    }
 }
 
 .footer {

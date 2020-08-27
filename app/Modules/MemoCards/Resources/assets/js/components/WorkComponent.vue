@@ -64,7 +64,7 @@
             'cards'
         ],
         mixins: [LaravelRoutes],
-        data: function () {
+        data() {
             return {
                 cardIndex: 0,
                 lastCardsIndex: 0,
@@ -92,7 +92,7 @@
                  * Check if all cards showed just redirect to homepage
                  */
                 if (!this.totalCards || this.cardIndex > this.lastCardsIndex) {
-                    location.href = this.route('home');
+                    location.href = this.route('work.end');
                 }
 
                 this.openAnswer = false;
@@ -131,6 +131,7 @@
             sendAnswerData(level, isCorrect) {
                 let data = {
                     isCorrect: isCorrect,
+                    forcedLevel: level,
                 };
 
                 axios.post(this.route('work.set_level', this.currentCard.id), data).then(response => {

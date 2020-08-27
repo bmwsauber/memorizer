@@ -12,30 +12,35 @@ class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return Response
+     * 
+     * @return \Illuminate\View\View
      */
     public function index()
     {
         $cards = Card::all();
-        $sortedCards = [];
+        $sortedCards = ['new' => [], 'magic' => [], 'rare' => [], 'unique' => []];
+
         foreach ($cards as $card) {
-            if($card->level == 1){
-                $sortedCards['regular'][] = $card;
-            }elseif ($card->level > 1 && $card->level <= 3){
+            if ($card->total === 0) {
+                $sortedCards['new'][] = $card;
+            }
+
+            if ($card->level == 1) {
+                $sortedCards['normal'][] = $card;
+            } elseif ($card->level > 1 && $card->level <= 4) {
                 $sortedCards['magic'][] = $card;
-            }elseif ($card->level > 3 && $card->level <= 5){
-                $sortedCards['rare '][] = $card;
-            }elseif ($card->level > 5 && $card->level <= 10) {
+            } elseif ($card->level > 4 && $card->level <= 10) {
+                $sortedCards['rare'][] = $card;
+            } elseif ($card->level > 10) {
                 $sortedCards['unique'][] = $card;
-            }elseif ($card->level > 10){
-                $sortedCards['legendary'][] = $card;
             }
         }
 
         return view('memocards::home', [
             'sortedCards' => $sortedCards,
             'cards' => $cards,
-            'asd' => 'asd',
+            'rightSum' => $cards->sum('right'),
+            'wrongSum' => $cards->sum('wrong'),
         ]);
     }
 }

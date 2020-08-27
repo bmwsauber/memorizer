@@ -10933,6 +10933,15 @@ body {
   height: 100%;
 }
 
+.google-charts {
+  width: 100%;
+  min-height: 450px;
+}
+
+.row {
+  margin: 0 !important;
+}
+
 .content {
   min-height: 100%;
   height: auto !important;
@@ -10972,6 +10981,7 @@ body {
 
 .content .work-content .statistic-progress {
   height: 10px;
+  background-color: #fff;
 }
 
 .content .work-content .statistic-progress:first-child {
@@ -10984,6 +10994,16 @@ body {
 
 .content .work-content .statistic-progress .wrong {
   background-color: #dc3545;
+}
+
+.learn-table table {
+  font-size: 16px;
+  margin: 30px auto 0;
+}
+
+.learn-table table td {
+  padding: 10px;
+  border-bottom: 1px solid;
 }
 
 .footer {

@@ -5,6 +5,7 @@ namespace Modules\MemoCards\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Modules\MemoCards\Entities\Card;
 
 class CardsController extends Controller
 {
@@ -44,6 +45,17 @@ class CardsController extends Controller
     public function show($id)
     {
         return view('memocards::show');
+    }
+
+    /**
+     * Show only new cards.
+    * @return \Illuminate\View\View
+     */
+    public function learn()
+    {
+        $newCards = Card::where(['total' => 0])->get();
+
+        return view('memocards::learn', ['newCards' => $newCards]);
     }
 
     /**
