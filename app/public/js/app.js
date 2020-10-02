@@ -86,19 +86,87 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./Resources/assets/js/components/LearnComponent.vue":
+/*!***********************************************************!*\
+  !*** ./Resources/assets/js/components/LearnComponent.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LearnComponent_vue_vue_type_template_id_fedfe720___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LearnComponent.vue?vue&type=template&id=fedfe720& */ "./Resources/assets/js/components/LearnComponent.vue?vue&type=template&id=fedfe720&");
+/* harmony import */ var _LearnComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LearnComponent.vue?vue&type=script&lang=js& */ "./Resources/assets/js/components/LearnComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _LearnComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LearnComponent_vue_vue_type_template_id_fedfe720___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LearnComponent_vue_vue_type_template_id_fedfe720___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "Resources/assets/js/components/LearnComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./Resources/assets/js/components/LearnComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./Resources/assets/js/components/LearnComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LearnComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./LearnComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./Resources/assets/js/components/LearnComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LearnComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./Resources/assets/js/components/LearnComponent.vue?vue&type=template&id=fedfe720&":
+/*!******************************************************************************************!*\
+  !*** ./Resources/assets/js/components/LearnComponent.vue?vue&type=template&id=fedfe720& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LearnComponent_vue_vue_type_template_id_fedfe720___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./LearnComponent.vue?vue&type=template&id=fedfe720& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./Resources/assets/js/components/LearnComponent.vue?vue&type=template&id=fedfe720&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LearnComponent_vue_vue_type_template_id_fedfe720___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LearnComponent_vue_vue_type_template_id_fedfe720___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./Resources/assets/js/components/MainStatistic.vue":
 /*!**********************************************************!*\
   !*** ./Resources/assets/js/components/MainStatistic.vue ***!
   \**********************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MainStatistic_vue_vue_type_template_id_52234b90___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MainStatistic.vue?vue&type=template&id=52234b90& */ "./Resources/assets/js/components/MainStatistic.vue?vue&type=template&id=52234b90&");
 /* harmony import */ var _MainStatistic_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MainStatistic.vue?vue&type=script&lang=js& */ "./Resources/assets/js/components/MainStatistic.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _MainStatistic_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _MainStatistic_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -128,7 +196,7 @@ component.options.__file = "Resources/assets/js/components/MainStatistic.vue"
 /*!***********************************************************************************!*\
   !*** ./Resources/assets/js/components/MainStatistic.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -240,6 +308,7 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 
 Vue.use(vue_google_charts__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.component('work-component', __webpack_require__(/*! ./components/WorkComponent.vue */ "./Resources/assets/js/components/WorkComponent.vue")["default"]);
+Vue.component('learn-component', __webpack_require__(/*! ./components/LearnComponent.vue */ "./Resources/assets/js/components/LearnComponent.vue")["default"]);
 Vue.component('main-statistic', __webpack_require__(/*! ./components/MainStatistic.vue */ "./Resources/assets/js/components/MainStatistic.vue")["default"]);
 var app = new Vue({
   el: '#app'
@@ -2102,6 +2171,172 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./Resources/assets/js/components/LearnComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./Resources/assets/js/components/LearnComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_laravel_routes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/laravel-routes */ "./Resources/assets/js/mixins/laravel-routes.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['cards'],
+  mixins: [_mixins_laravel_routes__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  data: function data() {
+    return {
+      cardIndex: 0,
+      lastCardsIndex: 0,
+      totalCards: 0,
+      currentCard: {},
+      currentQuestion: '',
+      currentAnswer: '',
+      openAnswer: true,
+      progressWidth: 0,
+      randMeasureRus: 0,
+      randMeasureEng: 0
+    };
+  },
+  mounted: function mounted() {
+    this.totalCards = this.cards.length;
+    this.lastCardsIndex = this.cards.length - 1;
+    this.currentCard = this.cards[this.cardIndex];
+    this.showQuestion();
+  },
+  methods: {
+    showQuestion: function showQuestion() {
+      /**
+       * Check if all cards showed just redirect to homepage
+       */
+      if (!this.totalCards || this.cardIndex > this.lastCardsIndex) {
+        location.href = this.route('home');
+      }
+      /**
+       * Random show Eng or Rus word
+       */
+
+
+      if (Math.round(Math.random())) {
+        this.currentQuestion = this.currentCard.rus;
+        this.currentAnswer = this.currentCard.eng;
+        this.randMeasureRus++;
+      } else {
+        this.currentQuestion = this.currentCard.eng;
+        this.currentAnswer = this.currentCard.rus;
+        this.randMeasureEng++;
+      }
+
+      window.addEventListener('keyup', this._respondQuestion);
+    },
+
+    /**
+     * Show hidden div
+     */
+    showAnswer: function showAnswer(event) {
+      this.openAnswer = true;
+      window.addEventListener('keyup', this._respondAnswer);
+    },
+
+    /**
+     * Mark this card as new level and show new card
+     */
+    showNextCard: function showNextCard() {
+      this.cardIndex++;
+      this.currentCard = this.cards[this.cardIndex];
+      this.progressWidth = Math.round(this.cardIndex * 100 / this.lastCardsIndex);
+      this.showQuestion();
+    },
+
+    /**
+     * Keyboard Handling
+     *
+     * @param event
+     * @private
+     */
+    _respondAnswer: function _respondAnswer(event) {
+      switch (event.code) {
+        case 'Escape':
+          this.showNextCard();
+          break;
+
+        case 'Space':
+          this.showNextCard();
+          break;
+
+        case 'Backspace':
+          this.cardIndex--;
+          this.currentCard = this.cards[this.cardIndex];
+          this.showQuestion();
+          this.showAnswer();
+          break;
+
+        default:
+          return;
+      }
+
+      window.removeEventListener("keyup", this._respondAnswer);
+    },
+
+    /**
+     * Keyboard Handling
+     *
+     * @param event
+     * @private
+     */
+    _respondQuestion: function _respondQuestion(event) {
+      switch (event.code) {
+        case 'Space':
+          this.showAnswer();
+          break;
+
+        case 'Backspace':
+          this.cardIndex--;
+          this.currentCard = this.cards[this.cardIndex];
+          this.showQuestion();
+          this.showAnswer();
+          break;
+
+        default:
+          return;
+      }
+
+      window.removeEventListener("keyup", this._respondQuestion);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./Resources/assets/js/components/MainStatistic.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./Resources/assets/js/components/MainStatistic.vue?vue&type=script&lang=js& ***!
@@ -2219,17 +2454,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['cards'],
@@ -2299,6 +2523,7 @@ __webpack_require__.r(__webpack_exports__);
     sendAnswerData: function sendAnswerData(level, isCorrect) {
       var data = {
         isCorrect: isCorrect,
+        isFavourite: this.currentCard.favourite,
         forcedLevel: level
       };
       axios.post(this.route('work.set_level', this.currentCard.id), data).then(function (response) {
@@ -2905,6 +3130,94 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./Resources/assets/js/components/LearnComponent.vue?vue&type=template&id=fedfe720&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./Resources/assets/js/components/LearnComponent.vue?vue&type=template&id=fedfe720& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "progress work-progress" }, [
+      _c(
+        "div",
+        {
+          staticClass: "progress-bar",
+          style: { width: _vm.progressWidth + "%" },
+          attrs: {
+            role: "progressbar",
+            "aria-valuemin": "0",
+            "aria-valuemax": "100"
+          }
+        },
+        [
+          _vm._v(
+            " " +
+              _vm._s(_vm.cardIndex + 1) +
+              " / " +
+              _vm._s(_vm.totalCards) +
+              "\n        "
+          )
+        ]
+      )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "work-content" }, [
+      _c("div", { staticClass: "question w-100" }, [
+        _c("h1", [_vm._v(_vm._s(_vm.currentQuestion))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "answer w-100" }, [
+        _vm.openAnswer
+          ? _c("div", [
+              _c("h2", [_c("span", [_vm._v(_vm._s(_vm.currentAnswer))])])
+            ])
+          : _c("div", [
+              _vm.currentCard.irreg_verb
+                ? _c("i", { staticClass: "answer-hint" }, [
+                    _vm._v("[Irregular Verb]")
+                  ])
+                : _c("i", { staticClass: "answer-hint" }, [_vm._v(" ")])
+            ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "buttons w-100 mt-3" }, [
+        _vm.openAnswer
+          ? _c("div", { staticClass: "answer-buttons" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-info",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.showNextCard()
+                    }
+                  }
+                },
+                [_vm._v("Next")]
+              )
+            ])
+          : _vm._e()
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./Resources/assets/js/components/MainStatistic.vue?vue&type=template&id=52234b90&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./Resources/assets/js/components/MainStatistic.vue?vue&type=template&id=52234b90& ***!
@@ -3017,35 +3330,25 @@ var render = function() {
     _c("div", { staticClass: "work-content" }, [
       _c("div", { staticClass: "statistic" }, [
         _c("div", { staticClass: "progress statistic-progress" }, [
-          _c(
-            "div",
-            {
-              staticClass: "progress-bar right",
-              style: { width: _vm.correctAnswersPercentage + "%" },
-              attrs: {
-                role: "progressbar",
-                "aria-valuemin": "0",
-                "aria-valuemax": "100"
-              }
-            },
-            [_vm._v(" " + _vm._s(_vm.currentCard.right) + "\n                ")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "progress statistic-progress" }, [
-          _c(
-            "div",
-            {
-              staticClass: "progress-bar wrong",
-              style: { width: _vm.wrongAnswersPercentage + "%" },
-              attrs: {
-                role: "progressbar",
-                "aria-valuemin": "0",
-                "aria-valuemax": "100"
-              }
-            },
-            [_vm._v(" " + _vm._s(_vm.currentCard.wrong) + "\n                ")]
-          )
+          _c("div", {
+            staticClass: "progress-bar right",
+            style: { width: _vm.correctAnswersPercentage + "%" },
+            attrs: {
+              role: "progressbar",
+              "aria-valuemin": "0",
+              "aria-valuemax": "100"
+            }
+          }),
+          _vm._v(" "),
+          _c("div", {
+            staticClass: "progress-bar wrong",
+            style: { width: _vm.wrongAnswersPercentage + "%" },
+            attrs: {
+              role: "progressbar",
+              "aria-valuemin": "0",
+              "aria-valuemax": "100"
+            }
+          })
         ])
       ]),
       _vm._v(" "),
@@ -3105,84 +3408,15 @@ var render = function() {
                   attrs: { type: "button" },
                   on: {
                     click: function($event) {
-                      _vm.showAdditionalButtons = !_vm.showAdditionalButtons
+                      _vm.currentCard.favourite = !_vm.currentCard.favourite
                     }
                   }
                 },
-                [_vm._v("\n                    ...\n                ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.showAdditionalButtons,
-                      expression: "showAdditionalButtons"
-                    }
-                  ],
-                  staticClass: "additional-buttons mt-2"
-                },
                 [
-                  _c("h5", [_vm._v("UP 2")]),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          return _vm.sendAnswerData(3, true)
-                        }
-                      }
-                    },
-                    [_vm._v("Magic")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-warning",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          return _vm.sendAnswerData(5, true)
-                        }
-                      }
-                    },
-                    [_vm._v("Rare")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-danger",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          return _vm.sendAnswerData(10, true)
-                        }
-                      }
-                    },
-                    [_vm._v("Unique\n                    ")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-dark",
-                      attrs: { type: "button" },
-                      on: {
-                        click: function($event) {
-                          return _vm.sendAnswerData(11, true)
-                        }
-                      }
-                    },
-                    [_vm._v("Legendary\n                    ")]
-                  )
+                  _c("i", {
+                    staticClass: "far fa-heart",
+                    class: [_vm.currentCard.favourite ? "fas" : "far"]
+                  })
                 ]
               )
             ])

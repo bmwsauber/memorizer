@@ -23,9 +23,10 @@ class Card extends Model
      *
      * @param bool $isCorrect
      * @param int $forcedLevel
+     * @param null $isFavourite
      * @return $this
      */
-    public function calculateAndSaveNewLevel(bool $isCorrect, int $forcedLevel = 1)
+    public function calculateAndSaveNewLevel(bool $isCorrect, int $forcedLevel = 1, $isFavourite = null)
     {
         if ($isCorrect) {
 
@@ -43,6 +44,7 @@ class Card extends Model
             $this->increment('total', 1, [
                 'level' => $level,
                 'right' => ($this->right + 1),
+                'favourite' => $isFavourite,
             ]);
 
         } else {
@@ -57,6 +59,7 @@ class Card extends Model
             $this->increment('total', 1, [
                 'level' => $level,
                 'wrong' => ($this->wrong + 1),
+                'favourite' => 1,
             ]);
         }
 

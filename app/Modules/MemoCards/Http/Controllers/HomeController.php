@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
+     *
      * @return \Illuminate\View\View
      */
     public function index()
@@ -25,13 +25,13 @@ class HomeController extends Controller
                 $sortedCards['new'][] = $card;
             }
 
-            if ($card->level == 1) {
+            if ($card->level == 1 /* || $card->favourite*/) {
                 $sortedCards['normal'][] = $card;
-            } elseif ($card->level > 1 && $card->level <= 4) {
+            } elseif ($card->level == 2) {
                 $sortedCards['magic'][] = $card;
-            } elseif ($card->level > 4 && $card->level <= 10) {
+            } elseif ($card->level > 2 && $card->level < 9) {
                 $sortedCards['rare'][] = $card;
-            } elseif ($card->level > 10) {
+            } elseif ($card->level >= 9) {
                 $sortedCards['unique'][] = $card;
             }
         }

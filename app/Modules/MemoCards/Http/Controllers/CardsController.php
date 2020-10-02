@@ -48,17 +48,6 @@ class CardsController extends Controller
     }
 
     /**
-     * Show only new cards.
-    * @return \Illuminate\View\View
-     */
-    public function learn()
-    {
-        $newCards = Card::where(['total' => 0])->get();
-
-        return view('memocards::learn', ['newCards' => $newCards]);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      * @param int $id
      * @return Response

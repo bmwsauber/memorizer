@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Modules\MemoCards\Entities\Card;
 use Modules\MemoCards\Entities\Report;
 use Symfony\Component\Routing\Matcher\RedirectableUrlMatcher;
@@ -35,11 +36,8 @@ class WorkController extends Controller
      */
     public function end()
     {
-        Card::where(
-            [
-                ['level', '>', 1],
-            ]
-        )->decrement('level');
+        Card::where([['level', '>', 1]])
+            ->decrement('level');
 
         Session::forget('current_report_id');
 
@@ -48,7 +46,6 @@ class WorkController extends Controller
 
     /**
      * Show cards with level "1".
-     * Prepare other cards (decrease level)
      *
      * @param Report $report
      * @return \Illuminate\View\View
@@ -59,7 +56,7 @@ class WorkController extends Controller
          * Get collection of cards with "level" 1
          */
         $cards = Card::where('level', '<=', 1)
-            //->orderBy('total', 'ASC')
+            //->orWhere('favourite', 1)
             ->inRandomOrder()
             ->get();
         return view('memocards::work', [
@@ -81,9 +78,9 @@ class WorkController extends Controller
         try {
             /**
              * Keep controller "thin" ;)
-             * business logic should be placed in the model.
+             * business logic is should be placed in a model.
              */
-            $card->calculateAndSaveNewLevel((bool)$request->get('isCorrect'), $request->get('forcedLevel'));
+            $card->calculateAndSaveNewLevel((bool)$request->get('isCorrect'), $request->get('forcedLevel'), $request->get('isFavourite'));
         } catch (e $exception) {
             return $exception->getMessage();
         }

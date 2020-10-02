@@ -10975,12 +10975,12 @@ body {
 }
 
 .content .work-content .statistic {
-  margin: 0 auto;
+  margin: 0 auto 30px;
   width: 100px;
 }
 
 .content .work-content .statistic-progress {
-  height: 10px;
+  height: 3px;
   background-color: #fff;
 }
 

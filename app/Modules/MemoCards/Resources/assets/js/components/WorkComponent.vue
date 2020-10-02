@@ -10,13 +10,11 @@
                 <div class="progress statistic-progress">
                     <div class="progress-bar right" role="progressbar"
                          :style="{ width : correctAnswersPercentage +'%' }" aria-valuemin="0"
-                         aria-valuemax="100">&nbsp;{{ currentCard.right }}
+                         aria-valuemax="100">
                     </div>
-                </div>
-                <div class="progress statistic-progress">
                     <div class="progress-bar wrong" role="progressbar" :style="{ width : wrongAnswersPercentage + '%' }"
                          aria-valuemin="0"
-                         aria-valuemax="100">&nbsp;{{ currentCard.wrong }}
+                         aria-valuemax="100">
                     </div>
                 </div>
             </div>
@@ -36,18 +34,9 @@
                 <div v-if="openAnswer" class="answer-buttons">
                     <button type="button" class="btn btn-info" @click="sendAnswerData(1, true)">Right :))</button>
                     <button type="button" class="btn btn-danger" @click="sendAnswerData(1, false)">Wrong :(</button>
-                    <button type="button" class="btn btn-light" @click="showAdditionalButtons = !showAdditionalButtons">
-                        ...
+                    <button type="button" class="btn btn-light" @click="currentCard.favourite = !currentCard.favourite">
+                        <i class="far fa-heart" :class="[currentCard.favourite ? 'fas' : 'far']"></i>
                     </button>
-                    <div v-show="showAdditionalButtons" class="additional-buttons mt-2">
-                        <h5>UP 2</h5>
-                        <button type="button" class="btn btn-primary" @click="sendAnswerData(3, true)">Magic</button>
-                        <button type="button" class="btn btn-warning" @click="sendAnswerData(5, true)">Rare</button>
-                        <button type="button" class="btn btn-danger" @click="sendAnswerData(10, true)">Unique
-                        </button>
-                        <button type="button" class="btn btn-dark" @click="sendAnswerData(11, true)">Legendary
-                        </button>
-                    </div>
                 </div>
                 <div v-else>
                     <button type="button" class="btn btn-info" @click="showAnswer">Show Answer</button>
@@ -131,6 +120,7 @@
             sendAnswerData(level, isCorrect) {
                 let data = {
                     isCorrect: isCorrect,
+                    isFavourite: this.currentCard.favourite,
                     forcedLevel: level,
                 };
 
