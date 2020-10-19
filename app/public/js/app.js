@@ -3329,27 +3329,29 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "work-content" }, [
       _c("div", { staticClass: "statistic" }, [
-        _c("div", { staticClass: "progress statistic-progress" }, [
-          _c("div", {
-            staticClass: "progress-bar right",
-            style: { width: _vm.correctAnswersPercentage + "%" },
-            attrs: {
-              role: "progressbar",
-              "aria-valuemin": "0",
-              "aria-valuemax": "100"
-            }
-          }),
-          _vm._v(" "),
-          _c("div", {
-            staticClass: "progress-bar wrong",
-            style: { width: _vm.wrongAnswersPercentage + "%" },
-            attrs: {
-              role: "progressbar",
-              "aria-valuemin": "0",
-              "aria-valuemax": "100"
-            }
-          })
-        ])
+        _vm.openAnswer
+          ? _c("div", { staticClass: "progress statistic-progress" }, [
+              _c("div", {
+                staticClass: "progress-bar right",
+                style: { width: _vm.correctAnswersPercentage + "%" },
+                attrs: {
+                  role: "progressbar",
+                  "aria-valuemin": "0",
+                  "aria-valuemax": "100"
+                }
+              }),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "progress-bar wrong",
+                style: { width: _vm.wrongAnswersPercentage + "%" },
+                attrs: {
+                  role: "progressbar",
+                  "aria-valuemin": "0",
+                  "aria-valuemax": "100"
+                }
+              })
+            ])
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "question w-100" }, [

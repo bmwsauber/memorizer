@@ -7,7 +7,7 @@
         </div>
         <div class="work-content">
             <div class="statistic">
-                <div class="progress statistic-progress">
+                <div v-if="openAnswer" class="progress statistic-progress">
                     <div class="progress-bar right" role="progressbar"
                          :style="{ width : correctAnswersPercentage +'%' }" aria-valuemin="0"
                          aria-valuemax="100">

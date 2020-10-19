@@ -21,11 +21,11 @@ class HomeController extends Controller
         $sortedCards = ['new' => [], 'magic' => [], 'rare' => [], 'unique' => []];
 
         foreach ($cards as $card) {
-            if ($card->total === 0) {
+            if (!$card->total) {
                 $sortedCards['new'][] = $card;
             }
 
-            if ($card->level == 1 /* || $card->favourite*/) {
+            if ($card->level == 1) {
                 $sortedCards['normal'][] = $card;
             } elseif ($card->level == 2) {
                 $sortedCards['magic'][] = $card;

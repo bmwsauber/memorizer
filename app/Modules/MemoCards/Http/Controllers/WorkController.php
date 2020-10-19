@@ -36,7 +36,10 @@ class WorkController extends Controller
      */
     public function end()
     {
-        Card::where([['level', '>', 1]])
+        Card::where([
+            ['level', '>', 1],
+            ['level', '<', 9],
+        ])
             ->decrement('level');
 
         Session::forget('current_report_id');
@@ -56,7 +59,6 @@ class WorkController extends Controller
          * Get collection of cards with "level" 1
          */
         $cards = Card::where('level', '<=', 1)
-            //->orWhere('favourite', 1)
             ->inRandomOrder()
             ->get();
         return view('memocards::work', [
