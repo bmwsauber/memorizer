@@ -21,11 +21,7 @@ class WorkController extends Controller
      */
     public function start()
     {
-        $report = Report::create();
-
-        session(['current_report_id' => $report->id]);
-
-        return \redirect(route('work.show', $report->id));
+        return \redirect(route('work.show', Report::getId()));
     }
 
     /**
@@ -36,13 +32,15 @@ class WorkController extends Controller
      */
     public function end()
     {
+        $uniqueLevel = env('UNIQUE_LEVEL', 9);
+
         Card::where([
             ['level', '>', 1],
-            ['level', '<', 9],
-        ])
+            ['level', '<', $uniqueLevel],
+        ])->orWhere('favourite', 1)
             ->decrement('level');
 
-        Session::forget('current_report_id');
+        Report::close();
 
         return \redirect(route('home'));
     }
@@ -60,6 +58,7 @@ class WorkController extends Controller
          */
         $cards = Card::where('level', '<=', 1)
             ->inRandomOrder()
+            ->limit(60)
             ->get();
         return view('memocards::work', [
             'cards' => $cards,
@@ -74,6 +73,7 @@ class WorkController extends Controller
      * @param Card $card
      * @param Request $request
      * @return bool|string
+     * @throws \Exception
      */
     public function setCardLevel(Card $card, Request $request)
     {
@@ -83,6 +83,7 @@ class WorkController extends Controller
              * business logic is should be placed in a model.
              */
             $card->calculateAndSaveNewLevel((bool)$request->get('isCorrect'), $request->get('forcedLevel'), $request->get('isFavourite'));
+            Report::updateReport((bool)$request->get('isCorrect'));
         } catch (e $exception) {
             return $exception->getMessage();
         }

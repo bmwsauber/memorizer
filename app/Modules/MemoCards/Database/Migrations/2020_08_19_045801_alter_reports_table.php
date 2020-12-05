@@ -14,9 +14,9 @@ class AlterReportsTable extends Migration
     public function up()
     {
         Schema::table('reports', function (Blueprint $table) {
-            $table->integer('total')->nullable(true)->change();
-            $table->integer('right')->nullable(true)->change();
-            $table->integer('wrong')->nullable(true)->change();
+            $table->integer('total')->default(0)->change();
+            $table->integer('right')->default(0)->change();
+            $table->integer('wrong')->default(0)->change();
         });
     }
 }

@@ -10,11 +10,17 @@ class Card extends Model
      * @var string[]
      */
     protected $fillable = [
+        'rus',
+        'eng',
         'level',
         'right',
         'wrong',
         'total',
         'irreg_verb',
+    ];
+
+    protected $with = [
+        'category'
     ];
 
     /**
@@ -26,7 +32,7 @@ class Card extends Model
      * @param null $isFavourite
      * @return $this
      */
-    public function calculateAndSaveNewLevel(bool $isCorrect, int $forcedLevel = 1, $isFavourite = null)
+    public function calculateAndSaveNewLevel(bool $isCorrect, int $forcedLevel = 1, $isFavourite = 0)
     {
         if ($isCorrect) {
 
@@ -64,5 +70,15 @@ class Card extends Model
         }
 
         return $this;
+    }
+
+    /**
+     * eloquent Relation
+     *
+     * @return Modules\MemoCards\Entities\Category
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

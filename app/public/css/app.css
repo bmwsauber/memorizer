@@ -11010,3 +11010,66 @@ body {
   height: 60px;
 }
 
+.last-report .title {
+  text-anchor: start;
+  font-family: Arial;
+  font-size: 14px;
+  font-weight: bold;
+  stroke: none;
+  stroke-width: 0;
+  fill: black;
+}
+
+.last-report li {
+  list-style-type: none;
+  text-anchor: start;
+  font-family: Arial;
+  font-size: 14px;
+  stroke: none;
+  stroke-width: 0;
+  fill: #222222;
+}
+
+.last-report .dot {
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.last-report .dot.new {
+  background-color: #28a745;
+}
+
+.last-report .dot.normal {
+  background-color: #aaaaaa;
+}
+
+.last-report .dot.magic {
+  background-color: #8383f7;
+}
+
+.last-report .dot.rare {
+  background-color: #f8b335;
+}
+
+.last-report .dot.unique {
+  background-color: #ba661d;
+}
+
+.last-report .dot.right {
+  background-color: #117a8b;
+}
+
+.last-report .dot.wrong {
+  background-color: #bd2130;
+}
+
+.last-report .dot.total {
+  background-color: #aaaaaa;
+}
+
+.last-report .statistic {
+  margin-top: 20px;
+}
+

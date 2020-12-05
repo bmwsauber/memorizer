@@ -5,13 +5,13 @@ html, body {
     height: 100%;
 }
 
-.google-charts{
+.google-charts {
     width: 100%;
     min-height: 450px;
 }
 
 .row {
-    margin:0 !important;
+    margin: 0 !important;
 }
 
 .content {
@@ -68,10 +68,11 @@ html, body {
     }
 }
 
-.learn-table{
-    table{
+.learn-table {
+    table {
         font-size: 16px;
         margin: 30px auto 0;
+
         td {
             padding: 10px;
             border-bottom: 1px solid;
@@ -83,3 +84,67 @@ html, body {
     height: 60px;
 }
 
+.last-report {
+    .title {
+        text-anchor: start;
+        font-family: Arial;
+        font-size: 14px;
+        font-weight: bold;
+        stroke: none;
+        stroke-width: 0;
+        fill: rgb(0, 0, 0);
+    }
+
+    li {
+        list-style-type: none;
+        text-anchor: start;
+        font-family: Arial;
+        font-size: 14px;
+        stroke: none;
+        stroke-width: 0;
+        fill: rgb(34, 34, 34);
+    }
+
+    .dot {
+        height: 14px;
+        width: 14px;
+        border-radius: 50%;
+        display: inline-block;
+
+        &.new {
+            background-color: #28a745;
+        }
+
+        &.normal {
+            background-color: #aaaaaa;
+        }
+
+        &.magic {
+            background-color: #8383f7;
+        }
+
+        &.rare {
+            background-color: #f8b335;
+        }
+
+        &.unique {
+            background-color: #ba661d;
+        }
+
+        &.right{
+            background-color: #117a8b;
+        }
+
+        &.wrong{
+            background-color: #bd2130;
+        }
+
+        &.total{
+            background-color: #aaaaaa;
+        }
+    }
+
+    .statistic{
+        margin-top: 20px;
+    }
+}

@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="question w-100">
-                <h1>{{ currentQuestion }}</h1>
+                <h1>{{ currentQuestion }} <span v-if="currentCard.category"><i :class="currentCard.category.icon_path"></i></span></h1>
             </div>
             <div class="answer w-100">
                 <div v-if="openAnswer">
@@ -126,16 +126,14 @@
 
                 axios.post(this.route('work.set_level', this.currentCard.id), data).then(response => {
                     if (!response.data.errors) {
-                        // ... we can do here something, if we need
+                        // ... we can do something here
                     } else {
                         // ... if we get "error", we can switch script to offline mode here (without statistic)
                     }
                 });
 
                 this.cardIndex++;
-                this.currentCard = this.cards[this.cardIndex];
                 this.progressWidth = Math.round(this.cardIndex * 100 / this.lastCardsIndex);
-                this.showQuestion();
             },
 
             /**
@@ -145,19 +143,12 @@
              * @private
              */
             _respondAnswer(event) {
-
                 switch (event.code) {
                     case 'Escape':
                         this.sendAnswerData(1, false);
                         break;
                     case 'Space':
                         this.sendAnswerData(1, true);
-                        break;
-                    case 'Backspace':
-                        this.cardIndex--;
-                        this.currentCard = this.cards[this.cardIndex];
-                        this.showQuestion();
-                        this.showAnswer();
                         break;
                     default :
                         return;
@@ -173,15 +164,12 @@
              * @private
              */
             _respondQuestion(event) {
-
                 switch (event.code) {
                     case 'Space':
                         this.showAnswer();
                         break;
                     case 'Backspace':
                         this.cardIndex--;
-                        this.currentCard = this.cards[this.cardIndex];
-                        this.showQuestion();
                         this.showAnswer();
                         break;
                     default :
@@ -226,6 +214,18 @@
                 } else {
                     return 0;
                 }
+            }
+        },
+        watch: {
+
+            /**
+             * Show current card
+             *
+             * @param cardIndex
+             */
+            cardIndex(cardIndex) {
+                this.currentCard = this.cards[cardIndex];
+                this.showQuestion();
             }
         }
     }

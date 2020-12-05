@@ -1,5 +1,6 @@
 <?php
 use Modules\MemoCards\Entities\Card;
+use Modules\MemoCards\Entities\Category;
 use Faker\Generator as Faker;
 
 /*
@@ -21,7 +22,8 @@ $factory->define(Card::class, function (Faker $faker) {
     return [
         'eng' => $faker->word,
         'rus' => $faker->word,
-        'level' => 1,
+        'category_id' => factory(Category::class),
+        'level' => $faker->numberBetween(0, $total),
         'right' => $right,
         'wrong' => $wrong,
         'total' => $total,

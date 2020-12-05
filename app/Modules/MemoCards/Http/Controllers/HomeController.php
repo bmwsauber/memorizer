@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
 use Modules\MemoCards\Entities\Card;
+use Modules\MemoCards\Entities\Report;
 
 class HomeController extends Controller
 {
@@ -18,29 +19,17 @@ class HomeController extends Controller
     public function index()
     {
         $cards = Card::all();
-        $sortedCards = ['new' => [], 'magic' => [], 'rare' => [], 'unique' => []];
+        $sortedCards = Report::calculateCardsStatistic();
+        $lastReport = Report::getLast();
 
-        foreach ($cards as $card) {
-            if (!$card->total) {
-                $sortedCards['new'][] = $card;
-            }
-
-            if ($card->level == 1) {
-                $sortedCards['normal'][] = $card;
-            } elseif ($card->level == 2) {
-                $sortedCards['magic'][] = $card;
-            } elseif ($card->level > 2 && $card->level < 9) {
-                $sortedCards['rare'][] = $card;
-            } elseif ($card->level >= 9) {
-                $sortedCards['unique'][] = $card;
-            }
-        }
 
         return view('memocards::home', [
             'sortedCards' => $sortedCards,
             'cards' => $cards,
             'rightSum' => $cards->sum('right'),
             'wrongSum' => $cards->sum('wrong'),
+            'lastReport' => $lastReport,
+            'lastReportData' => $lastReport->data,
         ]);
     }
 }

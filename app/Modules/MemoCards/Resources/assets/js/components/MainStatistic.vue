@@ -35,11 +35,11 @@
             return {
                 totalsData: [
                     ['Level', 'Amount'],
-                    ['New: ' + this.sortedCards.new.length, this.sortedCards.new.length],
-                    ['Normal: ' + this.sortedCards.normal.length, this.sortedCards.normal.length],
-                    ['Magic: ' + this.sortedCards.magic.length, this.sortedCards.magic.length],
-                    ['Rare: ' + this.sortedCards.rare.length, this.sortedCards.rare.length],
-                    ['Unique: ' + this.sortedCards.unique.length, this.sortedCards.unique.length],
+                    ['New: ' + this.sortedCards.new, this.sortedCards.new],
+                    ['Normal: ' + this.sortedCards.normal, this.sortedCards.normal],
+                    ['Magic: ' + this.sortedCards.magic, this.sortedCards.magic],
+                    ['Rare: ' + this.sortedCards.rare, this.sortedCards.rare],
+                    ['Unique: ' + this.sortedCards.unique, this.sortedCards.unique],
                 ],
                 totalsOptions: {
                     title: 'Cards Amount: ' + this.cardsAmount,
