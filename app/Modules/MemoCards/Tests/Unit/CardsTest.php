@@ -8,7 +8,7 @@ use Modules\MemoCards\Entities\Card;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class CardsTestTest extends TestCase
+class CardsTest extends TestCase
 {
     /**
      * Keep you database clean
