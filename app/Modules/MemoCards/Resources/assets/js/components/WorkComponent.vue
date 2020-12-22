@@ -50,7 +50,8 @@
 
     export default {
         props: [
-            'cards'
+            'cards',
+            'envUnique'
         ],
         mixins: [LaravelRoutes],
         data() {
@@ -124,6 +125,11 @@
                     forcedLevel: level,
                 };
 
+                // if card going to "Unique" play sound
+                if(isCorrect && (this.currentCard.right + 1) - this.currentCard.wrong >= this.envUnique){
+                    this._playSound();
+                }
+
                 axios.post(this.route('work.set_level', this.currentCard.id), data).then(response => {
                     if (!response.data.errors) {
                         // ... we can do something here
@@ -134,6 +140,17 @@
 
                 this.cardIndex++;
                 this.progressWidth = Math.round(this.cardIndex * 100 / this.lastCardsIndex);
+            },
+
+            /**
+             * Play Sound
+             *
+             * @private
+             */
+            _playSound() {
+                let audio = new Audio("/ding-sound-effect.mp3");
+                audio.volume = 0.5;
+                audio.play();
             },
 
             /**

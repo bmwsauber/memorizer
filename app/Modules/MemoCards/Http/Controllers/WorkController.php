@@ -37,8 +37,10 @@ class WorkController extends Controller
         Card::where([
             ['level', '>', 1],
             ['level', '<', $uniqueLevel],
-        ])->orWhere('favourite', 1)
-            ->decrement('level');
+        ])->orWhere([
+            ['favourite', 1],
+            ['level', '>', 1],
+        ])->decrement('level');
 
         Report::close();
 

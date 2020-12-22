@@ -142,7 +142,7 @@ class Report extends Model
                 $sortedCards['new']++;
             }
 
-            if ($card->level == 1) {
+            if ($card->level <= 1) {
                 $sortedCards['normal']++;
             } elseif ($card->level == 2) {
                 $sortedCards['magic']++;

@@ -40,10 +40,16 @@ services:
       - redis
     volumes:
       - "./app:/app"
+      #- "./php/ini:/usr/local/etc/php"
     extends:
       file: docker/env-local.yml
       service: base
     container_name: memo_php
+    environment:
+      UNIQUE_LEVEL: 10
+      APP_DEBUG: 0
+      APP_ENV: "development"
+      DEBUGBAR_ENABLED: 0
 
   #  cron:
   #    build: ./docker/php-local

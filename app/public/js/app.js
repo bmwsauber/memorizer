@@ -2576,7 +2576,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['cards'],
+  props: ['cards', 'envUnique'],
   mixins: [_mixins_laravel_routes__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
     return {
@@ -2645,7 +2645,12 @@ __webpack_require__.r(__webpack_exports__);
         isCorrect: isCorrect,
         isFavourite: this.currentCard.favourite,
         forcedLevel: level
-      };
+      }; // if card going to "Unique" play sound
+
+      if (isCorrect && this.currentCard.right + 1 - this.currentCard.wrong >= this.envUnique) {
+        this._playSound();
+      }
+
       axios.post(this.route('work.set_level', this.currentCard.id), data).then(function (response) {
         if (!response.data.errors) {// ... we can do something here
         } else {// ... if we get "error", we can switch script to offline mode here (without statistic)
@@ -2653,6 +2658,17 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.cardIndex++;
       this.progressWidth = Math.round(this.cardIndex * 100 / this.lastCardsIndex);
+    },
+
+    /**
+     * Play Sound
+     *
+     * @private
+     */
+    _playSound: function _playSound() {
+      var audio = new Audio("/ding-sound-effect.mp3");
+      audio.volume = 0.5;
+      audio.play();
     },
 
     /**

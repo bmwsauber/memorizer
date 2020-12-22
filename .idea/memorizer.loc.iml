@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/asm89/stack-cors" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/barryvdh/laravel-debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/barryvdh/laravel-ide-helper" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/barryvdh/reflection-docblock" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/brick/math" />
@@ -37,6 +38,8 @@
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/laravel/tinker" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/league/commonmark" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/league/flysystem" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/league/mime-type-detection" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/maximebf/debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/mockery/mockery" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/monolog/monolog" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/myclabs/deep-copy" />
@@ -45,7 +48,6 @@
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/nunomaduro/collision" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/nwidart/laravel-modules" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/opis/closure" />
-      <excludeFolder url="file://$MODULE_DIR$/app/vendor/paragonie/random_compat" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/phar-io/manifest" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/phar-io/version" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/phpdocumentor/reflection-common" />
@@ -68,6 +70,7 @@
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/ralouphie/getallheaders" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/ramsey/collection" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/ramsey/uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/react/promise" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/scrivo/highlight.php" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/sebastian/code-unit-reverse-lookup" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/sebastian/comparator" />
@@ -86,12 +89,14 @@
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/swiftmailer/swiftmailer" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/css-selector" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/debug" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/deprecation-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/error-handler" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/event-dispatcher" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/event-dispatcher-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/filesystem" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/finder" />
+      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/http-client-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/http-foundation" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/http-kernel" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/mime" />
@@ -101,7 +106,6 @@
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-intl-idn" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-intl-normalizer" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-mbstring" />
-      <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-php70" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-php72" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-php73" />
       <excludeFolder url="file://$MODULE_DIR$/app/vendor/symfony/polyfill-php80" />
