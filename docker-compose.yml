@@ -47,9 +47,9 @@ services:
     container_name: memo_php
     environment:
       UNIQUE_LEVEL: 10
-      APP_DEBUG: 0
+      APP_DEBUG: 1
       APP_ENV: "development"
-      DEBUGBAR_ENABLED: 0
+      DEBUGBAR_ENABLED: 1
 
   #  cron:
   #    build: ./docker/php-local
@@ -62,23 +62,23 @@ services:
   #      file: docker/env-local.yml
   #      service: base
 
-  laravel-worker:
-    build: ./docker/php-local
-    links:
-      - mysql
-      - mysql_testing
-      - redis
-    volumes:
-      - "./app:/app"
-    logging:
-      driver: none
-    environment:
-      APP_LOG_LEVEL: critical
-    extends:
-      file: docker/env-local.yml
-      service: base
-    command: "php /app/artisan queue:work --daemon --queue=import,default --tries=10"
-    container_name: memo_worker
+  #laravel-worker:
+  #  build: ./docker/php-local
+  #  links:
+  #    - mysql
+  #    - mysql_testing
+  #    - redis
+  #  volumes:
+  #    - "./app:/app"
+  #  logging:
+  #    driver: none
+  #  environment:
+  #    APP_LOG_LEVEL: critical
+  #  extends:
+  #    file: docker/env-local.yml
+  #    service: base
+  #  command: "php /app/artisan queue:work --daemon --queue=import,default --tries=10"
+  #  container_name: memo_worker
 
   nginx:
     image: nginx:1.9.10
