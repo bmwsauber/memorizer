@@ -7,6 +7,7 @@ app/public/css/app.css.map
 app/public/media
 app/package-lock.json
 app/_ide_helper.php
-
+app/storage
+docker-compose.yml
 # Mac OS specific files
 .DS_Store
