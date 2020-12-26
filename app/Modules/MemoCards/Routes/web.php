@@ -21,5 +21,11 @@ Route::prefix('work')->group(function () {
     Route::get('/end', 'WorkController@end')->name('work.end');
     Route::post('/set_level/{card}', 'WorkController@setCardLevel')->name('work.set_level');
 });
+Route::prefix('numbers')->group(function () {
+    Route::get('/id/', 'NumbersController@show')->name('numbers.show');
+    Route::get('/start', 'NumbersController@start')->name('numbers.start');
+    Route::get('/end', 'NumbersController@end')->name('numbers.end');
+});
+
 
 

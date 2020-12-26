@@ -7,7 +7,10 @@ require('laravel-mix-merge-manifest');
 mix.setPublicPath('../../public').mergeManifest();
 
 mix.js(__dirname + '/Resources/assets/js/memocards.js', 'js/app.js')
-    .sass( __dirname + '/Resources/assets/sass/memocards.scss', 'css/app.css');
+    .sass( __dirname + '/Resources/assets/sass/memocards.scss', 'css/app.css')
+    .postCss(__dirname + '/Resources/assets/css/tailwind.css', 'css/tailwind.css', [
+        require("tailwindcss"),
+    ] );
 
 if (mix.inProduction()) {
     mix.version();
