@@ -308,14 +308,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************************!*\
   !*** ./Resources/assets/js/components/NumbersComponent.vue ***!
   \*************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NumbersComponent_vue_vue_type_template_id_3f41b26a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NumbersComponent.vue?vue&type=template&id=3f41b26a& */ "./Resources/assets/js/components/NumbersComponent.vue?vue&type=template&id=3f41b26a&");
 /* harmony import */ var _NumbersComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NumbersComponent.vue?vue&type=script&lang=js& */ "./Resources/assets/js/components/NumbersComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _NumbersComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NumbersComponent.vue?vue&type=style&index=0&lang=css& */ "./Resources/assets/js/components/NumbersComponent.vue?vue&type=style&index=0&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _NumbersComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _NumbersComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _NumbersComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NumbersComponent.vue?vue&type=style&index=0&lang=css& */ "./Resources/assets/js/components/NumbersComponent.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -347,7 +348,7 @@ component.options.__file = "Resources/assets/js/components/NumbersComponent.vue"
 /*!**************************************************************************************!*\
   !*** ./Resources/assets/js/components/NumbersComponent.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2653,6 +2654,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2662,6 +2677,10 @@ __webpack_require__.r(__webpack_exports__);
   mixins: [_mixins_laravel_routes__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
     return {
+      currentQuestion: "&nbsp;",
+      currentAnswer: '',
+      openAnswer: false,
+      showAdditionalButtons: false,
       synth: window.speechSynthesis,
       message: new window.SpeechSynthesisUtterance(),
       text: "",
@@ -2682,9 +2701,90 @@ __webpack_require__.r(__webpack_exports__);
     this.message.pitch = 2; //0 to 2
 
     this.message.lang = 'en-US';
-    this.speakRandom();
+    this.showQuestion();
   },
   methods: {
+    showQuestion: function showQuestion() {
+      this.openAnswer = false;
+      window.addEventListener('keyup', this._respondQuestion);
+      this.speakRandom();
+    },
+
+    /**
+     * Show hidden div
+     */
+    showAnswer: function showAnswer(event) {
+      this.openAnswer = true;
+      window.addEventListener('keyup', this._respondAnswer);
+    },
+
+    /**
+     * Mark this card as new level and show new card
+     *
+     * @param level
+     * @param isCorrect
+     */
+    sendAnswerData: function sendAnswerData(level, isCorrect) {
+      this.showQuestion();
+    },
+
+    /**
+     * Play Sound
+     *
+     * @private
+     */
+    _playSound: function _playSound() {
+      var audio = new Audio("/ding-sound-effect.mp3");
+      audio.volume = 0.5;
+      audio.play();
+    },
+
+    /**
+     * Keyboard Handling
+     *
+     * @param event
+     * @private
+     */
+    _respondAnswer: function _respondAnswer(event) {
+      switch (event.code) {
+        case 'Escape':
+          this.sendAnswerData(1, false);
+          break;
+
+        case 'Space':
+          this.sendAnswerData(1, true);
+          break;
+
+        default:
+          return;
+      }
+
+      window.removeEventListener("keyup", this._respondAnswer);
+    },
+
+    /**
+     * Keyboard Handling
+     *
+     * @param event
+     * @private
+     */
+    _respondQuestion: function _respondQuestion(event) {
+      switch (event.code) {
+        case 'Space':
+          this.showAnswer();
+          break;
+
+        case 'Backspace':
+          this.cardIndex--;
+          this.showAnswer();
+          break;
+
+        default:
+          return;
+      }
+
+      window.removeEventListener("keyup", this._respondQuestion);
+    },
     speakRandom: function speakRandom() {
       this.text = this._generateBetween(this.calculatedMax, 0);
 
@@ -2694,14 +2794,10 @@ __webpack_require__.r(__webpack_exports__);
       return Math.floor(Math.random() * (max - min) + min);
     },
     _speak: function _speak(text) {
-      var _this = this;
-
       this.text = "";
       this.message.text = text;
       this.synth.speak(this.message);
-      setTimeout(function () {
-        _this.text = new Intl.NumberFormat('en-US').format(text);
-      }, this.hintDuration);
+      this.text = new Intl.NumberFormat('en-US').format(text);
     }
   },
   computed: {
@@ -2712,14 +2808,7 @@ __webpack_require__.r(__webpack_exports__);
       return new Intl.NumberFormat('en-US').format(Math.pow(10, this.pow));
     }
   },
-  watch: {
-    hintDuration: function hintDuration(newValue) {
-      coockies__WEBPACK_IMPORTED_MODULE_3___default.a.set('hintDuration', newValue);
-    },
-    pow: function pow(newValue) {
-      coockies__WEBPACK_IMPORTED_MODULE_3___default.a.set('pow', newValue);
-    }
-  }
+  watch: {}
 });
 
 /***/ }),
@@ -4439,8 +4528,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex h-screen w-100" }, [
-    _c("div", { staticClass: "m-auto" }, [
+  return _c("div", [
+    _c("div", { staticClass: "work-content" }, [
       _c("div", [
         _c("input", {
           directives: [
@@ -4526,18 +4615,59 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "text-center number-box",
-          on: { click: _vm.speakRandom }
-        },
-        [
-          _c("div", { staticClass: "font-black text-green-500" }, [
-            _vm._v(_vm._s(this.text))
-          ])
-        ]
-      )
+      _c("div", { staticClass: "question w-100" }, [
+        _c("h1", [_vm._v(_vm._s(_vm.currentQuestion))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "answer w-100" }, [
+        _vm.openAnswer
+          ? _c("div", [_c("h2", [_c("span", [_vm._v(_vm._s(_vm.text))])])])
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "buttons w-100 mt-3" }, [
+        _vm.openAnswer
+          ? _c("div", { staticClass: "answer-buttons" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-info",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.sendAnswerData(1, true)
+                    }
+                  }
+                },
+                [_vm._v("Right :))")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-danger",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.sendAnswerData(1, false)
+                    }
+                  }
+                },
+                [_vm._v("Wrong :(")]
+              )
+            ])
+          : _c("div", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-info",
+                  attrs: { type: "button" },
+                  on: { click: _vm.showAnswer }
+                },
+                [_vm._v("Show Answer")]
+              )
+            ])
+      ])
     ])
   ])
 }

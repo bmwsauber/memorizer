@@ -9,5 +9,6 @@ app/package-lock.json
 app/_ide_helper.php
 app/storage
 docker-compose.yml
+database_backup.sql
 # Mac OS specific files
 .DS_Store
