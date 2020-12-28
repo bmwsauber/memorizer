@@ -13,13 +13,13 @@
                     <range-slider class="slider" min="0" max="10000" step="500" v-model="hintDuration"></range-slider>
                 </div>
             </div>
-            <div class="question w-100">
-                <h1>{{ currentQuestion }}</h1>
-            </div>
-            <div class="answer w-100">
-                <div v-if="openAnswer">
+            <div v-if="openAnswer" class="answer w-100 text-9xl">
+                <div>
                     <h2><span>{{ text }}</span></h2>
                 </div>
+            </div>
+            <div v-else class="question w-100 text-9xl">
+                <h1>&nbsp;</h1>
             </div>
             <div class="buttons w-100 mt-3">
                 <div v-if="openAnswer" class="answer-buttons">
