@@ -4615,15 +4615,13 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "question w-100" }, [
-        _c("h1", [_vm._v(_vm._s(_vm.currentQuestion))])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "answer w-100" }, [
-        _vm.openAnswer
-          ? _c("div", [_c("h2", [_c("span", [_vm._v(_vm._s(_vm.text))])])])
-          : _vm._e()
-      ]),
+      _vm.openAnswer
+        ? _c("div", { staticClass: "answer w-100 text-9xl" }, [
+            _c("div", [_c("h2", [_c("span", [_vm._v(_vm._s(_vm.text))])])])
+          ])
+        : _c("div", { staticClass: "question w-100 text-9xl" }, [
+            _c("h1", [_vm._v(" ")])
+          ]),
       _vm._v(" "),
       _c("div", { staticClass: "buttons w-100 mt-3" }, [
         _vm.openAnswer
@@ -4745,7 +4743,7 @@ var render = function() {
           : _vm._e()
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "question w-100" }, [
+      _c("div", { staticClass: "question w-100 text-6xl" }, [
         _c("h1", [
           _vm._v(_vm._s(_vm.currentQuestion) + " "),
           _vm.currentCard.category
@@ -4756,7 +4754,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "answer w-100" }, [
+      _c("div", { staticClass: "answer w-100 text-5xl" }, [
         _vm.openAnswer
           ? _c("div", [
               _c("h2", [_c("span", [_vm._v(_vm._s(_vm.currentAnswer))])])
