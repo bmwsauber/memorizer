@@ -18,10 +18,10 @@
                     </div>
                 </div>
             </div>
-            <div class="question w-100 text-6xl">
+            <div class="question w-100 text-5xl">
                 <h1>{{ currentQuestion }} <span v-if="currentCard.category"><i :class="currentCard.category.icon_path"></i></span></h1>
             </div>
-            <div class="answer w-100 text-5xl">
+            <div class="answer w-100 text-4xl pb-2">
                 <div v-if="openAnswer">
                     <h2><span>{{ currentAnswer }}</span></h2>
                 </div>

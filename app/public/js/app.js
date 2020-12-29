@@ -4743,7 +4743,7 @@ var render = function() {
           : _vm._e()
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "question w-100 text-6xl" }, [
+      _c("div", { staticClass: "question w-100 text-5xl" }, [
         _c("h1", [
           _vm._v(_vm._s(_vm.currentQuestion) + " "),
           _vm.currentCard.category
@@ -4754,7 +4754,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "answer w-100 text-5xl" }, [
+      _c("div", { staticClass: "answer w-100 text-4xl pb-2" }, [
         _vm.openAnswer
           ? _c("div", [
               _c("h2", [_c("span", [_vm._v(_vm._s(_vm.currentAnswer))])])
