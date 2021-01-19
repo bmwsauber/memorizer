@@ -62,9 +62,14 @@ class Card extends Model
              */
             $level = 1;
 
+            /**
+             * If correct answer count more then incorrect one, your level will be reduce.
+             */
+            $punishment = (($this->right - $this->wrong) > 0) ? 2 : 1 ;
+
             $this->increment('total', 1, [
                 'level' => $level,
-                'wrong' => ($this->wrong + 1),
+                'wrong' => ($this->wrong + $punishment),
                 'favourite' => 1,
             ]);
         }
