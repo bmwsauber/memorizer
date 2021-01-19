@@ -19,11 +19,15 @@
                 </div>
             </div>
             <div class="question w-100 text-5xl">
-                <h1>{{ currentQuestion }} <span v-if="currentCard.category"><i :class="currentCard.category.icon_path"></i></span> <i v-if="(currentQuestionLang == 'eng')" class="fas fa-volume-up" @click="speech"></i> </h1>
+                <h1>{{ currentQuestion }} <span v-if="currentCard.category"><i
+                    :class="currentCard.category.icon_path"></i></span> <i v-if="(currentQuestionLang == 'eng')"
+                                                                           class="fas fa-volume-up" @click="speech"></i>
+                </h1>
             </div>
             <div class="answer w-100 text-4xl pb-2">
                 <div v-if="openAnswer">
-                    <h2><span>{{ currentAnswer }}</span> <i v-if="(currentQuestionLang != 'eng')" class="fas fa-volume-up" @click="speech"></i> </h2>
+                    <h2><span>{{ currentAnswer }}</span> <i v-if="(currentQuestionLang != 'eng')"
+                                                            class="fas fa-volume-up" @click="speech"></i></h2>
                 </div>
                 <div v-else>
                     <i v-if="currentCard.irreg_verb" class="answer-hint">[Irregular Verb]</i>
@@ -81,6 +85,11 @@
             this.message.rate = 1; // 0.1 to 10
             this.message.pitch = 2; //0 to 2
             this.message.lang = 'en-US';
+
+            navigator.mediaDevices.enumerateDevices().then((deviceInfos) => {
+                console.log(deviceInfos);
+            });
+
             this.showQuestion();
         },
         methods: {
@@ -119,6 +128,7 @@
              */
             showAnswer(event) {
                 this.openAnswer = true;
+                this.speech();
                 window.addEventListener('keyup', this._respondAnswer);
             },
 
@@ -136,7 +146,7 @@
                 };
 
                 // if card going to "Unique" play sound
-                if(isCorrect && (this.currentCard.right + 1) - this.currentCard.wrong >= this.envUnique){
+                if (isCorrect && (this.currentCard.right + 1) - this.currentCard.wrong >= this.envUnique) {
                     this._playSound();
                 }
 
@@ -155,7 +165,7 @@
             /**
              * Speech the text
              */
-            speech(){
+            speech() {
                 this.message.text = this.currentCard.eng;
                 this.synth.speak(this.message);
             },
@@ -265,3 +275,5 @@
         }
     }
 </script>
+
+

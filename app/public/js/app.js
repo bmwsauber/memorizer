@@ -2869,6 +2869,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['cards', 'envUnique'],
@@ -2903,6 +2907,9 @@ __webpack_require__.r(__webpack_exports__);
     this.message.pitch = 2; //0 to 2
 
     this.message.lang = 'en-US';
+    navigator.mediaDevices.enumerateDevices().then(function (deviceInfos) {
+      console.log(deviceInfos);
+    });
     this.showQuestion();
   },
   methods: {
@@ -2940,6 +2947,7 @@ __webpack_require__.r(__webpack_exports__);
      */
     showAnswer: function showAnswer(event) {
       this.openAnswer = true;
+      this.speech();
       window.addEventListener('keyup', this._respondAnswer);
     },
 
