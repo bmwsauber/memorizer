@@ -166,8 +166,9 @@
              * Speech the text
              */
             speech() {
+               const regex = /[\[(.)*\]/]/gi;
                 this.message.text = this.currentCard.eng;
-                this.synth.speak(this.message);
+                this.synth.speak(this.message.replace(regex, '...'));
             },
 
             /**

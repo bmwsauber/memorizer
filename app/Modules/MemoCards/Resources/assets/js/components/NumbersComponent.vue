@@ -63,7 +63,7 @@
         },
         mounted() {
             this.message.voiceURI = 'native';
-            this.message.volume = 1; // 0 to 1
+            this.message.volume = 0.3; // 0 to 1
             this.message.rate = 1; // 0.1 to 10
             this.message.pitch = 2; //0 to 2
             this.message.lang = 'en-US';

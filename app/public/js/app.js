@@ -2693,7 +2693,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.message.voiceURI = 'native';
-    this.message.volume = 1; // 0 to 1
+    this.message.volume = 0.3; // 0 to 1
 
     this.message.rate = 1; // 0.1 to 10
 
@@ -2981,8 +2981,9 @@ __webpack_require__.r(__webpack_exports__);
      * Speech the text
      */
     speech: function speech() {
+      var regex = /[\[(.)*\]/]/gi;
       this.message.text = this.currentCard.eng;
-      this.synth.speak(this.message);
+      this.synth.speak(this.message.replace(regex, '...'));
     },
 
     /**
