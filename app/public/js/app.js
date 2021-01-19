@@ -308,15 +308,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************************!*\
   !*** ./Resources/assets/js/components/NumbersComponent.vue ***!
   \*************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _NumbersComponent_vue_vue_type_template_id_3f41b26a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NumbersComponent.vue?vue&type=template&id=3f41b26a& */ "./Resources/assets/js/components/NumbersComponent.vue?vue&type=template&id=3f41b26a&");
 /* harmony import */ var _NumbersComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NumbersComponent.vue?vue&type=script&lang=js& */ "./Resources/assets/js/components/NumbersComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _NumbersComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _NumbersComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _NumbersComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NumbersComponent.vue?vue&type=style&index=0&lang=css& */ "./Resources/assets/js/components/NumbersComponent.vue?vue&type=style&index=0&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _NumbersComponent_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NumbersComponent.vue?vue&type=style&index=0&lang=css& */ "./Resources/assets/js/components/NumbersComponent.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -348,7 +347,7 @@ component.options.__file = "Resources/assets/js/components/NumbersComponent.vue"
 /*!**************************************************************************************!*\
   !*** ./Resources/assets/js/components/NumbersComponent.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2886,13 +2885,24 @@ __webpack_require__.r(__webpack_exports__);
       progressWidth: 0,
       showAdditionalButtons: false,
       randMeasureRus: 0,
-      randMeasureEng: 0
+      randMeasureEng: 0,
+      currentQuestionLang: null,
+      synth: window.speechSynthesis,
+      message: new window.SpeechSynthesisUtterance()
     };
   },
   mounted: function mounted() {
     this.totalCards = this.cards.length;
     this.lastCardsIndex = this.cards.length - 1;
     this.currentCard = this.cards[this.cardIndex];
+    this.message.voiceURI = 'native';
+    this.message.volume = 1; // 0 to 1
+
+    this.message.rate = 1; // 0.1 to 10
+
+    this.message.pitch = 2; //0 to 2
+
+    this.message.lang = 'en-US';
     this.showQuestion();
   },
   methods: {
@@ -2909,13 +2919,16 @@ __webpack_require__.r(__webpack_exports__);
        * Random show Eng or Rus word
        */
 
-      if (Math.round(Math.random())) {
+      if (this.currentCard.show_only === 0 || this.currentCard.show_only === '0' || Math.round(Math.random())) {
+        //not sure about the type of var
         this.currentQuestion = this.currentCard.rus;
         this.currentAnswer = this.currentCard.eng;
+        this.currentQuestionLang = 'rus';
         this.randMeasureRus++;
       } else {
         this.currentQuestion = this.currentCard.eng;
         this.currentAnswer = this.currentCard.rus;
+        this.currentQuestionLang = 'eng';
         this.randMeasureEng++;
       }
 
@@ -2954,6 +2967,14 @@ __webpack_require__.r(__webpack_exports__);
       });
       this.cardIndex++;
       this.progressWidth = Math.round(this.cardIndex * 100 / this.lastCardsIndex);
+    },
+
+    /**
+     * Speech the text
+     */
+    speech: function speech() {
+      this.message.text = this.currentCard.eng;
+      this.synth.speak(this.message);
     },
 
     /**
@@ -4750,6 +4771,13 @@ var render = function() {
             ? _c("span", [
                 _c("i", { class: _vm.currentCard.category.icon_path })
               ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.currentQuestionLang == "eng"
+            ? _c("i", {
+                staticClass: "fas fa-volume-up",
+                on: { click: _vm.speech }
+              })
             : _vm._e()
         ])
       ]),
@@ -4757,7 +4785,16 @@ var render = function() {
       _c("div", { staticClass: "answer w-100 text-4xl pb-2" }, [
         _vm.openAnswer
           ? _c("div", [
-              _c("h2", [_c("span", [_vm._v(_vm._s(_vm.currentAnswer))])])
+              _c("h2", [
+                _c("span", [_vm._v(_vm._s(_vm.currentAnswer))]),
+                _vm._v(" "),
+                _vm.currentQuestionLang != "eng"
+                  ? _c("i", {
+                      staticClass: "fas fa-volume-up",
+                      on: { click: _vm.speech }
+                    })
+                  : _vm._e()
+              ])
             ])
           : _c("div", [
               _vm.currentCard.irreg_verb

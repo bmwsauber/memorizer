@@ -19,11 +19,11 @@
                 </div>
             </div>
             <div class="question w-100 text-5xl">
-                <h1>{{ currentQuestion }} <span v-if="currentCard.category"><i :class="currentCard.category.icon_path"></i></span></h1>
+                <h1>{{ currentQuestion }} <span v-if="currentCard.category"><i :class="currentCard.category.icon_path"></i></span> <i v-if="(currentQuestionLang == 'eng')" class="fas fa-volume-up" @click="speech"></i> </h1>
             </div>
             <div class="answer w-100 text-4xl pb-2">
                 <div v-if="openAnswer">
-                    <h2><span>{{ currentAnswer }}</span></h2>
+                    <h2><span>{{ currentAnswer }}</span> <i v-if="(currentQuestionLang != 'eng')" class="fas fa-volume-up" @click="speech"></i> </h2>
                 </div>
                 <div v-else>
                     <i v-if="currentCard.irreg_verb" class="answer-hint">[Irregular Verb]</i>
@@ -67,12 +67,20 @@
                 showAdditionalButtons: false,
                 randMeasureRus: 0,
                 randMeasureEng: 0,
+                currentQuestionLang: null,
+                synth: window.speechSynthesis,
+                message: new window.SpeechSynthesisUtterance(),
             }
         },
         mounted() {
             this.totalCards = (this.cards.length);
             this.lastCardsIndex = (this.cards.length - 1);
             this.currentCard = this.cards[this.cardIndex];
+            this.message.voiceURI = 'native';
+            this.message.volume = 1; // 0 to 1
+            this.message.rate = 1; // 0.1 to 10
+            this.message.pitch = 2; //0 to 2
+            this.message.lang = 'en-US';
             this.showQuestion();
         },
         methods: {
@@ -90,14 +98,16 @@
                 /**
                  * Random show Eng or Rus word
                  */
-                if (Math.round(Math.random())) {
+                if ((this.currentCard.show_only === 0 || this.currentCard.show_only === '0') || Math.round(Math.random())) { //not sure about the type of var
                     this.currentQuestion = this.currentCard.rus;
                     this.currentAnswer = this.currentCard.eng;
+                    this.currentQuestionLang = 'rus';
                     this.randMeasureRus++;
 
                 } else {
                     this.currentQuestion = this.currentCard.eng;
                     this.currentAnswer = this.currentCard.rus;
+                    this.currentQuestionLang = 'eng';
                     this.randMeasureEng++;
                 }
 
@@ -140,6 +150,14 @@
 
                 this.cardIndex++;
                 this.progressWidth = Math.round(this.cardIndex * 100 / this.lastCardsIndex);
+            },
+
+            /**
+             * Speech the text
+             */
+            speech(){
+                this.message.text = this.currentCard.eng;
+                this.synth.speak(this.message);
             },
 
             /**
