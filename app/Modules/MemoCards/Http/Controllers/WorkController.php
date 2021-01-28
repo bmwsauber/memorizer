@@ -58,9 +58,10 @@ class WorkController extends Controller
         /**
          * Get collection of cards with "level" 1
          */
+        $collectionLimit = env('WORK_COLLECTION_LIMIT', 60);
         $cards = Card::where('level', '<=', 1)
             ->inRandomOrder()
-            ->limit(60)
+            ->limit($collectionLimit)
             ->get();
         return view('memocards::work', [
             'cards' => $cards,
