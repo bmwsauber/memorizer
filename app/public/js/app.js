@@ -4779,7 +4779,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "question w-100 text-5xl" }, [
-        !_vm.listeningMode
+        !_vm.listeningMode || (_vm.listeningMode && _vm.openAnswer)
           ? _c("h1", [
               _vm._v(
                 "\n                " +

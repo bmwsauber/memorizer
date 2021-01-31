@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="question w-100 text-5xl">
-                <h1 v-if="!listeningMode">
+                <h1 v-if="(!listeningMode || (listeningMode && openAnswer))">
                     {{ currentQuestion }}
                     <span v-if="currentCard.category"><i :class="currentCard.category.icon_path"></i></span>
                 </h1>
