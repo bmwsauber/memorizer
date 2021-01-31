@@ -19,15 +19,16 @@
                 </div>
             </div>
             <div class="question w-100 text-5xl">
-                <h1>{{ currentQuestion }} <span v-if="currentCard.category"><i
-                    :class="currentCard.category.icon_path"></i></span> <i v-if="(currentQuestionLang == 'eng')"
-                                                                           class="fas fa-volume-up" @click="speech"></i>
+                <h1 v-if="!listeningMode">
+                    {{ currentQuestion }}
+                    <span v-if="currentCard.category"><i :class="currentCard.category.icon_path"></i></span>
                 </h1>
+                <div><i v-if="(currentQuestionLang == 'eng' || listeningMode)" class="fas fa-volume-up"
+                        @click="speech"></i></div>
             </div>
             <div class="answer w-100 text-4xl pb-2">
                 <div v-if="openAnswer">
-                    <h2><span>{{ currentAnswer }}</span> <i v-if="(currentQuestionLang != 'eng')"
-                                                            class="fas fa-volume-up" @click="speech"></i></h2>
+                    <h2><span>{{ currentAnswer }}</span></h2>
                 </div>
                 <div v-else>
                     <i v-if="currentCard.irreg_verb" class="answer-hint">[Irregular Verb]</i>
@@ -55,7 +56,8 @@
     export default {
         props: [
             'cards',
-            'envUnique'
+            'envUnique',
+            'listeningMode'
         ],
         mixins: [LaravelRoutes],
         data() {
@@ -86,10 +88,6 @@
             this.message.pitch = 2; //0 to 2
             this.message.lang = 'en-US';
 
-            navigator.mediaDevices.enumerateDevices().then((deviceInfos) => {
-                console.log(deviceInfos);
-            });
-
             this.showQuestion();
         },
         methods: {
@@ -107,7 +105,7 @@
                 /**
                  * Random show Eng or Rus word
                  */
-                if ((this.currentCard.show_only === 0 || this.currentCard.show_only === '0') || Math.round(Math.random())) { //not sure about the type of var
+                if (this.listeningMode || (this.currentCard.show_only === 0 || this.currentCard.show_only === '0') || Math.round(Math.random())) { //not sure about the type of var
                     this.currentQuestion = this.currentCard.rus;
                     this.currentAnswer = this.currentCard.eng;
                     this.currentQuestionLang = 'rus';
@@ -120,6 +118,10 @@
                     this.randMeasureEng++;
                 }
 
+                if (this.listeningMode) {
+                    this.speech();
+                }
+
                 window.addEventListener('keyup', this._respondQuestion);
             },
 
@@ -128,7 +130,11 @@
              */
             showAnswer(event) {
                 this.openAnswer = true;
-                this.speech();
+
+                if (!this.listeningMode) {
+                    this.speech();
+                }
+
                 window.addEventListener('keyup', this._respondAnswer);
             },
 

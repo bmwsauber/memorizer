@@ -2873,9 +2873,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['cards', 'envUnique'],
+  props: ['cards', 'envUnique', 'listeningMode'],
   mixins: [_mixins_laravel_routes__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
     return {
@@ -2907,9 +2908,6 @@ __webpack_require__.r(__webpack_exports__);
     this.message.pitch = 2; //0 to 2
 
     this.message.lang = 'en-US';
-    navigator.mediaDevices.enumerateDevices().then(function (deviceInfos) {
-      console.log(deviceInfos);
-    });
     this.showQuestion();
   },
   methods: {
@@ -2926,7 +2924,7 @@ __webpack_require__.r(__webpack_exports__);
        * Random show Eng or Rus word
        */
 
-      if (this.currentCard.show_only === 0 || this.currentCard.show_only === '0' || Math.round(Math.random())) {
+      if (this.listeningMode || this.currentCard.show_only === 0 || this.currentCard.show_only === '0' || Math.round(Math.random())) {
         //not sure about the type of var
         this.currentQuestion = this.currentCard.rus;
         this.currentAnswer = this.currentCard.eng;
@@ -2939,6 +2937,10 @@ __webpack_require__.r(__webpack_exports__);
         this.randMeasureEng++;
       }
 
+      if (this.listeningMode) {
+        this.speech();
+      }
+
       window.addEventListener('keyup', this._respondQuestion);
     },
 
@@ -2947,7 +2949,11 @@ __webpack_require__.r(__webpack_exports__);
      */
     showAnswer: function showAnswer(event) {
       this.openAnswer = true;
-      this.speech();
+
+      if (!this.listeningMode) {
+        this.speech();
+      }
+
       window.addEventListener('keyup', this._respondAnswer);
     },
 
@@ -4773,15 +4779,23 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "question w-100 text-5xl" }, [
-        _c("h1", [
-          _vm._v(_vm._s(_vm.currentQuestion) + " "),
-          _vm.currentCard.category
-            ? _c("span", [
-                _c("i", { class: _vm.currentCard.category.icon_path })
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.currentQuestionLang == "eng"
+        !_vm.listeningMode
+          ? _c("h1", [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.currentQuestion) +
+                  "\n                "
+              ),
+              _vm.currentCard.category
+                ? _c("span", [
+                    _c("i", { class: _vm.currentCard.category.icon_path })
+                  ])
+                : _vm._e()
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", [
+          _vm.currentQuestionLang == "eng" || _vm.listeningMode
             ? _c("i", {
                 staticClass: "fas fa-volume-up",
                 on: { click: _vm.speech }
@@ -4793,16 +4807,7 @@ var render = function() {
       _c("div", { staticClass: "answer w-100 text-4xl pb-2" }, [
         _vm.openAnswer
           ? _c("div", [
-              _c("h2", [
-                _c("span", [_vm._v(_vm._s(_vm.currentAnswer))]),
-                _vm._v(" "),
-                _vm.currentQuestionLang != "eng"
-                  ? _c("i", {
-                      staticClass: "fas fa-volume-up",
-                      on: { click: _vm.speech }
-                    })
-                  : _vm._e()
-              ])
+              _c("h2", [_c("span", [_vm._v(_vm._s(_vm.currentAnswer))])])
             ])
           : _c("div", [
               _vm.currentCard.irreg_verb
