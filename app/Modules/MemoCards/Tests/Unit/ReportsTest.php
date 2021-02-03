@@ -40,9 +40,9 @@ class ReportsTest extends TestCase
      */
     public function testCreatingReportAndRedirect()
     {
-        $response = $this->get(route('work.start'));
+        $response = $this->get(route('work.start',  'repeat'));
         $response->assertStatus(302);
-        $response->assertRedirect(route('work.show', session('current_report_id')));
+        $response->assertRedirect(route('work.repeat', session('current_report_id')));
     }
 
     /**
@@ -50,7 +50,7 @@ class ReportsTest extends TestCase
      */
     public function testAutoGeneratingReport()
     {
-        $response = $this->get(route('work.start'));
+        $response = $this->get(route('work.start', 'repeat'));
         $currentReportIdSession = session('current_report_id');
 
         $report = Report::getCurrentReport();

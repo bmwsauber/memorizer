@@ -4,6 +4,7 @@ namespace Modules\MemoCards\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use Modules\MemoCards\Http\Middleware\WorkMiddleware;
 
 class MemoCardsServiceProvider extends ServiceProvider
 {

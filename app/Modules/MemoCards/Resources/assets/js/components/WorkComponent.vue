@@ -19,11 +19,11 @@
                 </div>
             </div>
             <div class="question w-100 text-5xl">
-                <h1 v-if="(!listeningMode || (listeningMode && openAnswer))">
+                <h1 v-if="(mode == 'repeat' || (mode == 'listening' && openAnswer))">
                     {{ currentQuestion }}
                     <span v-if="currentCard.category"><i :class="currentCard.category.icon_path"></i></span>
                 </h1>
-                <div><i v-if="(currentQuestionLang == 'eng' || listeningMode)" class="fas fa-volume-up"
+                <div><i v-if="(currentQuestionLang == 'eng' || mode == 'listening' || openAnswer)" class="fas fa-volume-up"
                         @click="speech"></i></div>
             </div>
             <div class="answer w-100 text-4xl pb-2">
@@ -57,7 +57,7 @@
         props: [
             'cards',
             'envUnique',
-            'listeningMode'
+            'mode'
         ],
         mixins: [LaravelRoutes],
         data() {
@@ -105,12 +105,11 @@
                 /**
                  * Random show Eng or Rus word
                  */
-                if (this.listeningMode || (this.currentCard.show_only === 0 || this.currentCard.show_only === '0') || Math.round(Math.random())) { //not sure about the type of var
+                if (this.mode == 'listening' ||(this.currentCard.show_only === 0 || this.currentCard.show_only === '0') || Math.round(Math.random())) { //not sure about the type of var
                     this.currentQuestion = this.currentCard.rus;
                     this.currentAnswer = this.currentCard.eng;
                     this.currentQuestionLang = 'rus';
                     this.randMeasureRus++;
-
                 } else {
                     this.currentQuestion = this.currentCard.eng;
                     this.currentAnswer = this.currentCard.rus;
@@ -118,7 +117,7 @@
                     this.randMeasureEng++;
                 }
 
-                if (this.listeningMode) {
+                if (this.mode == 'listening') {
                     this.speech();
                 }
 
@@ -131,7 +130,7 @@
             showAnswer(event) {
                 this.openAnswer = true;
 
-                if (!this.listeningMode) {
+                if (this.mode != 'listening') {
                     this.speech();
                 }
 

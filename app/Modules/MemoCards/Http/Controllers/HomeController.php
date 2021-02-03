@@ -22,7 +22,6 @@ class HomeController extends Controller
         $sortedCards = Report::calculateCardsStatistic();
         $lastReport = Report::getLast();
 
-
         return view('memocards::home', [
             'sortedCards' => $sortedCards,
             'cards' => $cards,

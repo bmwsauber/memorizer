@@ -15,6 +15,7 @@
         :last-report="{{ json_encode($lastReport) }}"
     ></last-report-data>
     <div class="text-center">
-        <a class="btn btn-primary px-5 py-2 mb-2" href="{{ route('work.start') }}"><h4>Let's Start!</h4></a>
+        <a class="btn btn-primary px-5 py-2 mb-2" href="{{ route('work.start', 'repeat') }}"><h4>Repeat</h4></a>
+        <a class="btn btn-primary px-5 py-2 mb-2" href="{{ route('work.start', 'listening') }}"><h4>Listening</h4></a>
     </div>
 @endsection

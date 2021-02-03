@@ -2876,7 +2876,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['cards', 'envUnique', 'listeningMode'],
+  props: ['cards', 'envUnique', 'mode'],
   mixins: [_mixins_laravel_routes__WEBPACK_IMPORTED_MODULE_0__["default"]],
   data: function data() {
     return {
@@ -2924,7 +2924,7 @@ __webpack_require__.r(__webpack_exports__);
        * Random show Eng or Rus word
        */
 
-      if (this.listeningMode || this.currentCard.show_only === 0 || this.currentCard.show_only === '0' || Math.round(Math.random())) {
+      if (this.mode == 'listening' || this.currentCard.show_only === 0 || this.currentCard.show_only === '0' || Math.round(Math.random())) {
         //not sure about the type of var
         this.currentQuestion = this.currentCard.rus;
         this.currentAnswer = this.currentCard.eng;
@@ -2937,7 +2937,7 @@ __webpack_require__.r(__webpack_exports__);
         this.randMeasureEng++;
       }
 
-      if (this.listeningMode) {
+      if (this.mode == 'listening') {
         this.speech();
       }
 
@@ -2950,7 +2950,7 @@ __webpack_require__.r(__webpack_exports__);
     showAnswer: function showAnswer(event) {
       this.openAnswer = true;
 
-      if (!this.listeningMode) {
+      if (this.mode != 'listening') {
         this.speech();
       }
 
@@ -4779,7 +4779,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "question w-100 text-5xl" }, [
-        !_vm.listeningMode || (_vm.listeningMode && _vm.openAnswer)
+        _vm.mode == "repeat" || (_vm.mode == "listening" && _vm.openAnswer)
           ? _c("h1", [
               _vm._v(
                 "\n                " +
@@ -4795,7 +4795,9 @@ var render = function() {
           : _vm._e(),
         _vm._v(" "),
         _c("div", [
-          _vm.currentQuestionLang == "eng" || _vm.listeningMode
+          _vm.currentQuestionLang == "eng" ||
+          _vm.mode == "listening" ||
+          _vm.openAnswer
             ? _c("i", {
                 staticClass: "fas fa-volume-up",
                 on: { click: _vm.speech }

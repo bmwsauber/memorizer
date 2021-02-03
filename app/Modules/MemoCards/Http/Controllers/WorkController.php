@@ -3,13 +3,9 @@
 namespace Modules\MemoCards\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Session;
 use Modules\MemoCards\Entities\Card;
 use Modules\MemoCards\Entities\Report;
-use Symfony\Component\Routing\Matcher\RedirectableUrlMatcher;
 
 class WorkController extends Controller
 {
@@ -19,9 +15,19 @@ class WorkController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function start()
+    public function start($mode)
     {
-        return \redirect(route('work.show', Report::getId()));
+        switch ($mode) {
+            case 'repeat':
+                return \redirect(route('work.repeat', Report::getId()));
+                break;
+            case 'listening':
+                return \redirect(route('work.listening', Report::getId()));
+                break;
+            case 'idioms':
+                return \redirect(route('work.idioms', Report::getId()));
+                break;
+        }
     }
 
     /**
@@ -48,24 +54,73 @@ class WorkController extends Controller
     }
 
     /**
-     * Show cards with level "1".
+     * Work mode: reading and listening
+     * Get collection of cards with "level" 1
+     * @param Report $report
+     * @return \Illuminate\View\View
+     */
+    public function repeat(Report $report)
+    {
+        $collectionLimit = env('WORK_COLLECTION_LIMIT', 60);
+        $cardsCollection = Card::where('level', '<=', 1)
+            ->inRandomOrder()
+            ->limit($collectionLimit)
+            ->get();
+
+        return $this->show($report, $cardsCollection, 'repeat');
+    }
+
+    /**
+     * Work mode: listening
+     * Get collection of cards with "level" 1
      *
      * @param Report $report
      * @return \Illuminate\View\View
      */
-    public function show(Report $report)
+    public function listening(Report $report)
     {
-        /**
-         * Get collection of cards with "level" 1
-         */
         $collectionLimit = env('WORK_COLLECTION_LIMIT', 60);
-        $cards = Card::where('level', '<=', 1)
+        $cardsCollection = Card::where('level', '<=', 1)
             ->inRandomOrder()
             ->limit($collectionLimit)
             ->get();
+
+        return $this->show($report, $cardsCollection, 'listening');
+    }
+
+    /**
+     * Work mode: Only "Idioms" Category
+     * Get collection of cards with "level" 1
+     *
+     * @param Report $report
+     * @return \Illuminate\View\View
+     */
+    public function idioms(Report $report)
+    {
+        $collectionLimit = env('WORK_COLLECTION_LIMIT', 60);
+        $cardsCollection = Card::where('level', '<=', 1)
+            ->where('category_id', 8)
+            ->inRandomOrder()
+            ->limit($collectionLimit)
+            ->get();
+
+        return $this->show($report, $cardsCollection, 'repeat');
+    }
+
+    /**
+     * Show cards collection.
+     *
+     * @param Report $report
+     * @param $cardsCollection
+     * @param bool $mode
+     * @return \Illuminate\View\View
+     */
+    public function show(Report $report, $cardsCollection, $mode)
+    {
         return view('memocards::work', [
-            'cards' => $cards,
+            'cards' => $cardsCollection,
             'report_id' => $report->id,
+            'mode' => $mode,
         ]);
     }
 

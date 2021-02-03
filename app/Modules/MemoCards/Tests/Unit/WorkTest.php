@@ -35,6 +35,7 @@ class WorkTest extends TestCase
      */
     public function testIndexResponsePage()
     {
+        factory(Report::class)->create();
         $response = $this->get(route('home'));
         $response->assertStatus(200);
     }
@@ -49,7 +50,7 @@ class WorkTest extends TestCase
          */
         $factoryReport = factory(Report::class)->create();
 
-        $response = $this->get(route('work.show', $factoryReport->id));
+        $response = $this->get(route('work.listening', $factoryReport->id));
         $response->assertStatus(200);
     }
 
