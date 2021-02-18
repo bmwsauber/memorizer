@@ -7,6 +7,7 @@
 * Critical:
     * Work
         * Modes
+            - [ ] Fix Idioms Issue (idioms reduce level of all cards)
             - [x] Repeat
             - [x] Listening
                 - [x] Swap Results places
