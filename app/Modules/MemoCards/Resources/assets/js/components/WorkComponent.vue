@@ -227,17 +227,6 @@
 
                 window.removeEventListener("keyup", this._respondQuestion);
             },
-            _trimNumber(rowValue, bounds) {
-                let value;
-                if(rowValue >= bounds){
-                    value = bounds
-                }else if(rowValue <= -bounds){
-                    value = -bounds
-                }else{
-                    value = rowValue;
-                }
-                return value;
-            }
         },
         computed: {
 
@@ -277,7 +266,7 @@
             },
 
             correctWrongVolume(){
-                return this._trimNumber((this.currentCard.right - this.currentCard.wrong), this.envUnique);
+                return (this.currentCard.right - this.currentCard.wrong);
             }
         },
         watch: {

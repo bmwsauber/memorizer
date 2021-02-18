@@ -3152,19 +3152,6 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       window.removeEventListener("keyup", this._respondQuestion);
-    },
-    _trimNumber: function _trimNumber(rowValue, bounds) {
-      var value;
-
-      if (rowValue >= bounds) {
-        value = bounds;
-      } else if (rowValue <= -bounds) {
-        value = -bounds;
-      } else {
-        value = rowValue;
-      }
-
-      return value;
     }
   },
   computed: {
@@ -3200,7 +3187,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     correctWrongVolume: function correctWrongVolume() {
-      return this._trimNumber(this.currentCard.right - this.currentCard.wrong, this.envUnique);
+      return this.currentCard.right - this.currentCard.wrong;
     }
   },
   watch: {
