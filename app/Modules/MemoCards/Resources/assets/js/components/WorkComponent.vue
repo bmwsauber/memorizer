@@ -19,8 +19,9 @@
                 <span v-if="currentCard.category" class="text-4xl"> <i
                     :class="currentCard.category.icon_path"></i></span>
             </div>
-            <div class="speaker text-4xl p-3 pt-4" @click="speech"><i
-                v-if="(currentQuestionLang == 'eng' || mode == 'listening' || openAnswer)" class="fas fa-volume-up"></i>
+            <div class="speaker text-4xl p-3 pt-4">
+                <i @click="speech" v-if="(currentQuestionLang == 'eng' || mode == 'listening' || openAnswer)"
+                   class="fas fa-volume-up"></i>
             </div>
             <div class="answer text-4xl">
                 <span v-if="openAnswer">
@@ -265,7 +266,7 @@
                 }
             },
 
-            correctWrongVolume(){
+            correctWrongVolume() {
                 return (this.currentCard.right - this.currentCard.wrong);
             }
         },
