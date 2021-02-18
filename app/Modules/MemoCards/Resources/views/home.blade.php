@@ -1,9 +1,6 @@
 @extends('memocards::layouts.master')
 
 @section('content')
-    <div class="text-center m-3">
-        <h1>Memo Cards</h1>
-    </div>
     <main-statistic
         :sorted-cards="{{ json_encode($sortedCards) }}"
         :cards-amount="{{ @count($cards) }}"
@@ -14,8 +11,8 @@
         :result-data="{{ json_encode($lastReportData['result']) }}"
         :last-report="{{ json_encode($lastReport) }}"
     ></last-report-data>
-    <div class="text-center">
-        <a class="btn btn-primary px-5 py-2 mb-2" href="{{ route('work.start', 'repeat') }}"><h4>Repeat</h4></a>
-        <a class="btn btn-primary px-5 py-2 mb-2" href="{{ route('work.start', 'listening') }}"><h4>Listening</h4></a>
+    <div class="buttons text-white mt-10 flex justify-center">
+        <a href="{{ route('work.start', 'repeat') }}" class="bg-teal-100 hover:bg-teal-200 px-16 py-2 mx-3 rounded">Repeat</a>
+        <a href="{{ route('work.start', 'listening') }}" class="bg-teal-100 hover:bg-teal-200 px-16 py-2 mx-3 rounded">Listening</a>
     </div>
 @endsection

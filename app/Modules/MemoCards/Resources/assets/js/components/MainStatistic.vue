@@ -1,25 +1,21 @@
 <template>
-    <div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <p>Cards Statistic</p>
-            </div>
-            <div class="col-md-6">
-                <GChart
-                    class="google-charts"
-                    type="PieChart"
-                    :data="totalsData"
-                    :options="totalsOptions"
-                />
-            </div>
-            <div class="col-md-6">
-                <GChart
-                    class="google-charts"
-                    type="PieChart"
-                    :data="rightData"
-                    :options="rightOptions"
-                />
-            </div>
+    <div class="charts-pie flex flex-wrap">
+        <div class="inner flex-auto relative ratio16_9">
+            <GChart
+                class="google-charts content absolute inset-0"
+                type="PieChart"
+                :data="totalsData"
+                :options="totalsOptions"
+            />
+
+        </div>
+        <div class="inner flex-auto relative ratio16_9">
+            <GChart
+                class="google-charts content absolute inset-0"
+                type="PieChart"
+                :data="rightData"
+                :options="rightOptions"
+            />
         </div>
     </div>
 </template>
@@ -44,9 +40,8 @@
                 totalsOptions: {
                     title: 'Cards Amount: ' + this.cardsAmount,
                     pieHole: 0.5,
-                    //width: 600,
-                    //height: 350,
-                    colors: ['#28a745', '#aaaaaa', '#8383f7', '#f8b335', '#ba661d']
+                    colors: ['#28a745', '#aaaaaa', '#8383f7', '#f8b335', '#ba661d'],
+                    titleTextStyle: {fontSize: 23, fontName: 'inherit', bold: false},
                 },
                 rightData: [
                     ['Answer', 'Amount'],
@@ -56,11 +51,9 @@
                 rightOptions: {
                     title: 'Total Answers: ' + (this.rightSum + this.wrongSum),
                     pieHole: 0.5,
-                    //width: 600,
-                    //height: 350,
-                    colors: ['#117a8b', '#bd2130']
+                    colors: ['#117a8b', '#bd2130'],
+                    titleTextStyle: {fontSize: 23, fontName: 'inherit', bold: false},
                 }
-
             }
         },
     }

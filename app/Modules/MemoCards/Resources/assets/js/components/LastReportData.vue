@@ -1,21 +1,21 @@
 <template>
-    <div class="last-report row justify-content-md-center">
-        <div class="col-3 row">
-            <p class="title col-12">Last Report Results</p>
-            <div class="data col-6">
+    <div class="last-report">
+        <p class="text-center text-2xl">Last Report</p>
+        <div class="flex justify-center text-sm md:text-base">
+            <div class="px-5">
                 <ul>
-                    <li><span class="dot new"></span> New: {{ resultData.new }}</li>
-                    <li><span class="dot normal"></span> Normal: {{ resultData.normal }}</li>
-                    <li><span class="dot magic"></span> Magic: {{ resultData.magic }}</li>
-                    <li><span class="dot rare"></span> Rare: {{ resultData.rare }}</li>
-                    <li><span class="dot unique"></span> Unique: {{ resultData.unique }}</li>
+                    <li><span class="dot bg-new"></span> New: {{ resultData.new }}</li>
+                    <li><span class="dot bg-normal"></span> Normal: {{ resultData.normal }}</li>
+                    <li><span class="dot bg-magic"></span> Magic: {{ resultData.magic }}</li>
+                    <li><span class="dot bg-rare"></span> Rare: {{ resultData.rare }}</li>
+                    <li><span class="dot bg-unique"></span> Unique: {{ resultData.unique }}</li>
                 </ul>
             </div>
-            <div class="statistic col-6">
+            <div class="px-5 py-5">
                 <ul>
-                    <li><span class="dot right"></span> Right: {{ lastReport.right }} <b>({{ rightPercentage }}%)</b></li>
-                    <li><span class="dot wrong"></span> Wrong: {{ lastReport.wrong }} <b>({{ wrongPercentage }}%)</b></li>
-                    <li><span class="dot total"></span> Total: {{ lastReport.total }}</li>
+                    <li><span class="dot bg-teal-200"></span> Right: {{ lastReport.right }} <b>({{ rightPercentage }}%)</b></li>
+                    <li><span class="dot bg-crimson-200"></span> Wrong: {{ lastReport.wrong }} <b>({{ wrongPercentage }}%)</b></li>
+                    <li><span class="dot bg-gray-400"></span> Total: {{ lastReport.total }}</li>
                 </ul>
             </div>
         </div>
@@ -27,21 +27,13 @@
             'resultData',
             'lastReport'
         ],
-        data() {
-            return {
-
-            }
-        },
         computed : {
             rightPercentage(){
                 return Math.round( 100 / this.lastReport.total * this.lastReport.right);
             },
             wrongPercentage(){
                 return Math.round(100 / this.lastReport.total * this.lastReport.wrong);
-            },
-        },
-        methods: {
-
-        },
+            }
+        }
     }
 </script>

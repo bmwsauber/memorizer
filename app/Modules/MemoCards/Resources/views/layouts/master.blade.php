@@ -8,13 +8,20 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     {{-- Laravel Mix - CSS File --}}
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="stylesheet" href="{{ mix('css/tailwind.css') }}">
 </head>
 <body class="body-{{ Route::currentRouteName() }}">
-    <div class="content" id="app">
-        @yield('content')
+    <div class="full-height flex flex-col justify-between w-full" id="app">
+        <header class="text-center">
+            <h1>MemoCards</h1>
+        </header>
+        <div class="content content flex-auto relative">
+            @yield('content')
+        </div>
+        <footer class="footer text-center">
+            @include('memocards::layouts.footer')
+        </footer>
     </div>
-    <div class="footer">@include('memocards::layouts.footer')</div>
+
 </body>
 <script>
     window.Laravel = @json([

@@ -9,6 +9,7 @@ Vue.component('numbers-component', require('./components/NumbersComponent.vue').
 Vue.component('last-report-data', require('./components/LastReportData.vue').default);
 Vue.component('learn-component', require('./components/LearnComponent.vue').default);
 Vue.component('main-statistic', require('./components/MainStatistic.vue').default);
+Vue.component('speedometer', require('./components/Speedometer.vue').default);
 
 const app = new Vue({
     el: '#app'

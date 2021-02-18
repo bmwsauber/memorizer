@@ -1,150 +1,31 @@
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-html, body {
-    height: 100%;
+.full-height {
+    min-height: 100vh;
 }
 
-.google-charts {
-    width: 100%;
-    min-height: 450px;
-}
+.charts-pie {
+    .inner {
+        min-width: 400px;
 
-.row {
-    margin: 0 !important;
-}
-
-.content {
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -60px;
-
-    .work-progress {
-        height: 2rem;
-
-        .progress-bar {
-            color: #dc3545;
-            overflow: initial;
+        &:before {
+            content: "";
+            display: block;
+            padding-top: 100%;
+            /* initial ratio of 1:1*/
         }
     }
 
-    .work-content {
-        top: 50%;
-        position: absolute;
-        margin-top: -100px;
-        width: 100%;
-        text-align: center !important;
-
-        .answer-buttons {
-            margin-left: 25px;
-        }
-
-        .answer-hint {
-            font-size: 20px;
-        }
-
-        .statistic {
-            margin: 0 auto 30px;
-            width: 100px;
-        }
-
-        .statistic-progress {
-            height: 3px;
-            background-color: #fff;
-
-            &:first-child {
-                margin-bottom: 5px;
-            }
-
-            .right {
-                background-color: #17a2b8;
-            }
-
-            .wrong {
-                background-color: #dc3545;
-            }
-        }
+    .ratio16_9:before {
+        padding-top: 56.25%;
     }
 }
 
-.learn-table {
-    table {
-        font-size: 16px;
-        margin: 30px auto 0;
-
-        td {
-            padding: 10px;
-            border-bottom: 1px solid;
-        }
-    }
-}
-
-.footer {
-    height: 60px;
-}
-
-.last-report {
-    .title {
-        text-anchor: start;
-        font-family: Arial;
-        font-size: 14px;
-        font-weight: bold;
-        stroke: none;
-        stroke-width: 0;
-        fill: rgb(0, 0, 0);
-    }
-
-    li {
-        list-style-type: none;
-        text-anchor: start;
-        font-family: Arial;
-        font-size: 14px;
-        stroke: none;
-        stroke-width: 0;
-        fill: rgb(34, 34, 34);
-    }
-
-    .dot {
-        height: 14px;
-        width: 14px;
-        border-radius: 50%;
-        display: inline-block;
-
-        &.new {
-            background-color: #28a745;
-        }
-
-        &.normal {
-            background-color: #aaaaaa;
-        }
-
-        &.magic {
-            background-color: #8383f7;
-        }
-
-        &.rare {
-            background-color: #f8b335;
-        }
-
-        &.unique {
-            background-color: #ba661d;
-        }
-
-        &.right{
-            background-color: #117a8b;
-        }
-
-        &.wrong{
-            background-color: #bd2130;
-        }
-
-        &.total{
-            background-color: #aaaaaa;
-        }
-    }
-
-    .statistic{
-        margin-top: 20px;
-    }
+.dot {
+    height: 0.7rem;
+    width: 0.7rem;
+    border-radius: 50%;
+    display: inline-block;
 }

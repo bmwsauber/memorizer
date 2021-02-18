@@ -1,53 +1,51 @@
 <template>
-    <div>
-        <div class="progress work-progress">
-            <div class="progress-bar" role="progressbar" :style="{ width : progressWidth + '%' }" aria-valuemin="0"
-                 aria-valuemax="100">&nbsp;{{ ( cardIndex + 1 ) }} / {{ totalCards }}
+    <div class="flex flex-col justify-between absolute h-full w-full">
+        <div class="progress-bar relative bg-gray-100 w-full h-7">
+            <div class="absolute top-0-left-0 bg-teal-100 text-center h-7" :style="{ width : progressWidth + '%' }">
+                <span class="text-white text-lg">{{ ( cardIndex + 1 ) }} / {{ totalCards }}</span>
             </div>
         </div>
-        <div class="work-content">
-            <div class="statistic">
-                <div v-if="openAnswer" class="progress statistic-progress">
-                    <div class="progress-bar right" role="progressbar"
-                         :style="{ width : correctAnswersPercentage +'%' }" aria-valuemin="0"
-                         aria-valuemax="100">
-                    </div>
-                    <div class="progress-bar wrong" role="progressbar" :style="{ width : wrongAnswersPercentage + '%' }"
-                         aria-valuemin="0"
-                         aria-valuemax="100">
-                    </div>
-                </div>
+        <div class="card-content text-center">
+            <div class="color-bar flex justify-center">
+                <speedometer
+                    :correctVolume="correctWrongVolume"
+                    :envUnique="envUnique"
+                >
+                </speedometer>
+
             </div>
-            <div class="question w-100 text-5xl">
-                <h1 v-if="(mode == 'repeat' || (mode == 'listening' && openAnswer))">
-                    {{ currentQuestion }}
-                    <span v-if="currentCard.category"><i :class="currentCard.category.icon_path"></i></span>
-                </h1>
-                <div><i v-if="(currentQuestionLang == 'eng' || mode == 'listening' || openAnswer)" class="fas fa-volume-up"
-                        @click="speech"></i></div>
+            <div class="question text-5xl mt-6">
+                <span>{{ currentQuestion }}</span>
+                <span v-if="currentCard.category" class="text-4xl"> <i
+                    :class="currentCard.category.icon_path"></i></span>
             </div>
-            <div class="answer w-100 text-4xl pb-2">
-                <div v-if="openAnswer">
-                    <h2><span>{{ currentAnswer }}</span></h2>
-                </div>
-                <div v-else>
+            <div class="speaker text-4xl p-3 pt-4" @click="speech"><i
+                v-if="(currentQuestionLang == 'eng' || mode == 'listening' || openAnswer)" class="fas fa-volume-up"></i>
+            </div>
+            <div class="answer text-4xl">
+                <span v-if="openAnswer">
+                    {{ currentAnswer }}
+                </span>
+                <span v-else>
                     <i v-if="currentCard.irreg_verb" class="answer-hint">[Irregular Verb]</i>
-                    <i v-else class="answer-hint">&nbsp;</i>
-                </div>
+                    <i v-else class="text-4xl">&nbsp;</i>
+                </span>
             </div>
-            <div class="buttons w-100 mt-3">
-                <div v-if="openAnswer" class="answer-buttons">
-                    <button type="button" class="btn btn-info" @click="sendAnswerData(1, true)">Right :))</button>
-                    <button type="button" class="btn btn-danger" @click="sendAnswerData(1, false)">Wrong :(</button>
-                    <button type="button" class="btn btn-light" @click="currentCard.favourite = !currentCard.favourite">
-                        <i class="far fa-heart" :class="[currentCard.favourite ? 'fas' : 'far']"></i>
-                    </button>
-                </div>
-                <div v-else>
-                    <button type="button" class="btn btn-info" @click="showAnswer">Show Answer</button>
-                </div>
+            <div class="buttons text-white mt-5">
+                <span v-if="openAnswer">
+                    <button class="bg-teal-100 hover:bg-teal-200 px-4 py-2 rounded" @click="sendAnswerData(1, true)">Right :))</button>
+                    <button class="bg-crimson-100 hover:bg-crimson-200 px-4 py-2 rounded"
+                            @click="sendAnswerData(1, false)">Wrong :(</button>
+                    <button class="bg-gray-100 hover:bg-gray-300 px-4 py-2 text-black rounded"
+                            @click="currentCard.favourite = !currentCard.favourite"><i
+                        class="far fa-heart" :class="[currentCard.favourite ? 'fas' : 'far']"></i></button>
+                </span>
+                <span v-else>
+                    <button class="bg-teal-100 text-white hover:bg-teal-200 px-4 py-2 rounded" @click="showAnswer">Show Answer</button>
+                </span>
             </div>
         </div>
+        <div class="balancer"></div>
     </div>
 </template>
 <script>
@@ -76,6 +74,7 @@
                 currentQuestionLang: null,
                 synth: window.speechSynthesis,
                 message: new window.SpeechSynthesisUtterance(),
+                correctVolume: 0,
             }
         },
         mounted() {
@@ -105,7 +104,7 @@
                 /**
                  * Random show Eng or Rus word
                  */
-                if (this.mode == 'listening' ||(this.currentCard.show_only === 0 || this.currentCard.show_only === '0') || Math.round(Math.random())) { //not sure about the type of var
+                if (this.mode == 'listening' || (this.currentCard.show_only === 0 || this.currentCard.show_only === '0') || Math.round(Math.random())) { //not sure about the type of var
                     this.currentQuestion = this.currentCard.rus;
                     this.currentAnswer = this.currentCard.eng;
                     this.currentQuestionLang = 'rus';
@@ -228,6 +227,17 @@
 
                 window.removeEventListener("keyup", this._respondQuestion);
             },
+            _trimNumber(rowValue, bounds) {
+                let value;
+                if(rowValue >= bounds){
+                    value = bounds
+                }else if(rowValue <= -bounds){
+                    value = -bounds
+                }else{
+                    value = rowValue;
+                }
+                return value;
+            }
         },
         computed: {
 
@@ -264,6 +274,10 @@
                 } else {
                     return 0;
                 }
+            },
+
+            correctWrongVolume(){
+                return this._trimNumber((this.currentCard.right - this.currentCard.wrong), this.envUnique);
             }
         },
         watch: {
