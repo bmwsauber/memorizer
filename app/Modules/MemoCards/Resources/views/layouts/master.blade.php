@@ -11,8 +11,8 @@
 </head>
 <body class="body-{{ Route::currentRouteName() }}">
     <div class="full-height flex flex-col justify-between w-full" id="app">
-        <header class="text-center">
-            <h1>MemoCards</h1>
+        <header class="text-center shadow-md z-10">
+            <h1 class="text-2xl p-3">MemoCards</h1>
         </header>
         <div class="content content flex-auto relative">
             @yield('content')

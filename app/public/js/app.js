@@ -2978,6 +2978,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['cards', 'envUnique', 'mode'],
@@ -4903,20 +4904,16 @@ var render = function() {
             : _vm._e()
         ]),
         _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass: "speaker text-4xl p-3 pt-4",
-            on: { click: _vm.speech }
-          },
-          [
-            _vm.currentQuestionLang == "eng" ||
-            _vm.mode == "listening" ||
-            _vm.openAnswer
-              ? _c("i", { staticClass: "fas fa-volume-up" })
-              : _vm._e()
-          ]
-        ),
+        _c("div", { staticClass: "speaker text-4xl p-3 pt-4" }, [
+          _vm.currentQuestionLang == "eng" ||
+          _vm.mode == "listening" ||
+          _vm.openAnswer
+            ? _c("i", {
+                staticClass: "fas fa-volume-up",
+                on: { click: _vm.speech }
+              })
+            : _vm._e()
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "answer text-4xl" }, [
           _vm.openAnswer
