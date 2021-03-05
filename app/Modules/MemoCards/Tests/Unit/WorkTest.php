@@ -119,7 +119,11 @@ class WorkTest extends TestCase
         } else {
             $this->assertEquals(($factoryCard->right), $this->card->right);
             $this->assertEquals(($factoryCard->total + 1), $this->card->total);
-            $this->assertEquals(($factoryCard->wrong + 1), $this->card->wrong);
+            if ($factoryCard->right > $factoryCard->wrong) {
+                $this->assertEquals(($factoryCard->wrong + 2), $this->card->wrong); //penalty 2 points
+            } else {
+                $this->assertEquals(($factoryCard->wrong + 1), $this->card->wrong); //penalty 1 point
+            }
         }
 
         /**
@@ -138,5 +142,33 @@ class WorkTest extends TestCase
         } else {
             $this->assertEquals($this->card->level, $this->card->right - $this->card->wrong);
         }
+    }
+
+    /**
+     * Return all old cards to stack
+     * Set random level to cards from 1 to $uniqueLevel
+     * And redirect home
+     */
+    public function testShuffleOldCards()
+    {
+        $uniqueLevel = (int)env('UNIQUE_LEVEL', 9);
+
+        $factoryCard = factory(Card::class)->create();
+
+        // ensure card level "Unique"
+        $factoryCard->update(['level' => $uniqueLevel]);
+
+        //check count before shuffle
+        $cardsCount = Card::where('level', '>=', $uniqueLevel)->count();
+
+        //do shuffle
+        $response = $this->get(route('work.shuffle'));
+
+        //must be 0
+        $cardsCount = Card::where('level', '>=', $uniqueLevel)->count();
+
+        $this->assertEquals($cardsCount, 0);
+        $response->assertSessionHas('success');
+        $response->assertRedirect(route('home'));
     }
 }

@@ -3030,7 +3030,7 @@ __webpack_require__.r(__webpack_exports__);
        * Random show Eng or Rus word
        */
 
-      if (this.mode == 'listening' || this.currentCard.show_only === 0 || this.currentCard.show_only === '0' || Math.round(Math.random())) {
+      if (this.mode == 'listening' || this.currentCard.show_only === 0 || this.currentCard.show_only === '0' || !Math.round(Math.random())) {
         //not sure about the type of var
         this.currentQuestion = this.currentCard.rus;
         this.currentAnswer = this.currentCard.eng;
@@ -4434,57 +4434,64 @@ var render = function() {
   return _c("div", { staticClass: "last-report" }, [
     _c("p", { staticClass: "text-center text-2xl" }, [_vm._v("Last Report")]),
     _vm._v(" "),
-    _c("div", { staticClass: "flex justify-center text-sm md:text-base" }, [
-      _c("div", { staticClass: "px-5" }, [
-        _c("ul", [
-          _c("li", [
-            _c("span", { staticClass: "dot bg-new" }),
-            _vm._v(" New: " + _vm._s(_vm.resultData.new))
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("span", { staticClass: "dot bg-normal" }),
-            _vm._v(" Normal: " + _vm._s(_vm.resultData.normal))
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("span", { staticClass: "dot bg-magic" }),
-            _vm._v(" Magic: " + _vm._s(_vm.resultData.magic))
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("span", { staticClass: "dot bg-rare" }),
-            _vm._v(" Rare: " + _vm._s(_vm.resultData.rare))
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("span", { staticClass: "dot bg-unique" }),
-            _vm._v(" Unique: " + _vm._s(_vm.resultData.unique))
+    _c(
+      "div",
+      {
+        staticClass:
+          "flex justify-center text-sm md:text-base items-center pt-5 pb-2"
+      },
+      [
+        _c("div", { staticClass: "px-5" }, [
+          _c("ul", [
+            _c("li", [
+              _c("span", { staticClass: "dot bg-new" }),
+              _vm._v(" New: " + _vm._s(_vm.resultData.new))
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("span", { staticClass: "dot bg-normal" }),
+              _vm._v(" Normal: " + _vm._s(_vm.resultData.normal))
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("span", { staticClass: "dot bg-magic" }),
+              _vm._v(" Magic: " + _vm._s(_vm.resultData.magic))
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("span", { staticClass: "dot bg-rare" }),
+              _vm._v(" Rare: " + _vm._s(_vm.resultData.rare))
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("span", { staticClass: "dot bg-unique" }),
+              _vm._v(" Unique: " + _vm._s(_vm.resultData.unique))
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "px-5 ml-6" }, [
+          _c("ul", [
+            _c("li", [
+              _c("span", { staticClass: "dot bg-teal-200" }),
+              _vm._v(" Right: " + _vm._s(_vm.lastReport.right) + " "),
+              _c("b", [_vm._v("(" + _vm._s(_vm.rightPercentage) + "%)")])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("span", { staticClass: "dot bg-crimson-200" }),
+              _vm._v(" Wrong: " + _vm._s(_vm.lastReport.wrong) + " "),
+              _c("b", [_vm._v("(" + _vm._s(_vm.wrongPercentage) + "%)")])
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c("span", { staticClass: "dot bg-gray-400" }),
+              _vm._v(" Total: " + _vm._s(_vm.lastReport.total))
+            ])
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "px-5 py-5" }, [
-        _c("ul", [
-          _c("li", [
-            _c("span", { staticClass: "dot bg-teal-200" }),
-            _vm._v(" Right: " + _vm._s(_vm.lastReport.right) + " "),
-            _c("b", [_vm._v("(" + _vm._s(_vm.rightPercentage) + "%)")])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("span", { staticClass: "dot bg-crimson-200" }),
-            _vm._v(" Wrong: " + _vm._s(_vm.lastReport.wrong) + " "),
-            _c("b", [_vm._v("(" + _vm._s(_vm.wrongPercentage) + "%)")])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("span", { staticClass: "dot bg-gray-400" }),
-            _vm._v(" Total: " + _vm._s(_vm.lastReport.total))
-          ])
-        ])
-      ])
-    ])
+      ]
+    )
   ])
 }
 var staticRenderFns = []

@@ -105,7 +105,7 @@
                 /**
                  * Random show Eng or Rus word
                  */
-                if (this.mode == 'listening' || (this.currentCard.show_only === 0 || this.currentCard.show_only === '0') || Math.round(Math.random())) { //not sure about the type of var
+                if (this.mode == 'listening' || (this.currentCard.show_only === 0 || this.currentCard.show_only === '0') || !Math.round(Math.random())) { //not sure about the type of var
                     this.currentQuestion = this.currentCard.rus;
                     this.currentAnswer = this.currentCard.eng;
                     this.currentQuestionLang = 'rus';

@@ -4,55 +4,12 @@ namespace Modules\MemoCards\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Modules\MemoCards\Entities\Card;
 use Modules\MemoCards\Entities\Report;
 
 class WorkController extends Controller
 {
-    /**
-     * Create new report
-     * Redirect to show
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function start($mode)
-    {
-        switch ($mode) {
-            case 'repeat':
-                return \redirect(route('work.repeat', Report::getId()));
-                break;
-            case 'listening':
-                return \redirect(route('work.listening', Report::getId()));
-                break;
-            case 'idioms':
-                return \redirect(route('work.idioms', Report::getId()));
-                break;
-        }
-    }
-
-    /**
-     * Decrease "level" value to all cards
-     * Flush session and redirect to homepage.
-     *
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function end()
-    {
-        $uniqueLevel = env('UNIQUE_LEVEL', 9);
-
-        Card::where([
-            ['level', '>', 1],
-            ['level', '<', $uniqueLevel],
-        ])->orWhere([
-            ['favourite', 1],
-            ['level', '>', 1],
-        ])->decrement('level');
-
-        Report::close();
-
-        return \redirect(route('home'));
-    }
-
     /**
      * Work mode: reading and listening
      * Get collection of cards with "level" 1
@@ -123,6 +80,68 @@ class WorkController extends Controller
             'mode' => $mode,
         ]);
     }
+
+    /**
+     * Create new report
+     * Redirect to show
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function start($mode)
+    {
+        switch ($mode) {
+            case 'repeat':
+                return \redirect(route('work.repeat', Report::getId()));
+                break;
+            case 'listening':
+                return \redirect(route('work.listening', Report::getId()));
+                break;
+            case 'idioms':
+                return \redirect(route('work.idioms', Report::getId()));
+                break;
+        }
+    }
+
+    /**
+     * Decrease "level" value to all cards
+     * Flush session and redirect to homepage.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function end()
+    {
+        $uniqueLevel = env('UNIQUE_LEVEL', 9);
+
+        Card::where([
+            ['level', '>', 1],
+            ['level', '<', $uniqueLevel],
+        ])->orWhere([
+            ['favourite', 1],
+            ['level', '>', 1],
+        ])->decrement('level');
+
+        Report::close();
+
+        return \redirect(route('home'));
+    }
+
+    /**
+     * Return all old cards to stack
+     * Set random level to cards from 1 to $uniqueLevel
+     * And redirect home
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function shuffle(Request $request)
+    {
+        $uniqueLevel = env('UNIQUE_LEVEL', 9);
+        DB::statement("UPDATE `cards` SET `cards`.`level` = FLOOR( RAND() * (" . $uniqueLevel . " - 1) + 1 ) WHERE `cards`.`level` >= 9");
+
+        \session()->flash('success', "Special message goes here");
+        return \redirect(route('home'));
+    }
+
 
     /**
      * Save to database an answer result
