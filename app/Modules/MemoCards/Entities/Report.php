@@ -2,6 +2,7 @@
 
 namespace Modules\MemoCards\Entities;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
 
@@ -32,36 +33,17 @@ class Report extends Model
     }
 
     /**
-     * The "booted" method of the model.
-     *
-     * @return void
-     */
-    protected static function booted()
-    {
-        static::created(function ($report) {
-
-            $reportData = [
-                'start' => self::calculateCardsStatistic(),
-                'end' => self::emptyCardsStatistic(),
-                'result' => self::emptyCardsStatistic(),
-            ];
-
-            $report->data = $reportData;
-            $report->save();
-        });
-    }
-
-    /**
      * Increment Right or wrong value
      *
      * @param bool $isCorrect
+     * @throws Exception
      */
     public static function updateReport(bool $isCorrect)
     {
         $reportId = self::getId();
 
         if (!$reportId) {
-            throw new \Exception('No current_report_id');
+            throw new Exception('No current_report_id');
         }
 
         $report = self::find($reportId);
@@ -188,5 +170,24 @@ class Report extends Model
     public function setDataAttribute($value)
     {
         $this->report_data = $value;
+    }
+
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::created(function ($report) {
+            $reportData = [
+                'start' => self::calculateCardsStatistic(),
+                'end' => self::emptyCardsStatistic(),
+                'result' => self::emptyCardsStatistic(),
+            ];
+
+            $report->data = $reportData;
+            $report->save();
+        });
     }
 }

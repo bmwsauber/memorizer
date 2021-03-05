@@ -19,6 +19,9 @@ class Card extends Model
         'irreg_verb',
     ];
 
+    /**
+     * @var string[]
+     */
     protected $with = [
         'category'
     ];
