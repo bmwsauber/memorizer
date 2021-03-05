@@ -1,3 +1,9 @@
 {
-    "MemoCards": true
+    "MemoCards": true,
+    "Layout": true,
+    "Pages": true,
+    "Report": true,
+    "Work": true,
+    "Numbers": true,
+    "Idioms": true
 }

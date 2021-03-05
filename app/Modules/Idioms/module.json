@@ -1,0 +1,13 @@
+{
+    "name": "Idioms",
+    "alias": "idioms",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\Idioms\\Providers\\IdiomsServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

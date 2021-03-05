@@ -1,0 +1,13 @@
+{
+    "name": "Layout",
+    "alias": "layout",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\Layout\\Providers\\LayoutServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

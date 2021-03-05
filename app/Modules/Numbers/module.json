@@ -1,0 +1,13 @@
+{
+    "name": "Numbers",
+    "alias": "numbers",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\Numbers\\Providers\\NumbersServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
