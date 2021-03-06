@@ -13,7 +13,7 @@
     <div class="full-height flex flex-col justify-between w-full" id="app">
         @include('layout::layouts.header')
         <div class="content content flex-auto relative">
-            @include('layout::layouts.left-sidebar')
+            <left-sidebar></left-sidebar>
             @yield('content')
         </div>
         <footer class="footer text-center">

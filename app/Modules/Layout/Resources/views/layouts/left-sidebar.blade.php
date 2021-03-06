@@ -1,3 +1,0 @@
-<nav class="absolute hidden left-0 top-0 h-full bg-gray-600 z-20" style="min-width: 360px;">
-    ....
-</nav>
