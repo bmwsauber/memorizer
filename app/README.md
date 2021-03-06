@@ -2,7 +2,7 @@
 
 ## Task Lists
 
-### v 1.1
+### v 1.2
 
 * Critical:
     * Setting panel
@@ -11,12 +11,6 @@
     * Work
         - [ ] V alignment russian question
         * Modes
-            - [x] Repeat
-            - [x] Listening
-                - [x] Swap Results places
-            - [x] Header Link
-            - [x] Tests
-            - [x] Idioms
     * Idioms
         - [ ] idioms reduce level of all cards
 * High:
@@ -24,7 +18,6 @@
         - [ ] CD
         - [ ] CI
         - [ ] Add to CV - ability circle ci/cd
-    - [x] Improve Modules structure (Refactoring)
     - [ ] Multi Users
     - [ ] Auto migrations on prod
     * Numbers
@@ -32,7 +25,6 @@
             - [ ] Listening
             - [ ] Speaking
     - [ ] Arrows
-    - [x] CSS Responsive
 * Low:
     - [ ] All Code Comments
     * Tasks Module
@@ -41,7 +33,5 @@
         - [ ] Pops and Cons
     * Add - popup
         - [ ] Pops and Cons
-    - [x] View improvement
-    - [x] Move to tailwind css
     
     
