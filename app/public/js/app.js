@@ -4641,7 +4641,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("h1", { staticClass: "text-2xl p-3 " }, [_vm._v("MemoCards")])
+      _c("h1", { staticClass: "text-2xl p-3" }, [_vm._v("MemoCards")])
     ])
   }
 ]
@@ -4842,12 +4842,25 @@ var render = function() {
   return _c(
     "nav",
     {
-      staticClass: "absolute left-0 top-0 h-full z-20 bg-white shadow-lg mt-2",
+      staticClass: "absolute left-0 top-0 h-full z-20 bg-white p-4 shadow-2xl",
       class: { hidden: _vm.$store.state.leftSidebarHide },
       staticStyle: { "min-width": "360px" },
       attrs: { id: "left-sidebar" }
     },
-    [_vm._v("\n    ....\n")]
+    [
+      _c("i", {
+        staticClass: "fas fa-bars",
+        on: {
+          click: function($event) {
+            return _vm.$store.commit("toggleLeftSidebarState")
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("h3", { staticClass: "text-center text-2xl" }, [_vm._v("Setting")]),
+      _vm._v(" "),
+      _c("hr", { staticClass: "mt-3" })
+    ]
   )
 }
 var staticRenderFns = []

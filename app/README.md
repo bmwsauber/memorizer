@@ -14,7 +14,7 @@
     * Idioms
         - [ ] idioms reduce level of all cards
 * High:
-    * Circle CI/CD
+    * Jenkins CI/CD
         - [ ] CD
         - [ ] CI
         - [ ] Add to CV - ability circle ci/cd

@@ -11,9 +11,9 @@
 </head>
 <body class="body-{{ Route::currentRouteName() }}">
     <div class="full-height flex flex-col justify-between w-full" id="app">
-        @include('layout::layouts.header')
+        <header-vue></header-vue>
+        <left-sidebar></left-sidebar>
         <div class="content content flex-auto relative">
-            <left-sidebar></left-sidebar>
             @yield('content')
         </div>
         <footer class="footer text-center">
