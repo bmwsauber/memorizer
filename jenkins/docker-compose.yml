@@ -35,9 +35,9 @@ services:
   jenkins_php-fpm:
     build: ../docker/php-local
     links:
-      - mysql
-      - mysql_testing
-      - redis
+      - jenkins_mysql
+      - jenkins_mysql_testing
+      - jenkins_redis
     volumes:
       - "../app:/app"
       #- "../php/ini:/usr/local/etc/php"
