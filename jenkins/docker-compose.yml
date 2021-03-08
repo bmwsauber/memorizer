@@ -33,7 +33,7 @@ services:
     container_name: memo_mysql_testing
 
   php-fpm:
-    build: ./../docker/php-local
+    build: ../docker/php-local
     links:
       - mysql
       - mysql_testing
@@ -42,7 +42,7 @@ services:
       - "../app:/app"
       #- "../php/ini:/usr/local/etc/php"
     extends:
-      file: docker/env-local.yml
+      file: ../docker/env-local.yml
       service: base
     container_name: memo_php
     environment:
