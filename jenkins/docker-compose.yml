@@ -33,7 +33,7 @@ services:
     container_name: memo_mysql_testing
 
   php-fpm:
-    build: ../docker/php-local
+    build: ./../docker/php-local
     links:
       - mysql
       - mysql_testing
