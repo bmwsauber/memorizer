@@ -76,7 +76,7 @@ services:
     environment:
       APP_LOG_LEVEL: critical
     extends:
-      file: docker/env-local.yml
+      file: ../docker/env-local.yml
       service: base
     command: "php /app/artisan queue:work --daemon --queue=import,default --tries=10"
     container_name: memo_worker
