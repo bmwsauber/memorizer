@@ -64,7 +64,7 @@ services:
   #      service: base
 
   laravel-worker:
-    build: ./docker/php-local
+    build: ../docker/php-local
     links:
       - mysql
       - mysql_testing
