@@ -3,13 +3,13 @@ services:
   mysql:
     image: mysql:5.7
     ports:
-      - "3301:3306"
+      - "3310:3306"
     volumes:
       - "../volumes/mysql:/var/lib/mysql"
     environment:
-      MYSQL_DATABASE: jenkins_memo
-      MYSQL_USER: jenkins_memo
-      MYSQL_PASSWORD: jenkins_memo
+      MYSQL_DATABASE: memo
+      MYSQL_USER: memo
+      MYSQL_PASSWORD: memo
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     command:
       - '--character-set-server=utf8'
@@ -19,13 +19,13 @@ services:
   mysql_testing:
     image: mysql:5.7
     ports:
-      - "3300:3306"
+      - "3311:3306"
     volumes:
       - "../volumes/mysql_testing:/var/lib/mysql"
     environment:
-      MYSQL_DATABASE: jenkins_memo_testing
-      MYSQL_USER: jenkins_memo_testing
-      MYSQL_PASSWORD: jenkins_memo_testing
+      MYSQL_DATABASE: memo_testing
+      MYSQL_USER: memo_testing
+      MYSQL_PASSWORD: memo_testing
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     command:
       - '--character-set-server=utf8'

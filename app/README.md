@@ -6,25 +6,30 @@
 
 * Critical:
     * Setting panel
-        - [ ] Pretty switches
-        - [ ] Settings
+        - [x] Pretty switches
+        - [x] Settings
     * Work
-        - [ ] V alignment russian question
+        - [x] V alignment russian question
         * Modes
     * Idioms
         - [ ] idioms reduce level of all cards
+            - solution is:
+                - add to homepage all categories as icons
+                - chose categories before start
+                - NO decrement
+                - additional button - cats
 * High:
     * Jenkins CI/CD
         - [ ] CD
         - [ ] CI
-        - [ ] Add to CV - ability circle ci/cd
+        - [x] Add to CV - ability circle ci/cd
     - [ ] Multi Users
     - [ ] Auto migrations on prod
     * Numbers
         * Modes
             - [ ] Listening
             - [ ] Speaking
-    - [ ] Arrows
+    - [x] Arrows
 * Low:
     - [ ] All Code Comments
     * Tasks Module
