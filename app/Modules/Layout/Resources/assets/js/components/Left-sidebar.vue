@@ -25,7 +25,10 @@
             <ios-checkbox class=" block pt-4 pl-4" :label="'Speaking mode'"/>
         </div>
         <div class="border-b">
-            <a href="#">Shuffle</a>
+            <a href="#"><span>Shuffle</span></a>
+        </div>
+        <div class="border-b">
+            <ios-checkbox class="block pt-4 pl-4 dark-theme" :label="'Dark Mode'"/>
         </div>
     </nav>
 </template>

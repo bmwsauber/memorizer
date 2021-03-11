@@ -5,6 +5,7 @@
 ### v 1.2
 
 * Critical:
+    - [ ] Fix "No" redirect 
     * Setting panel
         - [x] Pretty switches
         - [x] Settings

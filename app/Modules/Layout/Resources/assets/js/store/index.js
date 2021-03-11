@@ -4,6 +4,7 @@ export default {
         leftSidebarHide: true,
         showOnly: false,
         listeningMode: false,
+        darkMode: false,
     },
     getters: {},
     actions: {
@@ -16,6 +17,9 @@ export default {
         toggleListeningMode(store, param){
             store.commit('toggleListeningMode', param);
         },
+        toggleDarkMode(store, param){
+            store.commit('toggleDarkMode', param);
+        },
     },
     mutations: {
         toggleLeftSidebarState(state) {
@@ -26,6 +30,9 @@ export default {
         },
         toggleListeningMode(state, param) {
             return state.listeningMode = param;
+        },
+        toggleDarkMode(state, param) {
+            return state.darkMode = param;
         },
     },
     plugins: [createPersistedState()],
