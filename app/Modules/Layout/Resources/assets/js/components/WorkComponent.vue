@@ -12,7 +12,6 @@
                     :envUnique="envUnique"
                 >
                 </speedometer>
-
             </div>
             <div class="question text-5xl mt-6">
                 <span>{{ currentQuestion }}</span>
@@ -20,8 +19,9 @@
                     :class="currentCard.category.icon_path"></i></span>
             </div>
             <div class="speaker text-4xl p-3 pt-4">
-                <i @click="speech" v-if="(currentQuestionLang == 'eng' || mode == 'listening' || openAnswer)"
+                <i @click="speech" v-if="(currentQuestionLang == 'eng' || $store.state.listeningMode || openAnswer)"
                    class="fas fa-volume-up"></i>
+                <i v-else>&nbsp;</i>
             </div>
             <div class="answer text-4xl">
                 <span v-if="openAnswer">
@@ -46,7 +46,14 @@
                 </span>
             </div>
         </div>
-        <div class="balancer"></div>
+        <div class="arrows text-2xl mt-24 text-center flex justify-between">
+            <button class="text-white hover:bg-gray-300 px-4 py-2 hover:text-black rounded" @click="_decreaseCardIndex">
+                <
+            </button>
+            <button class="text-white hover:bg-gray-300 px-4 py-2 hover:text-black rounded" @click="_increaseCardIndex">
+                >
+            </button>
+        </div>
     </div>
 </template>
 <script>
@@ -105,19 +112,17 @@
                 /**
                  * Random show Eng or Rus word
                  */
-                if (this.mode == 'listening' || (this.currentCard.show_only === 0 || this.currentCard.show_only === '0') || !Math.round(Math.random())) { //not sure about the type of var
+                if (this.languageQuestion() === 'rus') { //not sure about the type of var
                     this.currentQuestion = this.currentCard.rus;
                     this.currentAnswer = this.currentCard.eng;
                     this.currentQuestionLang = 'rus';
-                    this.randMeasureRus++;
                 } else {
                     this.currentQuestion = this.currentCard.eng;
                     this.currentAnswer = this.currentCard.rus;
                     this.currentQuestionLang = 'eng';
-                    this.randMeasureEng++;
                 }
 
-                if (this.mode == 'listening') {
+                if (this.$store.state.listeningMode) {
                     this.speech();
                 }
 
@@ -130,7 +135,7 @@
             showAnswer(event) {
                 this.openAnswer = true;
 
-                if (this.mode != 'listening') {
+                if (!this.$store.state.listeningMode) {
                     this.speech();
                 }
 
@@ -159,11 +164,12 @@
                     if (!response.data.errors) {
                         // ... we can do something here
                     } else {
+                        this._errorSound();
                         // ... if we get "error", we can switch script to offline mode here (without statistic)
                     }
                 });
 
-                this.cardIndex++;
+                this._increaseCardIndex();
                 this.progressWidth = Math.round(this.cardIndex * 100 / this.lastCardsIndex);
             },
 
@@ -182,6 +188,17 @@
              */
             _playSound() {
                 let audio = new Audio("/ding-sound-effect.mp3");
+                audio.volume = 0.5;
+                audio.play();
+            },
+
+            /**
+             * Play Sound
+             *
+             * @private
+             */
+            _errorSound() {
+                let audio = new Audio("/error-alert.mp3");
                 audio.volume = 0.5;
                 audio.play();
             },
@@ -219,7 +236,7 @@
                         this.showAnswer();
                         break;
                     case 'Backspace':
-                        this.cardIndex--;
+                        this._decreaseCardIndex();
                         this.showAnswer();
                         break;
                     default :
@@ -228,6 +245,53 @@
 
                 window.removeEventListener("keyup", this._respondQuestion);
             },
+
+            /**
+             * Just decrease card index correctly
+             *
+             * @private
+             */
+            _decreaseCardIndex() {
+                if (this.cardIndex > 0) {
+                    this.cardIndex--;
+                }
+            },
+
+            /**
+             * Just decrease card index correctly
+             *
+             * @private
+             */
+            _increaseCardIndex() {
+                if (this.cardIndex < this.lastCardsIndex) {
+                    this.cardIndex++;
+                }
+            },
+
+            /**
+             * What is language will be in question
+             * depends on params on random
+             *
+             */
+            languageQuestion() {
+                /**
+                 * is setting were applied
+                 */
+                if (this.$store.state.showOnly === '0' || this.$store.state.listeningMode || (this.currentCard.show_only === 0 || this.currentCard.show_only === '0')) {
+                    return 'eng'
+                } else if (this.$store.state.showOnly === '1' || (this.currentCard.show_only === 1 || this.currentCard.show_only === '1')) {
+                    return 'rus'
+                /**
+                 * else - random
+                 */
+                } else {
+                    if (!Math.round(Math.random())) {
+                        return 'eng'
+                    } else {
+                        return 'rus'
+                    }
+                }
+            }
         },
         computed: {
 
@@ -246,7 +310,6 @@
                 } else {
                     return 0;
                 }
-
             },
 
             /**
@@ -280,8 +343,8 @@
             cardIndex(cardIndex) {
                 this.currentCard = this.cards[cardIndex];
                 this.showQuestion();
-            }
-        }
+            },
+        },
     }
 </script>
 

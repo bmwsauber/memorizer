@@ -2,37 +2,34 @@
 
 ## Task Lists
 
-### v 1.1
+### v 1.2
 
 * Critical:
     * Setting panel
-        - [ ] Pretty switches
-        - [ ] Settings
+        - [x] Pretty switches
+        - [x] Settings
     * Work
-        - [ ] V alignment russian question
+        - [x] V alignment russian question
         * Modes
-            - [x] Repeat
-            - [x] Listening
-                - [x] Swap Results places
-            - [x] Header Link
-            - [x] Tests
-            - [x] Idioms
     * Idioms
         - [ ] idioms reduce level of all cards
+            - solution is:
+                - add to homepage all categories as icons
+                - chose categories before start
+                - NO decrement
+                - additional button - cats
 * High:
-    * Circle CI/CD
+    * Jenkins CI/CD
         - [ ] CD
         - [ ] CI
-        - [ ] Add to CV - ability circle ci/cd
-    - [x] Improve Modules structure (Refactoring)
+        - [x] Add to CV - ability circle ci/cd
     - [ ] Multi Users
     - [ ] Auto migrations on prod
     * Numbers
         * Modes
             - [ ] Listening
             - [ ] Speaking
-    - [ ] Arrows
-    - [x] CSS Responsive
+    - [x] Arrows
 * Low:
     - [ ] All Code Comments
     * Tasks Module
@@ -41,7 +38,5 @@
         - [ ] Pops and Cons
     * Add - popup
         - [ ] Pops and Cons
-    - [x] View improvement
-    - [x] Move to tailwind css
     
     
