@@ -9,9 +9,7 @@ Vue.use(Vuex);
 
 import store from "./store/index"
 
-
 window.Vuex = Vuex;
-
 
 Vue.component('work-component', require('./components/WorkComponent.vue').default);
 Vue.component('numbers-component', require('./components/NumbersComponent.vue').default);
@@ -26,7 +24,3 @@ const app = new Vue({
     el: '#app',
     store: new Vuex.Store(store)
 })
-
-function toggleNav(){
-
-}

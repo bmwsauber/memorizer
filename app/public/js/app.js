@@ -673,8 +673,6 @@ var app = new Vue({
   store: new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store(_store_index__WEBPACK_IMPORTED_MODULE_2__["default"])
 });
 
-function toggleNav() {}
-
 /***/ }),
 
 /***/ "./Modules/Layout/Resources/assets/js/mixins/laravel-routes.js":
