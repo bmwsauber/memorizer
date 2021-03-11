@@ -161,14 +161,24 @@
                     this._playSound();
                 }
 
-                axios.post(this.route('work.set_level', this.currentCard.id), data).then(response => {
-                    if (!response.data.errors) {
-                        // ... we can do something here
-                    } else {
+                axios.post(this.route('work.set_level', this.currentCard.id), data)
+                    .then(response => {
+                    })
+                    .catch((error) => {
                         this._errorSound();
-                        // ... if we get "error", we can switch script to offline mode here (without statistic)
-                    }
-                });
+                        if (error.response) {
+                            // Request made and server responded
+                            console.log(error.response.data);
+                            console.log(error.response.status);
+                            console.log(error.response.headers);
+                        } else if (error.request) {
+                            // The request was made but no response was received
+                            console.log(error.request);
+                        } else {
+                            // Something happened in setting up the request that triggered an Error
+                            console.log('Error', error.message);
+                        }
+                    });
 
                 this._increaseCardIndex();
                 this.progressWidth = Math.round(this.cardIndex * 100 / this.lastCardsIndex);
@@ -282,9 +292,9 @@
                     return 'eng'
                 } else if (this.$store.state.showOnly === '1' || (this.currentCard.show_only === 1 || this.currentCard.show_only === '1')) {
                     return 'rus'
-                /**
-                 * else - random
-                 */
+                    /**
+                     * else - random
+                     */
                 } else {
                     if (!Math.round(Math.random())) {
                         return 'eng'

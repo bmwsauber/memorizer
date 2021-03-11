@@ -3438,11 +3438,20 @@ __webpack_require__.r(__webpack_exports__);
         this._playSound();
       }
 
-      axios.post(this.route('work.set_level', this.currentCard.id), data).then(function (response) {
-        if (!response.data.errors) {// ... we can do something here
-        } else {
-          _this._errorSound(); // ... if we get "error", we can switch script to offline mode here (without statistic)
+      axios.post(this.route('work.set_level', this.currentCard.id), data).then(function (response) {})["catch"](function (error) {
+        _this._errorSound();
 
+        if (error.response) {
+          // Request made and server responded
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log('Error', error.message);
         }
       });
 
