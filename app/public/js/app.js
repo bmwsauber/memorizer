@@ -3336,6 +3336,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['cards', 'envUnique', 'mode'],
@@ -5627,7 +5628,10 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("div", { staticClass: "question text-5xl mt-6" }, [
-          _c("span", [_vm._v(_vm._s(_vm.currentQuestion))]),
+          !_vm.$store.state.listeningMode ||
+          (_vm.$store.state.listeningMode && _vm.openAnswer)
+            ? _c("span", [_vm._v(_vm._s(_vm.currentQuestion))])
+            : _c("span", [_vm._v(" ")]),
           _vm._v(" "),
           _vm.currentCard.category
             ? _c("span", { staticClass: "text-4xl" }, [

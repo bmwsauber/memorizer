@@ -14,7 +14,8 @@
                 </speedometer>
             </div>
             <div class="question text-5xl mt-6">
-                <span>{{ currentQuestion }}</span>
+                <span v-if="(!$store.state.listeningMode || ($store.state.listeningMode && openAnswer))">{{ currentQuestion }}</span>
+                <span v-else>&nbsp;</span>
                 <span v-if="currentCard.category" class="text-4xl"> <i
                     :class="currentCard.category.icon_path"></i></span>
             </div>
