@@ -19,6 +19,7 @@
                 - NO decrement
                 - additional button - cats
 * High:
+    * Dark theme
     * Jenkins CI/CD
         - [ ] CD
         - [ ] CI

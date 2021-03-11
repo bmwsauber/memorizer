@@ -24,6 +24,7 @@
         "axios": "^0.19.2",
         "coockies": "^1.0.0",
         "vue": "^2.6.11",
+        "vue-confirm-dialog": "^1.0.2",
         "vue-google-charts": "^0.3.3",
         "vue-range-slider": "^0.6.0",
         "vuex": "^3.6.2",

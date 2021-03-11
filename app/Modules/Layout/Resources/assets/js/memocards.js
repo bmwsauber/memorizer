@@ -9,6 +9,8 @@ Vue.use(Vuex);
 
 import store from "./store/index"
 
+import VueConfirmDialog from 'vue-confirm-dialog';
+Vue.use(VueConfirmDialog);
 
 window.Vuex = Vuex;
 
@@ -22,6 +24,7 @@ Vue.component('speedometer', require('./components/Speedometer.vue').default);
 Vue.component('header-vue', require('./components/Header.vue').default);
 Vue.component('left-sidebar', require('./components/Left-sidebar.vue').default);
 Vue.component('ios-checkbox', require('./components/parts/iosCheckbox').default);
+Vue.component('vue-confirm-dialog', VueConfirmDialog.default);
 
 
 

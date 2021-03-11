@@ -11,6 +11,7 @@
 </head>
 <body class="body-{{ Route::currentRouteName() }}">
     <div class="full-height flex flex-col justify-between w-full" id="app">
+        <vue-confirm-dialog></vue-confirm-dialog>
         <header-vue></header-vue>
         <left-sidebar></left-sidebar>
         <div class="content content flex-auto relative">

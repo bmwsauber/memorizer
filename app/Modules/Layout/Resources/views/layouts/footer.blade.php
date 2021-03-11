@@ -8,6 +8,6 @@
         <a @if (Route::currentRouteName() !== 'work.idioms') href="{{ route('work.start', 'idioms') }}" @endif>Idioms</a> |
     @endif
     <a  @if (Route::currentRouteName() !== 'cards.learn') href="{{ route('cards.learn') }}" @endif>Learn New</a> |
-    <a  @if (Route::currentRouteName() !== 'numbers.show') href="{{ route('numbers.show') }}" @endif>Numbers</a> |
+    <a  @if (Route::currentRouteName() !== 'numbers.show') href="{{ route('numbers.show') }}" @endif>Numbers</a>
 </div>
 <div class="text-center font-medium mt-1 pb-3">© 2021 Alexandr Dubovis </div>

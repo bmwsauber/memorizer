@@ -100,14 +100,6 @@
         },
         methods: {
             showQuestion() {
-
-                /**
-                 * Check if all cards showed just redirect to homepage
-                 */
-                if (!this.totalCards || this.cardIndex > this.lastCardsIndex) {
-                    location.href = this.route('work.end');
-                }
-
                 this.openAnswer = false;
 
                 /**
@@ -276,6 +268,26 @@
             _increaseCardIndex() {
                 if (this.cardIndex < this.lastCardsIndex) {
                     this.cardIndex++;
+                } else {
+                    this.$confirm({
+                        title: 'Congratulations!',
+                        message: `Lesson complete! Do you want to update all cards?`,
+                        button: {
+                            no: 'No!',
+                            yes: 'Yes!'
+                        },
+                        /**
+                         * Callback Function
+                         * @param {Boolean} confirm
+                         */
+                        callback: confirm => {
+                            if (confirm) {
+                                location.href = this.route('work.end');
+                            } else {
+                                location.href = this.route('home');
+                            }
+                        }
+                    });
                 }
             },
 
