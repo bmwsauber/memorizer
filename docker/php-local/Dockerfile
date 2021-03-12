@@ -1,34 +1,86 @@
-FROM php:7.2.5-fpm
-RUN apt-get update && apt-get install -y \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libpng-dev \
-    libicu-dev \
+FROM php:8.0-rc-fpm-alpine
 
-    libcurl4-openssl-dev \
-    unzip \
-    nano \
+# Install dev dependencies
+RUN apk add --no-cache --virtual .build-deps \
+    $PHPIZE_DEPS \
+    curl-dev \
+    imagemagick-dev \
+    libtool \
+    libxml2-dev \
+    postgresql-dev \
+    sqlite-dev
+
+# Install production dependencies
+RUN apk add --no-cache \
+    bash \
+    curl \
+    freetype-dev \
+    g++ \
+    gcc \
     git \
-    libexif-dev \
-    libxrender1 \
-    libfontconfig \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd \
-    && docker-php-ext-install -j$(nproc) mbstring zip intl curl pdo_mysql tokenizer \
-    && docker-php-ext-install exif \
-    && rm -rf /var/lib/apt/lists/*
+    icu-dev \
+    icu-libs \
+    imagemagick \
+    libc-dev \
+    libjpeg-turbo-dev \
+    libpng-dev \
+    libzip-dev \
+    make \
+    mysql-client \
+    nodejs \
+    nodejs-npm \
+    oniguruma-dev \
+    yarn \
+    openssh-client \
+    postgresql-libs \
+    rsync \
+    zlib-dev
 
-RUN curl -sS https://getcomposer.org/installer |  php -- --install-dir=/usr/local/bin --filename=composer
-RUN mkdir /app
+# Install PECL and PEAR extensions
+RUN pecl install \
+    redis \
+    # imagick \
+    xdebug
+
+# Enable PECL and PEAR extensions
+RUN docker-php-ext-enable \
+    redis \
+    # imagick \
+    xdebug
+
+# Configure php extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+
+# Install php extensions
+RUN docker-php-ext-install \
+    bcmath \
+    calendar \
+    curl \
+    exif \
+    gd \
+    iconv \
+    intl \
+    mbstring \
+    pdo \
+    pdo_mysql \
+    pdo_pgsql \
+    pdo_sqlite \
+    pcntl \
+    tokenizer \
+    xml \
+    zip
+
+# Install composer
+ENV COMPOSER_HOME /composer
+ENV PATH ./vendor/bin:/composer/vendor/bin:$PATH
+ENV COMPOSER_ALLOW_SUPERUSER 1
+RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin/ --filename=composer
+
+# Install PHP_CodeSniffer
+RUN composer global require "squizlabs/php_codesniffer=*"
+
+# Cleanup dev dependencies
+RUN apk del -f .build-deps
+
+# Setup working directory
 WORKDIR /app
-
-RUN cd /usr/local/etc/php/conf.d/ && \
-  echo 'memory_limit = -1' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini
-
-#RUN yes | pecl install xdebug \
-#    && echo "zend_extension=$(find  / -name xdebug.so)" > /usr/local/etc/php/7.1/conf.d/xdebug.ini \
-#    && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/7.1/conf.d/xdebug.ini \
-#    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/7.1/conf.d/xdebug.ini \
-#    && echo "xdebug.remote_connect_back=on" >> /usr/local/etc/php/7.1/conf.d/xdebug.ini
-
-RUN usermod -u 1000 www-data
