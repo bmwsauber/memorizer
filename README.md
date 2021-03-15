@@ -24,7 +24,6 @@
     * Jenkins CI/CD
         - [ ] CD
         - [ ] CI
-        - [x] Add to CV - ability circle ci/cd
     - [ ] Multi Users
     - [ ] Auto migrations on prod
     * Numbers
