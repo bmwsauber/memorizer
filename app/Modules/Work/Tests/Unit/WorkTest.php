@@ -96,7 +96,6 @@ class WorkTest extends TestCase
          */
         $response = $this->post(route('work.set_level', $factoryCard->id), [
             'isCorrect' => $isCorrect,
-            'forcedLevel' => 1,
         ]);
 
         /**

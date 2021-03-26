@@ -159,7 +159,9 @@ class WorkController extends Controller
              * Keep controller "thin" ;)
              * business logic is should be placed in a model.
              */
-            $card->calculateAndSaveNewLevel((bool)$request->get('isCorrect'), $request->get('forcedLevel'), $request->get('isFavourite'));
+
+            $card->updateCardWorthProperties($request)->save();
+
             Report::updateReport((bool)$request->get('isCorrect'));
         } catch (e $exception) {
             return $exception->getMessage();

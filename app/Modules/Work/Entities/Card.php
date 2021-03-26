@@ -3,6 +3,7 @@
 namespace Modules\Work\Entities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class Card extends Model
 {
@@ -27,54 +28,33 @@ class Card extends Model
     ];
 
     /**
-     * Save to database an answer result
-     * calculate when card will be appeared again
+     * Update card "Worth" according to answer result
      *
-     * @param bool $isCorrect
-     * @param int $forcedLevel
-     * @param null $isFavourite
+     * @param Request $request
      * @return $this
      */
-    public function calculateAndSaveNewLevel(bool $isCorrect, int $forcedLevel = 1, $isFavourite = 0)
+    public function updateCardWorthProperties(Request $request)
     {
-        if ($isCorrect) {
+        $isAnswerCorrect = $request->get('isCorrect');
+        $isFavouriteCard = $request->get('isFavourite');
 
-            /**
-             * The logic is
-             * new level = right answers + 1 - wrong answers
-             * +1 because new answer was the right
-             */
-            $level = ($this->right + 1) - $this->wrong;
+        // the difference of the right and the wrong answers
+        $knowledgeBalance = $this->right - $this->wrong;
 
-            if ($level < 1) {
-                $level = 1;
-            }
+        // this var helps to reduce the card level more
+        // if card is "old". It improves the main logic.
+        $punishment = ($knowledgeBalance > 0) ? 2 : 1;
 
-            $this->increment('total', 1, [
-                'level' => $level,
-                'right' => ($this->right + 1),
-                'favourite' => $isFavourite,
-            ]);
-
+        if ($isAnswerCorrect) {
+            $this->total++;
+            $this->right++;
+            $this->level = ($knowledgeBalance > 0) ? ++$knowledgeBalance : 1;
+            $this->favourite = $isFavouriteCard;
         } else {
-
-            /**
-             * if last answer was wrong
-             * the card will be appeared next time.
-             * just set level = 1
-             */
-            $level = 1;
-
-            /**
-             * If correct answer count more then incorrect one, your level will be reduce.
-             */
-            $punishment = (($this->right - $this->wrong) > 0) ? 2 : 1 ;
-
-            $this->increment('total', 1, [
-                'level' => $level,
-                'wrong' => ($this->wrong + $punishment),
-                'favourite' => 1,
-            ]);
+            $this->total++;
+            $this->level = 1;
+            $this->wrong += $punishment;
+            $this->favourite = 1;
         }
 
         return $this;
@@ -85,7 +65,8 @@ class Card extends Model
      *
      * @return Modules\Work\Entities\Category
      */
-    public function category()
+    public
+    function category()
     {
         return $this->belongsTo(Category::class);
     }
