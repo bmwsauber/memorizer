@@ -20,7 +20,7 @@ Vue.component('numbers-component', require('./components/NumbersComponent.vue').
 Vue.component('last-report-data', require('./components/LastReportData.vue').default);
 Vue.component('learn-component', require('./components/LearnComponent.vue').default);
 Vue.component('main-statistic', require('./components/MainStatistic.vue').default);
-Vue.component('speedometer', require('./components/Speedometer.vue').default);
+Vue.component('knowledge-meter', require('./components/KnowledgeMeter.vue').default);
 Vue.component('header-vue', require('./components/Header.vue').default);
 Vue.component('left-sidebar', require('./components/Left-sidebar.vue').default);
 Vue.component('ios-checkbox', require('./components/parts/iosCheckbox').default);

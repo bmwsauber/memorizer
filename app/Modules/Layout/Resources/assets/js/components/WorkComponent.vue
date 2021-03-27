@@ -7,11 +7,11 @@
         </div>
         <div class="card-content text-center">
             <div class="color-bar flex justify-center">
-                <speedometer
-                    :correctVolume="correctWrongVolume"
+                <knowledge-meter
+                    :knowledgeMeterValue="knowledgeMeterValue"
                     :envUnique="envUnique"
                 >
-                </speedometer>
+                </knowledge-meter>
             </div>
             <div class="question text-5xl mt-6">
                 <span v-if="(!$store.state.listeningMode || ($store.state.listeningMode && openAnswer))">{{ currentQuestion }}</span>
@@ -35,9 +35,9 @@
             </div>
             <div class="buttons text-white mt-5">
                 <span v-if="openAnswer">
-                    <button class="bg-teal-100 hover:bg-teal-200 px-4 py-2 rounded" @click="sendAnswerData(1, true)">Right :))</button>
+                    <button class="bg-teal-100 hover:bg-teal-200 px-4 py-2 rounded" @click="computeAnswer(true)">Right :))</button>
                     <button class="bg-crimson-100 hover:bg-crimson-200 px-4 py-2 rounded"
-                            @click="sendAnswerData(1, false)">Wrong :(</button>
+                            @click="computeAnswer(false)">Wrong :(</button>
                     <button class="bg-gray-100 hover:bg-gray-300 px-4 py-2 text-black rounded"
                             @click="currentCard.favourite = !currentCard.favourite"><i
                         class="far fa-heart" :class="[currentCard.favourite ? 'fas' : 'far']"></i></button>
@@ -72,40 +72,56 @@
                 cardIndex: 0,
                 lastCardsIndex: 0,
                 totalCards: 0,
+
                 currentCard: {},
+                currentQuestionLang: null,
                 currentQuestion: '',
                 currentAnswer: '',
+
                 openAnswer: false,
                 progressWidth: 0,
-                showAdditionalButtons: false,
-                randMeasureRus: 0,
-                randMeasureEng: 0,
-                currentQuestionLang: null,
+
                 synth: window.speechSynthesis,
-                message: new window.SpeechSynthesisUtterance(),
-                correctVolume: 0,
+                message: new window.SpeechSynthesisUtterance()
             }
         },
         mounted() {
             this.totalCards = (this.cards.length);
             this.lastCardsIndex = (this.cards.length - 1);
             this.currentCard = this.cards[this.cardIndex];
+
             this.message.voiceURI = 'native';
             this.message.volume = 1; // 0 to 1
             this.message.rate = 1; // 0.1 to 10
             this.message.pitch = 2; //0 to 2
             this.message.lang = 'en-US';
 
-            this.showQuestion();
+            this.cardInitAndShow();
+        },
+        watch: {
+            /**
+             * Init and Show Card
+             *
+             * @param currentCardIndex
+             */
+            cardIndex(currentCardIndex) {
+                this.cardInitAndShow();
+
+                if (currentCardIndex >= this.lastCardsIndex) {
+                    this.endLesson();
+                }
+            }
         },
         methods: {
-            showQuestion() {
+            /**
+             *
+             *
+             */
+            cardInitAndShow() {
                 this.openAnswer = false;
+                this.currentCard = this.cards[this.cardIndex];
 
-                /**
-                 * Random show Eng or Rus word
-                 */
-                if (this.languageQuestion() === 'rus') { //not sure about the type of var
+                if (this.languageQuestion() === 'rus') {
                     this.currentQuestion = this.currentCard.rus;
                     this.currentAnswer = this.currentCard.eng;
                     this.currentQuestionLang = 'rus';
@@ -138,38 +154,22 @@
             /**
              * Mark this card as new level and show new card
              *
-             * @param level
-             * @param isCorrect
+             * @param answerIsCorrect
              */
-            sendAnswerData(level, isCorrect) {
+            computeAnswer(answerIsCorrect) {
                 let data = {
-                    isCorrect: isCorrect,
-                    isFavourite: this.currentCard.favourite,
-                    forcedLevel: level,
+                    isCorrect: answerIsCorrect,
+                    isFavourite: this.currentCard.favourite
                 };
 
                 // if card going to "Unique" play sound
-                if (isCorrect && (this.currentCard.right + 1) - this.currentCard.wrong >= this.envUnique) {
-                    this._playSound();
+                if (answerIsCorrect && ((this.currentCard.right + 1) - this.currentCard.wrong) >= this.envUnique) {
+                    this.playDingSound();
                 }
 
                 axios.post(this.route('work.set_level', this.currentCard.id), data)
-                    .then(response => {
-                    })
                     .catch((error) => {
-                        this._errorSound();
-                        if (error.response) {
-                            // Request made and server responded
-                            console.log(error.response.data);
-                            console.log(error.response.status);
-                            console.log(error.response.headers);
-                        } else if (error.request) {
-                            // The request was made but no response was received
-                            console.log(error.request);
-                        } else {
-                            // Something happened in setting up the request that triggered an Error
-                            console.log('Error', error.message);
-                        }
+                        this.playErrorSound();
                     });
 
                 this._increaseCardIndex();
@@ -180,19 +180,24 @@
              * Speech the text
              */
             speech() {
+                // Remove all tips which are placed in the square brackets [].
                 this.message.text = this.currentCard.eng.replace(/\[(.)*\]/gi, '...').replace(/\//gi, '...');
+
                 this.synth.speak(this.message);
             },
 
             /**
-             * Play Sound
-             *
-             * @private
+             * Play Ding Sound
              */
-            _playSound() {
-                let audio = new Audio("/ding-sound-effect.mp3");
-                audio.volume = 0.5;
-                audio.play();
+            playDingSound() {
+                this._playSound(new Audio("/ding-sound-effect.mp3"));
+            },
+
+            /**
+             * Play  Error Sound
+             */
+            playErrorSound() {
+                this._playSound(new Audio("/error-alert.mp3"));
             },
 
             /**
@@ -200,8 +205,7 @@
              *
              * @private
              */
-            _errorSound() {
-                let audio = new Audio("/error-alert.mp3");
+            _playSound(audio) {
                 audio.volume = 0.5;
                 audio.play();
             },
@@ -215,10 +219,10 @@
             _respondAnswer(event) {
                 switch (event.code) {
                     case 'Escape':
-                        this.sendAnswerData(1, false);
+                        this.computeAnswer(false);
                         break;
                     case 'Space':
-                        this.sendAnswerData(1, true);
+                        this.computeAnswer(true);
                         break;
                     default :
                         return;
@@ -261,39 +265,17 @@
             },
 
             /**
-             * Just decrease card index correctly
+             * Just decrease card index
              *
              * @private
              */
             _increaseCardIndex() {
-                if (this.cardIndex < this.lastCardsIndex) {
-                    this.cardIndex++;
-                } else {
-                    this.$confirm({
-                        title: 'Congratulations!',
-                        message: `Lesson complete! Do you want to update all cards?`,
-                        button: {
-                            no: 'No!',
-                            yes: 'Yes!'
-                        },
-                        /**
-                         * Callback Function
-                         * @param {Boolean} confirm
-                         */
-                        callback: confirm => {
-                            if (confirm) {
-                                location.href = this.route('work.end');
-                            } else {
-                                location.href = this.route('home');
-                            }
-                        }
-                    });
-                }
+                this.cardIndex++;
             },
 
             /**
-             * What is language will be in question
-             * depends on params on random
+             * What's language will be in question
+             * depends on params or random
              *
              */
             languageQuestion() {
@@ -314,7 +296,39 @@
                         return 'rus'
                     }
                 }
-            }
+            },
+
+            /**
+            *
+            */
+            endLesson() {
+                this.endLessonPrompt();
+            },
+
+            /**
+             *
+             */
+            endLessonPrompt(){
+                this.$confirm({
+                    title: 'Congratulations!',
+                    message: `Lesson complete! Do you want to update all cards?`,
+                    button: {
+                        no: 'No!',
+                        yes: 'Yes!'
+                    },
+                    /**
+                     * Callback Function
+                     * @param {Boolean} confirm
+                     */
+                    callback: confirm => {
+                        if (confirm) {
+                            location.href = this.route('work.end');
+                        } else {
+                            location.href = this.route('home');
+                        }
+                    }
+                });
+            },
         },
         computed: {
 
@@ -352,21 +366,9 @@
                 }
             },
 
-            correctWrongVolume() {
+            knowledgeMeterValue() {
                 return (this.currentCard.right - this.currentCard.wrong);
             }
-        },
-        watch: {
-
-            /**
-             * Show current card
-             *
-             * @param cardIndex
-             */
-            cardIndex(cardIndex) {
-                this.currentCard = this.cards[cardIndex];
-                this.showQuestion();
-            },
         },
     }
 </script>

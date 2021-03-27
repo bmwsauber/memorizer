@@ -12,14 +12,14 @@
 <script>
     export default {
         props: [
-            'correctVolume',
+            'knowledgeMeterValue',
             'envUnique',
         ],
         data() {
             return {
                 totalsData: [
                     ['Label', 'Value'],
-                    ['Legendary', this.correctVolume],
+                    ['Legendary', this.knowledgeMeterValue],
                 ],
                 totalsOptions: {
                     min: (this.envUnique - this.envUnique * 2),
@@ -34,10 +34,10 @@
             }
         },
         watch: {
-            correctVolume(volume){
+            knowledgeMeterValue(volume){
                 this.totalsData = [
                     ['Label', 'Value'],
-                    ['Legendary', this.correctVolume],
+                    ['Legendary', this.knowledgeMeterValue],
                 ]
             }
         }
