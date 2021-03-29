@@ -30,6 +30,12 @@ class Card extends Model
     /**
      * Update card "Worth" according to answer result
      *
+     * @var $this->total = this card was shown and answer was given total $this->total times
+     * @var $this->right = user was answered on this card correctly $this->right times
+     * @var $this->wrong = user was answered on this card incorrectly $this->wrong times
+     * @var $this->level = this card will be ready to show after $this->level lessons. $this->level = 1 - card is ready.
+     * @var $this->favourite = this flag point at will be shown this card after env('UNIQUE_LEVEL') right answers or not.
+     *
      * @param Request $request
      * @return $this
      */
@@ -38,7 +44,7 @@ class Card extends Model
         $isAnswerCorrect = $request->get('isCorrect');
         $isFavouriteCard = $request->get('isFavourite');
 
-        // the difference of the right and the wrong answers
+        // the difference between the right and the wrong answers
         $knowledgeBalance = $this->right - $this->wrong;
 
         // this var helps to reduce the card level more
