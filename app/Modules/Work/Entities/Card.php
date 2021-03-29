@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class Card extends Model
 {
     /**
+     * @var $this->rus = question
+     * @var $this->eng = answer
+     * @var $this->total = this card was shown and answer was given total $this->total times
+     * @var $this->right = user was answered on this card correctly $this->right times
+     * @var $this->wrong = user was answered on this card incorrectly $this->wrong times
+     * @var $this->level = this card will be ready to show after $this->level lessons. $this->level = 1 - card is ready.
+     * @var $this->favourite = this flag point at will be shown this card after env('UNIQUE_LEVEL') right answers or not.
+     */
+
+    /**
      * @var string[]
      */
     protected $fillable = [
@@ -29,12 +39,6 @@ class Card extends Model
 
     /**
      * Update card "Worth" according to answer result
-     *
-     * @var $this->total = this card was shown and answer was given total $this->total times
-     * @var $this->right = user was answered on this card correctly $this->right times
-     * @var $this->wrong = user was answered on this card incorrectly $this->wrong times
-     * @var $this->level = this card will be ready to show after $this->level lessons. $this->level = 1 - card is ready.
-     * @var $this->favourite = this flag point at will be shown this card after env('UNIQUE_LEVEL') right answers or not.
      *
      * @param Request $request
      * @return $this
