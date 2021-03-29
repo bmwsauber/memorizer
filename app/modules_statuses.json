@@ -5,5 +5,8 @@
     "Report": true,
     "Work": true,
     "Numbers": true,
-    "Idioms": true
+    "Idioms": true,
+    "Auth": true,
+    "Users": true,
+    "Test": true
 }

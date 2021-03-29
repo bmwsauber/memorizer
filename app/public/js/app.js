@@ -155,6 +155,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue":
+/*!**************************************************************************!*\
+  !*** ./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _KnowledgeMeter_vue_vue_type_template_id_12826551___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./KnowledgeMeter.vue?vue&type=template&id=12826551& */ "./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue?vue&type=template&id=12826551&");
+/* harmony import */ var _KnowledgeMeter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./KnowledgeMeter.vue?vue&type=script&lang=js& */ "./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _KnowledgeMeter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _KnowledgeMeter_vue_vue_type_template_id_12826551___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _KnowledgeMeter_vue_vue_type_template_id_12826551___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KnowledgeMeter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./KnowledgeMeter.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_KnowledgeMeter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue?vue&type=template&id=12826551&":
+/*!*********************************************************************************************************!*\
+  !*** ./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue?vue&type=template&id=12826551& ***!
+  \*********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KnowledgeMeter_vue_vue_type_template_id_12826551___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./KnowledgeMeter.vue?vue&type=template&id=12826551& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue?vue&type=template&id=12826551&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KnowledgeMeter_vue_vue_type_template_id_12826551___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_KnowledgeMeter_vue_vue_type_template_id_12826551___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./Modules/Layout/Resources/assets/js/components/LastReportData.vue":
 /*!**************************************************************************!*\
   !*** ./Modules/Layout/Resources/assets/js/components/LastReportData.vue ***!
@@ -518,75 +587,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./Modules/Layout/Resources/assets/js/components/Speedometer.vue":
-/*!***********************************************************************!*\
-  !*** ./Modules/Layout/Resources/assets/js/components/Speedometer.vue ***!
-  \***********************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Speedometer_vue_vue_type_template_id_6874846a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Speedometer.vue?vue&type=template&id=6874846a& */ "./Modules/Layout/Resources/assets/js/components/Speedometer.vue?vue&type=template&id=6874846a&");
-/* harmony import */ var _Speedometer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Speedometer.vue?vue&type=script&lang=js& */ "./Modules/Layout/Resources/assets/js/components/Speedometer.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Speedometer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Speedometer_vue_vue_type_template_id_6874846a___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Speedometer_vue_vue_type_template_id_6874846a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "Modules/Layout/Resources/assets/js/components/Speedometer.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./Modules/Layout/Resources/assets/js/components/Speedometer.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************!*\
-  !*** ./Modules/Layout/Resources/assets/js/components/Speedometer.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Speedometer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Speedometer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./Modules/Layout/Resources/assets/js/components/Speedometer.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Speedometer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./Modules/Layout/Resources/assets/js/components/Speedometer.vue?vue&type=template&id=6874846a&":
-/*!******************************************************************************************************!*\
-  !*** ./Modules/Layout/Resources/assets/js/components/Speedometer.vue?vue&type=template&id=6874846a& ***!
-  \******************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Speedometer_vue_vue_type_template_id_6874846a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./Speedometer.vue?vue&type=template&id=6874846a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./Modules/Layout/Resources/assets/js/components/Speedometer.vue?vue&type=template&id=6874846a&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Speedometer_vue_vue_type_template_id_6874846a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Speedometer_vue_vue_type_template_id_6874846a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
 /***/ "./Modules/Layout/Resources/assets/js/components/WorkComponent.vue":
 /*!*************************************************************************!*\
   !*** ./Modules/Layout/Resources/assets/js/components/WorkComponent.vue ***!
@@ -772,7 +772,7 @@ Vue.component('numbers-component', __webpack_require__(/*! ./components/NumbersC
 Vue.component('last-report-data', __webpack_require__(/*! ./components/LastReportData.vue */ "./Modules/Layout/Resources/assets/js/components/LastReportData.vue")["default"]);
 Vue.component('learn-component', __webpack_require__(/*! ./components/LearnComponent.vue */ "./Modules/Layout/Resources/assets/js/components/LearnComponent.vue")["default"]);
 Vue.component('main-statistic', __webpack_require__(/*! ./components/MainStatistic.vue */ "./Modules/Layout/Resources/assets/js/components/MainStatistic.vue")["default"]);
-Vue.component('speedometer', __webpack_require__(/*! ./components/Speedometer.vue */ "./Modules/Layout/Resources/assets/js/components/Speedometer.vue")["default"]);
+Vue.component('knowledge-meter', __webpack_require__(/*! ./components/KnowledgeMeter.vue */ "./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue")["default"]);
 Vue.component('header-vue', __webpack_require__(/*! ./components/Header.vue */ "./Modules/Layout/Resources/assets/js/components/Header.vue")["default"]);
 Vue.component('left-sidebar', __webpack_require__(/*! ./components/Left-sidebar.vue */ "./Modules/Layout/Resources/assets/js/components/Left-sidebar.vue")["default"]);
 Vue.component('ios-checkbox', __webpack_require__(/*! ./components/parts/iosCheckbox */ "./Modules/Layout/Resources/assets/js/components/parts/iosCheckbox.vue")["default"]);
@@ -2758,6 +2758,55 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['knowledgeMeterValue', 'envUnique'],
+  data: function data() {
+    return {
+      totalsData: [['Label', 'Value'], ['Legendary', this.knowledgeMeterValue]],
+      totalsOptions: {
+        min: this.envUnique - this.envUnique * 2,
+        max: this.envUnique,
+        width: 400,
+        height: 120,
+        redFrom: this.envUnique - this.envUnique * 2,
+        redTo: this.envUnique - this.envUnique * 2 + 2,
+        greenFrom: this.envUnique - 2,
+        greenTo: this.envUnique,
+        greenColor: '#117a8b',
+        redColor: '#bd2130',
+        minorTicks: 5
+      }
+    };
+  },
+  watch: {
+    knowledgeMeterValue: function knowledgeMeterValue(volume) {
+      this.totalsData = [['Label', 'Value'], ['Legendary', this.knowledgeMeterValue]];
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./Modules/Layout/Resources/assets/js/components/LastReportData.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./Modules/Layout/Resources/assets/js/components/LastReportData.vue?vue&type=script&lang=js& ***!
@@ -3280,55 +3329,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./Modules/Layout/Resources/assets/js/components/Speedometer.vue?vue&type=script&lang=js&":
-/*!********************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./Modules/Layout/Resources/assets/js/components/Speedometer.vue?vue&type=script&lang=js& ***!
-  \********************************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['correctVolume', 'envUnique'],
-  data: function data() {
-    return {
-      totalsData: [['Label', 'Value'], ['Legendary', this.correctVolume]],
-      totalsOptions: {
-        min: this.envUnique - this.envUnique * 2,
-        max: this.envUnique,
-        width: 400,
-        height: 120,
-        redFrom: this.envUnique - this.envUnique * 2,
-        redTo: this.envUnique - this.envUnique * 2 + 2,
-        greenFrom: this.envUnique - 2,
-        greenTo: this.envUnique,
-        greenColor: '#117a8b',
-        redColor: '#bd2130',
-        minorTicks: 5
-      }
-    };
-  },
-  watch: {
-    correctVolume: function correctVolume(volume) {
-      this.totalsData = [['Label', 'Value'], ['Legendary', this.correctVolume]];
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./Modules/Layout/Resources/assets/js/components/WorkComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./Modules/Layout/Resources/assets/js/components/WorkComponent.vue?vue&type=script&lang=js& ***!
@@ -3408,17 +3408,13 @@ __webpack_require__.r(__webpack_exports__);
       lastCardsIndex: 0,
       totalCards: 0,
       currentCard: {},
+      currentQuestionLang: null,
       currentQuestion: '',
       currentAnswer: '',
       openAnswer: false,
       progressWidth: 0,
-      showAdditionalButtons: false,
-      randMeasureRus: 0,
-      randMeasureEng: 0,
-      currentQuestionLang: null,
       synth: window.speechSynthesis,
-      message: new window.SpeechSynthesisUtterance(),
-      correctVolume: 0
+      message: new window.SpeechSynthesisUtterance()
     };
   },
   mounted: function mounted() {
@@ -3433,17 +3429,32 @@ __webpack_require__.r(__webpack_exports__);
     this.message.pitch = 2; //0 to 2
 
     this.message.lang = 'en-US';
-    this.showQuestion();
+    this.cardInitAndShow();
+  },
+  watch: {
+    /**
+     * Init and Show Card
+     *
+     * @param currentCardIndex
+     */
+    cardIndex: function cardIndex(currentCardIndex) {
+      this.cardInitAndShow();
+
+      if (currentCardIndex >= this.lastCardsIndex) {
+        this.endLesson();
+      }
+    }
   },
   methods: {
-    showQuestion: function showQuestion() {
+    /**
+     *
+     *
+     */
+    cardInitAndShow: function cardInitAndShow() {
       this.openAnswer = false;
-      /**
-       * Random show Eng or Rus word
-       */
+      this.currentCard = this.cards[this.cardIndex];
 
       if (this.languageQuestion() === 'rus') {
-        //not sure about the type of var
         this.currentQuestion = this.currentCard.rus;
         this.currentAnswer = this.currentCard.eng;
         this.currentQuestionLang = 'rus';
@@ -3476,37 +3487,22 @@ __webpack_require__.r(__webpack_exports__);
     /**
      * Mark this card as new level and show new card
      *
-     * @param level
-     * @param isCorrect
+     * @param answerIsCorrect
      */
-    sendAnswerData: function sendAnswerData(level, isCorrect) {
+    computeAnswer: function computeAnswer(answerIsCorrect) {
       var _this = this;
 
       var data = {
-        isCorrect: isCorrect,
-        isFavourite: this.currentCard.favourite,
-        forcedLevel: level
+        isCorrect: answerIsCorrect,
+        isFavourite: this.currentCard.favourite
       }; // if card going to "Unique" play sound
 
-      if (isCorrect && this.currentCard.right + 1 - this.currentCard.wrong >= this.envUnique) {
-        this._playSound();
+      if (answerIsCorrect && this.currentCard.right + 1 - this.currentCard.wrong >= this.envUnique) {
+        this.playDingSound();
       }
 
-      axios.post(this.route('work.set_level', this.currentCard.id), data).then(function (response) {})["catch"](function (error) {
-        _this._errorSound();
-
-        if (error.response) {
-          // Request made and server responded
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          // The request was made but no response was received
-          console.log(error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log('Error', error.message);
-        }
+      axios.post(this.route('work.set_level', this.currentCard.id), data)["catch"](function (error) {
+        _this.playErrorSound();
       });
 
       this._increaseCardIndex();
@@ -3518,19 +3514,23 @@ __webpack_require__.r(__webpack_exports__);
      * Speech the text
      */
     speech: function speech() {
+      // Remove all tips which are placed in the square brackets [].
       this.message.text = this.currentCard.eng.replace(/\[(.)*\]/gi, '...').replace(/\//gi, '...');
       this.synth.speak(this.message);
     },
 
     /**
-     * Play Sound
-     *
-     * @private
+     * Play Ding Sound
      */
-    _playSound: function _playSound() {
-      var audio = new Audio("/ding-sound-effect.mp3");
-      audio.volume = 0.5;
-      audio.play();
+    playDingSound: function playDingSound() {
+      this._playSound(new Audio("/ding-sound-effect.mp3"));
+    },
+
+    /**
+     * Play  Error Sound
+     */
+    playErrorSound: function playErrorSound() {
+      this._playSound(new Audio("/error-alert.mp3"));
     },
 
     /**
@@ -3538,8 +3538,7 @@ __webpack_require__.r(__webpack_exports__);
      *
      * @private
      */
-    _errorSound: function _errorSound() {
-      var audio = new Audio("/error-alert.mp3");
+    _playSound: function _playSound(audio) {
       audio.volume = 0.5;
       audio.play();
     },
@@ -3553,11 +3552,11 @@ __webpack_require__.r(__webpack_exports__);
     _respondAnswer: function _respondAnswer(event) {
       switch (event.code) {
         case 'Escape':
-          this.sendAnswerData(1, false);
+          this.computeAnswer(false);
           break;
 
         case 'Space':
-          this.sendAnswerData(1, true);
+          this.computeAnswer(true);
           break;
 
         default:
@@ -3604,42 +3603,17 @@ __webpack_require__.r(__webpack_exports__);
     },
 
     /**
-     * Just decrease card index correctly
+     * Just decrease card index
      *
      * @private
      */
     _increaseCardIndex: function _increaseCardIndex() {
-      var _this2 = this;
-
-      if (this.cardIndex < this.lastCardsIndex) {
-        this.cardIndex++;
-      } else {
-        this.$confirm({
-          title: 'Congratulations!',
-          message: "Lesson complete! Do you want to update all cards?",
-          button: {
-            no: 'No!',
-            yes: 'Yes!'
-          },
-
-          /**
-           * Callback Function
-           * @param {Boolean} confirm
-           */
-          callback: function callback(confirm) {
-            if (confirm) {
-              location.href = _this2.route('work.end');
-            } else {
-              location.href = _this2.route('home');
-            }
-          }
-        });
-      }
+      this.cardIndex++;
     },
 
     /**
-     * What is language will be in question
-     * depends on params on random
+     * What's language will be in question
+     * depends on params or random
      *
      */
     languageQuestion: function languageQuestion() {
@@ -3660,6 +3634,41 @@ __webpack_require__.r(__webpack_exports__);
           return 'rus';
         }
       }
+    },
+
+    /**
+    *
+    */
+    endLesson: function endLesson() {
+      this.endLessonPrompt();
+    },
+
+    /**
+     *
+     */
+    endLessonPrompt: function endLessonPrompt() {
+      var _this2 = this;
+
+      this.$confirm({
+        title: 'Congratulations!',
+        message: "Lesson complete! Do you want to update all cards?",
+        button: {
+          no: 'No!',
+          yes: 'Yes!'
+        },
+
+        /**
+         * Callback Function
+         * @param {Boolean} confirm
+         */
+        callback: function callback(confirm) {
+          if (confirm) {
+            location.href = _this2.route('work.end');
+          } else {
+            location.href = _this2.route('home');
+          }
+        }
+      });
     }
   },
   computed: {
@@ -3694,19 +3703,8 @@ __webpack_require__.r(__webpack_exports__);
         return 0;
       }
     },
-    correctWrongVolume: function correctWrongVolume() {
+    knowledgeMeterValue: function knowledgeMeterValue() {
       return this.currentCard.right - this.currentCard.wrong;
-    }
-  },
-  watch: {
-    /**
-     * Show current card
-     *
-     * @param cardIndex
-     */
-    cardIndex: function cardIndex(_cardIndex) {
-      this.currentCard = this.cards[_cardIndex];
-      this.showQuestion();
     }
   }
 });
@@ -5898,6 +5896,44 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue?vue&type=template&id=12826551&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./Modules/Layout/Resources/assets/js/components/KnowledgeMeter.vue?vue&type=template&id=12826551& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    {},
+    [
+      _c("GChart", {
+        attrs: {
+          settings: { packages: ["corechart", "gauge"] },
+          type: "Gauge",
+          data: _vm.totalsData,
+          options: _vm.totalsOptions
+        }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./Modules/Layout/Resources/assets/js/components/LastReportData.vue?vue&type=template&id=0fcfb15a&":
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./Modules/Layout/Resources/assets/js/components/LastReportData.vue?vue&type=template&id=0fcfb15a& ***!
@@ -6440,44 +6476,6 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./Modules/Layout/Resources/assets/js/components/Speedometer.vue?vue&type=template&id=6874846a&":
-/*!************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./Modules/Layout/Resources/assets/js/components/Speedometer.vue?vue&type=template&id=6874846a& ***!
-  \************************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {},
-    [
-      _c("GChart", {
-        attrs: {
-          settings: { packages: ["corechart", "gauge"] },
-          type: "Gauge",
-          data: _vm.totalsData,
-          options: _vm.totalsOptions
-        }
-      })
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./Modules/Layout/Resources/assets/js/components/WorkComponent.vue?vue&type=template&id=6cdb9d36&":
 /*!**************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./Modules/Layout/Resources/assets/js/components/WorkComponent.vue?vue&type=template&id=6cdb9d36& ***!
@@ -6523,9 +6521,9 @@ var render = function() {
           "div",
           { staticClass: "color-bar flex justify-center" },
           [
-            _c("speedometer", {
+            _c("knowledge-meter", {
               attrs: {
-                correctVolume: _vm.correctWrongVolume,
+                knowledgeMeterValue: _vm.knowledgeMeterValue,
                 envUnique: _vm.envUnique
               }
             })
@@ -6585,7 +6583,7 @@ var render = function() {
                       "bg-teal-100 hover:bg-teal-200 px-4 py-2 rounded",
                     on: {
                       click: function($event) {
-                        return _vm.sendAnswerData(1, true)
+                        return _vm.computeAnswer(true)
                       }
                     }
                   },
@@ -6599,7 +6597,7 @@ var render = function() {
                       "bg-crimson-100 hover:bg-crimson-200 px-4 py-2 rounded",
                     on: {
                       click: function($event) {
-                        return _vm.sendAnswerData(1, false)
+                        return _vm.computeAnswer(false)
                       }
                     }
                   },

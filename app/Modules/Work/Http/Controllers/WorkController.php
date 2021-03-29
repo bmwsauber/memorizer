@@ -155,15 +155,14 @@ class WorkController extends Controller
     public function setCardLevel(Card $card, Request $request)
     {
         try {
-            /**
-             * Keep controller "thin" ;)
-             * business logic is should be placed in a model.
-             */
 
-            $card->updateCardWorthProperties($request)->save();
+            $card
+                ->updateCardWorthProperties($request)
+                ->save();
 
             Report::updateReport((bool)$request->get('isCorrect'));
-        } catch (e $exception) {
+
+        } catch (\Exception $exception) {
             return $exception->getMessage();
         }
 

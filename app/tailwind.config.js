@@ -1,5 +1,8 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
     purge: [
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './Resources/**/*.blade.php',
         './Resources/assets/**/*.js',
         './Resources/assets/components/*.vue',
@@ -24,8 +27,12 @@ module.exports = {
             }
         },
     },
+
     variants: {
-        extend: {},
+        extend: {
+            opacity: ['disabled'],
+        },
     },
-    plugins: [],
-}
+
+    plugins: [require('@tailwindcss/forms')],
+};

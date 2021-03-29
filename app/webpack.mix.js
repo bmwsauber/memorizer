@@ -12,7 +12,12 @@ mix.js(__dirname + '/Modules/Layout/Resources/assets/js/memocards.js', 'js/app.j
     .sass(__dirname + '/Modules/Layout/Resources/assets/sass/memocards.scss', 'css/app.css')
     .options({
         processCssUrls: false,
-        postCss: [tailwindcss('./tailwind.config.js')],
+        postCss: [
+            tailwindcss('./tailwind.config.js'),
+            //require('postcss-import'),
+            //require('tailwindcss'),
+            //require('autoprefixer'),
+        ],
     });
 
 if (mix.inProduction()) {
